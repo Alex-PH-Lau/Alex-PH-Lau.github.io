@@ -17,7 +17,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #45E6AD, #5C917E);
+  background: linear-gradient(135deg, #12FAB6, #3CBA94);
   color: white;
   text-align: center;
   padding: 2rem;
@@ -41,7 +41,7 @@ body {
 }
 
 .hero h1 span {
-  color: #ffe082;
+  color: #A55843;
 }
 
 .btn {
