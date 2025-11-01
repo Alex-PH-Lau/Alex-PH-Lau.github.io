@@ -17,7 +17,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #30DB8D, #649E84);
+  background: linear-gradient(135deg, #30DB8D, #4E6159);
   color: white;
   text-align: center;
   padding: 2rem;
@@ -57,7 +57,7 @@ body {
 }
 
 .btn:hover {
-  background: #4E6159;
+  background: #649E84;
   color: #332E2D;
   transform: scale(1.05);
 }
