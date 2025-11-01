@@ -26,6 +26,37 @@ body {
 .hero-content {
   animation: fadeIn 1.5s ease;
 }
+/* === Enlaces bonitos para los proyectos === */
+.links-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  background: linear-gradient(135deg, #0078ff, #00c6ff);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.link-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, #0062e6, #00bfff);
+}
+
+.link-card i {
+  font-size: 1.2rem;
+}
 
 .profile-pic {
   width: 130px;
