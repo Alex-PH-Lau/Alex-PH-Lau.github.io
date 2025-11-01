@@ -3,32 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mi Portfolio</title>
+  <title>Portfolio | Alejandro Pascual Hernández</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1>¡Hola! Soy Alejandro Pascual Hernández</h1>
-    <p>Biólogo, mejorador vegetal y estudiante de Biorinformática</p>
+  <header class="hero">
+    <div class="hero-content">
+      <img src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Foto de perfil" class="profile-pic">
+      <h1>¡Hola! Soy <span>Alejandro Pascual Hernández</span></h1>
+      <p>Estudiante de bioinformática, biólogo y mejorador vegetal | Frontend | Backend</p>
+      <a href="#proyectos" class="btn">Ver mis proyectos</a>
+    </div>
   </header>
 
-  <section id="sobre-mi">
-    <h2>Sobre mí</h2>
-    <p>Graduado en biología por la Universidad de León, en mejora genética vegetal por la UPV <br> y actualmente estudiando el máster de bioinformática de la UNIR .</p>
-  </section>
+  <main>
+    <section id="sobre-mi" class="section">
+      <h2>Sobre mí</h2>
+      <p>
+        Soy un estudiante de bioinformática con gran ilusión por seguir aprendiendo e investigando.
+        Graduado en biología por la universidad de León y en el máster de mejora genética vegetal por la UPV.
+        Actualemente estudiando el máster de bioinformática de la UNIR y de précticas en el IHSM "La Mayora" en Málaga.
+      </p>
+    </section>
 
-  <section id="proyectos">
-    <h2>Proyectos</h2>
-    <ul>
-      <li><a href="#">Proyecto 1</a></li>
-      <li><a href="#">Proyecto 2</a></li>
-    </ul>
-  </section>
+    <section id="habilidades" class="section">
+      <h2>Habilidades</h2>
+      <div class="skills">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>React</span>
+        <span>Node.js</span>
+        <span>Git</span>
+      </div>
+    </section>
 
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>Puedes escribirme a <a href="mailto:alexph_lau@proton.me">alexph_lau@proton.me</a></p>
-  </section>
+    <section id="proyectos" class="section">
+      <h2>Proyectos</h2>
+      <div class="projects">
+        <div class="project-card">
+          <h3>Proyecto 1</h3>
+          <p>Descripción breve del proyecto. Incluye tecnologías y objetivo.</p>
+          <a href="#" target="_blank">Ver proyecto</a>
+        </div>
+        <div class="project-card">
+          <h3>Proyecto 2</h3>
+          <p>Otro ejemplo de tu trabajo. Puedes enlazarlo a GitHub o una demo.</p>
+          <a href="#" target="_blank">Ver proyecto</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section">
+      <h2>Contacto</h2>
+      <p>¿Quieres contactar conmigo? Escribe o llama a:</p>
+      <a> 653885770 </a>
+      <a href="mailto:alexph_lau@proton.me" class="btn">alexph_lau@proton.me</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Alejandro Pascual Hernández. Hecho con HTML/CSS/JS.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
