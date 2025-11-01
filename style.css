@@ -41,13 +41,13 @@ body {
 }
 
 .hero h1 span {
-  color: #A55843;
+  color: #4F3F3A;
 }
 
 .btn {
   display: inline-block;
   background: white;
-  color: #007acc;
+  color: #3CBA94;
   padding: 0.8rem 1.5rem;
   border-radius: 30px;
   text-decoration: none;
@@ -58,7 +58,7 @@ body {
 
 .btn:hover {
   background: #ffe082;
-  color: #A55843;
+  color: #4F3F3A;
   transform: scale(1.05);
 }
 
