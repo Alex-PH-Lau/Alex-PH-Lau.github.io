@@ -1,34 +1,148 @@
-body {
-  font-family: Arial, sans-serif;
+* {
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
-  color: #333;
+  box-sizing: border-box;
 }
 
-header {
-  background-color: #222;
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #222;
+  background: #f9f9f9;
+  scroll-behavior: smooth;
+}
+
+/* HERO SECTION */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #007acc, #00c9a7);
   color: white;
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 2rem;
 }
 
-section {
-  padding: 2rem;
-  max-width: 800px;
+.hero-content {
+  animation: fadeIn 1.5s ease;
+}
+
+.profile-pic {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px solid white;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.hero h1 {
+  font-size: 2rem;
+}
+
+.hero h1 span {
+  color: #ffe082;
+}
+
+.btn {
+  display: inline-block;
+  background: white;
+  color: #007acc;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  margin-top: 1rem;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background: #ffe082;
+  color: #333;
+  transform: scale(1.05);
+}
+
+/* SECTIONS */
+.section {
+  padding: 4rem 1.5rem;
+  max-width: 900px;
   margin: auto;
 }
 
-h2 {
-  border-bottom: 2px solid #333;
-  padding-bottom: 0.5rem;
+.section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: #007acc;
 }
 
-a {
+/* SKILLS */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.skills span {
+  background: #e0f7fa;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: transform 0.3s;
+}
+
+.skills span:hover {
+  transform: scale(1.1);
+}
+
+/* PROJECTS */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project-card a {
   color: #007acc;
   text-decoration: none;
+  font-weight: 600;
 }
 
-a:hover {
-  text-decoration: underline;
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #222;
+  color: white;
+  font-size: 0.9rem;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+  .section {
+    padding: 2.5rem 1rem;
+  }
 }
