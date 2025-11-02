@@ -275,21 +275,19 @@ footer {
 /* Cada barra */
 .skill-bar {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* opcional, si quieres alinear texto */
+  display: block;
   background: #e0e0e0;
   border-radius: 10px;
   overflow: hidden;
   margin: 10px 0;
   padding: 6px 10px;
   font-weight: 600;
-  color: #fff;
-  z-index: 2;
+  color: #fff; /* Texto blanco para contraste */
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* mejora la legibilidad */
 }
 
-/* Barra animada (relleno) */
-.skill-bar::after {
+/* Relleno animado (fondo verde) */
+.skill-bar::before {
   content: "";
   position: absolute;
   top: 0;
@@ -299,22 +297,19 @@ footer {
   background: linear-gradient(90deg, #30DB8D, #4E6159);
   transition: width 1.5s ease-in-out;
   border-radius: 10px;
-  z-index: 0; /* 👈 esto asegura que quede por debajo del texto */
+  z-index: 0; /* queda debajo del texto */
 }
 
-/* Texto siempre visible encima */
-.skill-bar > * {
+/* Texto por encima del relleno */
+.skill-bar {
   position: relative;
-  z-index: 2; /* 👈 el texto se renderiza por encima del relleno */
-  color: #fff; /* o cambia el color según contraste */
+  z-index: 1;
 }
 
 /* Activación de la animación */
-.skill-bar.filled::after {
+.skill-bar.filled::before {
   width: var(--level);
 }
-
-
 
 /* Botón CV */
 .cv-download .btn {
