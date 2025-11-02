@@ -265,36 +265,52 @@ footer {
   box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
 
-/* Habilidades */
+/* Contenedor de habilidades */
 .skills-list {
   list-style: none;
   padding: 0;
+  margin: 20px 0;
 }
 
+/* Cada barra */
 .skill-bar {
-  display: block;
   position: relative;
-  margin-bottom: 0.8rem;
-  padding: 0.4rem 1rem;
-  border-radius: 8px;
-  font-weight: bold;
-  color: #fff;
-  background: rgba(78,97,89,0.2);
+  display: block;
+  background: #e0e0e0;
+  border-radius: 10px;
   overflow: hidden;
+  margin: 10px 0;
+  padding: 6px 10px;
+  font-weight: 600;
+  color: #333;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
+/* Barra de progreso interna */
 .skill-bar::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: 0;
-  background: linear-gradient(135deg, #30DB8D, #4E6159);
-  border-radius: 8px;
-  z-index: -1;
-  transition: width 1.5s ease;
+  width: 0; /* Comienza vacía */
+  background: linear-gradient(90deg, #30DB8D, #4E6159);
+  transition: width 1.5s ease-in-out;
+  border-radius: 10px;
+  z-index: 0;
 }
+
+/* Texto por encima */
+.skill-bar span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cuando se activa la animación */
+.skill-bar.filled::after {
+  width: var(--level); /* La barra se llena según el porcentaje */
+}
+
 
 /* Botón CV */
 .cv-download .btn {
