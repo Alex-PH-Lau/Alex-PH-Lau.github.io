@@ -106,6 +106,9 @@ body {
   font-size: 1.8rem;
   color: #4E6159;
 }
+.section p {
+  margin-bottom: 2rem
+}
 
 /* SKILLS */
 .skills {
