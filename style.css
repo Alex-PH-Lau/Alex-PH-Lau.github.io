@@ -177,3 +177,12 @@ footer {
     padding: 2.5rem 1rem;
   }
 }
+.telefono {
+  display: block;
+  font-weight: bold;
+  color: #0078ff;
+  text-decoration: none;
+}
+.telefono:hover {
+  text-decoration: underline;
+}
