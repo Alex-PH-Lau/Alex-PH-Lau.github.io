@@ -107,7 +107,7 @@ body {
   color: #4E6159;
 }
 
-/* SKILLS */
+/* SKILLS 
 .skills {
   display: flex;
   flex-wrap: wrap;
@@ -125,8 +125,8 @@ body {
 
 .skills span:hover {
   transform: scale(1.1);
-}
-
+} 
+*/
 /* PROJECTS */
 .projects {
   display: grid;
