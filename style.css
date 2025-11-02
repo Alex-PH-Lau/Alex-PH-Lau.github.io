@@ -98,6 +98,9 @@ body {
   padding: 4rem 1.5rem;
   max-width: 900px;
   margin: auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
 }
 
 .section h2 {
