@@ -199,7 +199,7 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  background: linear-gradient(135deg, #30DB8E, #4E6159);
+  background: linear-gradient(130deg, #30DB8E, #4E6159);
   color: white;
   text-decoration: none;
   padding: 0.75rem 1.5rem;
@@ -213,7 +213,7 @@ footer {
 .contact-item:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(135deg, #4E6159, #30DB8E);
+  background: linear-gradient(130deg, #4E6159, #30DB8E);
 }
 
 .contact-item i {
