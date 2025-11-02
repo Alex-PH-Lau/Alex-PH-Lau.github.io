@@ -284,8 +284,8 @@ footer {
   margin: 10px 0;
   padding: 6px 10px;
   font-weight: 600;
-  color: #333;
-  z-index: 1;
+  color: #fff;
+  z-index: 2;
 }
 
 /* Barra animada (relleno) */
@@ -303,9 +303,9 @@ footer {
 }
 
 /* Texto siempre visible encima */
-.skill-bar {
+.skill-bar > * {
   position: relative;
-  z-index: 1; /* 👈 el texto se renderiza por encima del relleno */
+  z-index: 2; /* 👈 el texto se renderiza por encima del relleno */
   color: #fff; /* o cambia el color según contraste */
 }
 
