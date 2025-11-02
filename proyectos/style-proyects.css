@@ -156,6 +156,10 @@ body {
   font-weight: 600;
 }
 
+.project-card iframe {
+  margin-top: 2rem;
+}
+
 /* FOOTER */
 footer {
   text-align: center;
