@@ -219,3 +219,113 @@ footer {
 .contact-item i {
   font-size: 1.2rem;
 }
+.cv-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f8f9fa, #eaf2ee);
+  color: #333;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #4E6159;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cv-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  text-align: left;
+}
+
+.cv-left, .cv-right {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+}
+
+.cv-item {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-bottom: 1.2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cv-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* Habilidades */
+.skills-list {
+  list-style: none;
+  padding: 0;
+}
+
+.skill-bar {
+  display: block;
+  position: relative;
+  margin-bottom: 0.8rem;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #fff;
+  background: rgba(78,97,89,0.2);
+  overflow: hidden;
+}
+
+.skill-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(135deg, #30DB8D, #4E6159);
+  border-radius: 8px;
+  z-index: -1;
+  transition: width 1.5s ease;
+}
+
+/* Botón CV */
+.cv-download .btn {
+  display: inline-block;
+  padding: 0.8rem 1.6rem;
+  background: linear-gradient(135deg, #30DB8D, #4E6159);
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.cv-download .btn:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+/* Animaciones de entrada */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cv-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
