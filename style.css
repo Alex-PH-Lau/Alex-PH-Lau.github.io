@@ -244,14 +244,14 @@ footer {
   box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
 
-/* Contenedor de habilidades */
+/* Lista de habilidades */
 .skills-list {
   list-style: none;
   padding: 0;
   margin: 20px 0;
 }
 
-/* Cada barra */
+/* Contenedor de cada barra */
 .skill-bar {
   position: relative;
   display: block;
@@ -259,33 +259,32 @@ footer {
   border-radius: 10px;
   overflow: hidden;
   margin: 10px 0;
-  padding: 6px 10px;
   font-weight: 600;
-  color: #fff; /* Texto blanco para contraste */
-  text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* mejora la legibilidad */
-}
-
-/* Relleno animado (fondo verde) */
-.skill-bar::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, #30DB8D, #4E6159);
-  transition: width 1.5s ease-in-out;
-  border-radius: 10px;
-  z-index: 0; /* queda debajo del texto */
-}
-
-/* Texto por encima del relleno */
-.skill-bar {
-  position: relative;
+  padding: 10px;
+  color: #fff; /* texto blanco */
+  text-align: left;
   z-index: 1;
 }
 
-/* Activación de la animación */
+/* Capa de relleno (la barra verde) */
+.skill-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* equivalente a top:0; left:0; right:0; bottom:0 */
+  width: 0;
+  background: linear-gradient(90deg, #30DB8D, #4E6159);
+  transition: width 1.5s ease-in-out;
+  z-index: 0; /* debajo del texto */
+}
+
+/* Texto siempre visible */
+.skill-bar span,
+.skill-bar {
+  position: relative;
+  z-index: 2; /* 👈 fuerza el texto encima del fondo */
+}
+
+/* Cuando se activa la animación */
 .skill-bar.filled::before {
   width: var(--level);
 }
