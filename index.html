@@ -135,5 +135,38 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+  // Mostrar elementos al hacer scroll
+  const reveals = document.querySelectorAll(".reveal");
+  const skillBars = document.querySelectorAll(".skill-bar");
+
+  function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    reveals.forEach((el) => {
+      const revealTop = el.getBoundingClientRect().top;
+      if (revealTop < windowHeight - 80) {
+        el.classList.add("visible");
+      }
+    });
+
+    // Animar barras de habilidades
+    skillBars.forEach((bar) => {
+      const barTop = bar.getBoundingClientRect().top;
+      if (barTop < windowHeight - 80) {
+        bar.querySelector("::after"); // se ignora, solo trigger
+        bar.style.setProperty("--width", bar.style.getPropertyValue("--level"));
+        bar.style.transition = "width 1.2s ease";
+        bar.style.setProperty("--fill", bar.style.getPropertyValue("--level"));
+        bar.style.animation = "fillBar 1s forwards";
+        bar.style.setProperty("--animated", "true");
+        bar.classList.add("filled");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll();
+</script>
+
 </body>
 </html>
