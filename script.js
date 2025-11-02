@@ -1,3 +1,4 @@
+// Pequeña animación al hacer scroll
 window.addEventListener("scroll", () => {
   const sections = document.querySelectorAll(".section, .reveal");
   const skillBars = document.querySelectorAll(".skill-bar");
@@ -13,7 +14,7 @@ window.addEventListener("scroll", () => {
     }
   });
 
-  // Animar barras de habilidad
+  // Animar barras de habilidad una sola vez
   skillBars.forEach(bar => {
     const rect = bar.getBoundingClientRect();
     if (rect.top < window.innerHeight - 100 && !bar.classList.contains("filled")) {
