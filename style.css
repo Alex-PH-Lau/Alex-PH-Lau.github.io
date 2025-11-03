@@ -364,3 +364,18 @@ footer {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(48, 219, 141, 0.15);
 }
+#enlaces {
+  padding-top: 2rem; /* reduce espacio superior si .section tiene mucho */
+  padding-bottom: 2rem;
+  text-align: center;
+}
+
+#enlaces h2 {
+  margin-bottom: 1rem; /* reduce la separación entre título y botón */
+}
+
+#enlaces .center-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* espacio entre botones si hay más de uno */
+}
