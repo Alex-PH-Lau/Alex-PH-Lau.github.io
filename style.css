@@ -291,8 +291,8 @@ footer {
 /* === Botón Descargar CV (estilo discreto) === */
 .cv-download .btn {
   display: inline-block;
-  background-color: #4E6159; /* Verde grisáceo sobrio */
-  color: white;
+  background-color: white; /* Verde grisáceo sobrio */
+  color: #444;
   padding: 0.7rem 1.4rem;
   border-radius: 8px;
   text-decoration: none;
