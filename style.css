@@ -323,3 +323,25 @@ footer {
     align-items: center;
   }
 }
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #555; /* tono gris neutro */
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.github-link i {
+  font-size: 1.3rem;
+}
+
+.github-link:hover {
+  color: #30DB8D; /* tono verde de tu tema */
+  transform: translateY(-2px); /* pequeño movimiento sutil */
+}
+
+.github-link:active {
+  transform: translateY(0);
+}
