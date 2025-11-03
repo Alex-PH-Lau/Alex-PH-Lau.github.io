@@ -335,7 +335,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 40vh; /* centra verticalmente dentro de la sección */
+  min-height: 20vh; /* centra verticalmente dentro de la sección */
 }
 
 /* Enlace discreto */
