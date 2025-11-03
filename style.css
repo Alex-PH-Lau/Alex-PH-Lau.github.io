@@ -291,6 +291,7 @@ footer {
 /* === Botón Descargar CV (estilo discreto) === */
 .cv-download .btn {
   display: flex;
+  text-align: center;
   background-color: white; /* Verde grisáceo sobrio */
   color: #444;
   padding: 0.7rem 1.4rem;
@@ -369,5 +370,5 @@ footer {
   align-items: center;   /* centra horizontal */
   justify-content: center; /* centra vertical */
   height: 300px; /* o el alto que quieras */
-  gap: 3px; /* espacio entre título y botón */
+  gap: 10px; /* espacio entre título y botón */
 }
