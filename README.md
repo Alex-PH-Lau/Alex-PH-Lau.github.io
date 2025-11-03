@@ -17,4 +17,4 @@ El código está escrito en HTML, CSS y JavaScript y estará en continuo desarro
 Por último, gracias por tomarte tu tiempo para leer esto. Este repositorio pretende mejorar cada día, por eso se agradecen sugerencias de personas con experiencia en programación, pero también en diseño gráfico y cualquier otro aspecto que pueda hacer mejor el porfolio. Mi contacto está abierto a todos. 
 Nada más, un saludo y gracias por su atención. 
 
-Álex
+_Álex_
