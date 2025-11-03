@@ -366,7 +366,7 @@ footer {
 }
 #enlaces {
   padding-top: 2rem; /* reduce espacio superior si .section tiene mucho */
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   text-align: center;
 }
 
