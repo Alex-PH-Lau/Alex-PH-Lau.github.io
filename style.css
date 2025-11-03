@@ -323,14 +323,28 @@ footer {
     align-items: center;
   }
 }
+/* Centrar el enlace */
+.center-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh; /* centra verticalmente dentro de la sección */
+}
+
+/* Enlace discreto */
 .github-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #555; /* tono gris neutro */
+  color: #444;
   text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s ease, transform 0.2s ease;
+  font-size: 1.1rem;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
 .github-link i {
@@ -338,10 +352,8 @@ footer {
 }
 
 .github-link:hover {
-  color: #30DB8D; /* tono verde de tu tema */
-  transform: translateY(-2px); /* pequeño movimiento sutil */
-}
-
-.github-link:active {
-  transform: translateY(0);
+  color: #30DB8D;
+  border-color: #30DB8D;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(48, 219, 141, 0.15);
 }
