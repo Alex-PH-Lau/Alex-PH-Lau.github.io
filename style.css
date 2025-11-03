@@ -288,21 +288,27 @@ footer {
 
 
 /* Botón CV */
+/* === Botón Descargar CV (estilo discreto) === */
 .cv-download .btn {
   display: inline-block;
-  padding: 0.8rem 1.6rem;
-  background: linear-gradient(135deg, #30DB8D, #4E6159);
+  background-color: #4E6159; /* Verde grisáceo sobrio */
   color: white;
-  border-radius: 10px;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 1rem;
   transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
 .cv-download .btn:hover {
-  opacity: 0.85;
-  transform: scale(1.05);
+  background-color: #30DB8D; /* Verde acento al pasar el ratón */
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+
 
 /* Animaciones de entrada */
 .reveal {
