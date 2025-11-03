@@ -205,7 +205,6 @@
     skillBars.forEach((bar) => {
       const barTop = bar.getBoundingClientRect().top;
       if (barTop < windowHeight - 80) {
-        bar.querySelector("::after"); // se ignora, solo trigger
         bar.style.setProperty("--width", bar.style.getPropertyValue("--level"));
         bar.style.transition = "width 1.2s ease";
         bar.style.setProperty("--fill", bar.style.getPropertyValue("--level"));
