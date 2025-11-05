@@ -23,15 +23,73 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #30DB8D, #4E6159);
   color: white;
   text-align: center;
   padding: 2rem;
+  
+  /* --- ESTO ES CLAVE --- */
+  position: relative; /* Contexto para posicionar el vídeo y el overlay */
+  overflow: hidden; /* Evita que el vídeo se desborde */
+
+  /* --- CAPA 1 (FALLBACK) --- */
+  /* Un fondo estático por si el vídeo no carga o en móviles.
+     Puede ser tu gradiente sólido original o una captura del vídeo. */
+  background: linear-gradient(135deg, #30DB8D, #4E6159);
+  
+  /* Opcional: una imagen estática de fallback
+  background-image: url('images/captura-del-video.jpg');
+  background-size: cover;
+  background-position: center;
+  */
 }
 
+/* --- CAPA 2 (EL VÍDEO) --- */
+.hero-video {
+  position: absolute; /* Lo saca del flujo normal */
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  transform: translate(-50%, -50%); /* Ajuste fino del centrado */
+  
+  min-width: 100%; /* Asegura que cubre todo, incluso si la pantalla es ancha */
+  min-height: 100%; /* Asegura que cubre todo, incluso si la pantalla es alta */
+  width: auto;
+  height: auto;
+  
+  /* object-fit: cover; es una alternativa moderna a lo de arriba */
+  /* object-fit: cover;
+  width: 100%;
+  height: 100%; */
+  
+  z-index: 1; /* Se pone en la capa 1 (detrás de todo) */
+}
+
+/* --- CAPA 3 (EL OVERLAY) --- */
+.hero::before {
+  content: ""; /* Obligatorio para los pseudo-elementos */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* Tu gradiente, pero con transparencia (RGBA) */
+  background: linear-gradient(135deg, 
+      rgba(48, 219, 141, 0.8), /* #30DB8D con 80% opacidad */
+      rgba(78, 97, 89, 0.85)    /* #4E6159 con 85% opacidad */
+  );
+  
+  z-index: 2; /* Se pone ENCIMA del vídeo (z-index: 1) */
+}
+
+
+/* --- CAPA 4 (EL CONTENIDO) --- */
 .hero-content {
-  /* La animación 'fadeIn' solo se usa aquí, está bien */
-  animation: fadeIn 1.5s ease; 
+  /* ...tus estilos actuales... */
+  
+  /* Nos aseguramos de que esté por encima de todo */
+  position: relative; /* O 'static', pero 'relative' es más seguro */
+  z-index: 3; /* La capa más alta */
+  animation: fadeIn 1.5s ease;
 }
 
 .profile-pic {
