@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta name="description" content="Portfolio de Alejandro Pascual Hernández, estudiante de bioinformática, biólogo y mejorador vegetal. Conoce mis proyectos y experiencia.">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio | Alejandro Pascual Hernández</title>
+  
+  <meta name="description" content="Portfolio de Alejandro Pascual Hernández, estudiante de bioinformática, biólogo y mejorador vegetal. Conoce mis proyectos y experiencia.">
+  
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-/>
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
 </head>
 <body>
   <header class="hero">
@@ -27,7 +29,7 @@
   </header>
 
   <main>
-    <section id="sobre-mi" class="section">
+    <section id="sobre-mi" class="section reveal">
       <h2>Sobre mí</h2>
       <p>
         Soy un estudiante de bioinformática con gran ilusión por seguir aprendiendo e investigando.
@@ -35,152 +37,140 @@
         Actualmente estudiando el máster de bioinformática de la UNIR y de prácticas en el IHSM "La Mayora" en Málaga.
       </p>
     </section>
-   <!--CV-->
- <section id="cv" class="cv-section">
-  <h2 class="section-title">Currículum Vitae</h2>
 
-  <div class="cv-container">
+    <section id="cv" class="cv-section">
+      <h2 class="section-title reveal">Currículum Vitae</h2>
+    
+      <div class="cv-container">
+    
+        <div class="cv-column">
+          <h3 class="reveal">Experiencia</h3>
+          <div class="cv-item reveal">
+            <h4>BIÓLOGO Y TÉCNICO DE LABORATORIO</h4>
+            <p><strong>Instituto de Estudios Celulares y Moleculares (ICM)</strong> · Ago 2020 - Sep 2020</p>
+            <p>Prácticas curriculares en empresa. Ayudé al análisis de los datos obtenidos en pruebas como qPCR, Microarray de SNPs, NGS, Sanger, etc.</p>
+          </div>
+          <div class="cv-item reveal">
+            <h4>PERSONAL DE LABORATORIO</h4>
+            <p><strong>Grupo de Virología molecular- IBMCP</strong> · Dic 2022 - Feb 2024</p>
+            <p>Personal de investigación en distintos proyectos dentro del grupo.</p>
+          </div>
+          <div class="cv-item reveal">
+            <h4>TÉCNICO DE LABORATORIO</h4>
+            <p><strong>Semillas Fitó</strong> · May 2025 - Dic 2025</p>
+            <p>Técnico en cultivo in vitro y patología en cultivo de solanáceas y cucurbitáceas.</p>
+          </div>
+          
+          <h3 class="reveal">Certificados y cursos</h3>
+          <div class="cv-item reveal">
+            <h4>Curso edX: Python: aprender a programar (UPVX)</h4>
+          </div>
+          <div class="cv-item reveal">
+            <h4>Curso edX: Python for Data Science Project (IBM)</h4>
+          </div>
+          <div class="cv-item reveal">
+            <h4>Curso edX: Data Science: R Basics (HarvardX)</h4>
+          </div>
+          <div class="cv-item reveal">
+            <h4>Programa de cursos "Plant Bioinformatic Methods" (University of Toronto)</h4>
+            <p>Bioinformatic Methods I</p>
+            <p>Bioinformatic Methods II</p>
+            <p>Plant Bioinformatics</p>
+            <p>Plant Bioinformatics Capstone</p>
+          </div>
+        </div>
+    
+        <div class="cv-column">
+          <h3 class="reveal">Educación</h3>
+          <div class="cv-item reveal">
+            <h4>Grado en Biología</h4>
+            <p><strong>Universidad de León</strong> · 2017 - 2021</p>
+          </div>
+          <div class="cv-item reveal">
+            <h4>Máster universitario en mejora genética vegetal</h4>
+            <p><strong>Universitat Politècnica de València</strong> · 2021 - 2023</p>
+          </div>
+          <div class="cv-item reveal">
+            <h4>Máster universitario en bioinformática</h4>
+            <p><strong>UNIR</strong> · 2025 - Actualidad</p>
+          </div>
 
-<!-- Columna izquierda: Experiencia -->
-<div class="cv-left">
-  <h3>Experiencia</h3>
-  <div class="cv-item reveal">
-    <h4>BIÓLOGO Y TÉCNICO DE LABORATORIO</h4>
-    <p><strong>Instituto de Estudios Celulares y Moleculares (ICM)</strong> · Ago 2020 - Sep 2020</p>
-    <p>Prácticas curriculares en empresa. Ayudé al análisis de los datos obtenidos en pruebas como qPCR, Microarray de SNPs, NGS, Sanger, etc.</p>
-  </div>
-  <div class="cv-item reveal">
-    <h4>PERSONAL DE LABORATORIO</h4>
-    <p><strong>Grupo de Virología molecular- IBMCP</strong> · Dic 2022 - Feb 2024</p>
-    <p>Personal de investigación en distintos proyectos dentro del grupo.</p>
-  </div>
-  <div class="cv-item reveal">
-    <h4>TÉCNICO DE LABORATORIO</h4>
-    <p><strong>Semillas Fitó</strong> · May 2025 - Dic 2025</p>
-    <p>Técnico en cultivo in vitro y patología en cultivo de solanáceas y cucurbitáceas.</p>
-  </div>
-</div>
-
-<!-- Columna derecha: Educación -->
-<div class="cv-right">
-  <h3>Educación</h3>
-  <div class="cv-item reveal">
-    <h4>Grado en Biología</h4>
-    <p><strong>Universidad de León</strong> · 2017 - 2021</p>
-  </div>
-  <div class="cv-item reveal">
-    <h4>Máster universitario en mejora genética vegetal</h4>
-    <p><strong>Universitat Politècnica de València</strong> · 2021 - 2023</p>
-  </div>
-  <div class="cv-item reveal">
-    <h4>Máster universitario en bioinformática</h4>
-    <p><strong>UNIR</strong> · 2025 - Actualidad</p>
-  </div>
-</div>
-
-<!-- Columna izquierda: Certificados y cursos -->
-<div class="cv-left">
-  <h3>Certificados y cursos</h3>
-  <div class="cv-item reveal">
-    <h4>Curso edX: Python: aprender a programar (UPVX)</h4>
-  </div>
-  <div class="cv-item reveal">
-    <h4>Curso edX: Python for Data Science Project (IBM)</h4>
-  </div>
-  <div class="cv-item reveal">
-    <h4>Curso edX: Data Science: R Basics (HarvardX)</h4>
-  </div>
-  <div class="cv-item reveal">
-    <h4>Programa de cursos "Plant Bioinformatic Methods" (University of Toronto)</h4>
-    <p>Bioinformatic Methods I</p>
-    <p>Bioinformatic Methods II</p>
-    <p>Plant Bioinformatics</p>
-    <p>Plant Bioinformatics Capstone</p>
-  </div>
-</div>
-
-<!-- Columna derecha: Habilidades -->
-<div class="cv-right">
-  <h3>Habilidades</h3>
-  <ul class="skills-list">
-    <li><span class="skill-bar" style="--level: 75%">Mejora genética vegetal</span></li>
-    <li><span class="skill-bar" style="--level: 75%">Biología celular y molecular</span></li>
-    <li><span class="skill-bar" style="--level: 80%">Fitopatología</span></li>
-    <li><span class="skill-bar" style="--level: 90%">Cultivo in vitro</span></li>
-    <li><span class="skill-bar" style="--level: 25%">Bioinformática</span></li>
-  </ul>
-  
-  <div class="cv-download reveal">
-    <a href="CV.pdf" style="margin-top: 7rem" download class="btn">¡Descarga mi CV para saber más!</a>
-  </div>
-</div>
-
-  </div>
-</section>
+          <h3 class="reveal">Habilidades</h3>
+          <ul class="skills-list">
+            <li class="reveal"><span class="skill-bar" style="--level: 75%">Mejora genética vegetal</span></li>
+            <li class="reveal"><span class="skill-bar" style="--level: 75%">Biología celular y molecular</span></li>
+            <li class="reveal"><span class="skill-bar" style="--level: 80%">Fitopatología</span></li>
+            <li class="reveal"><span class="skill-bar" style="--level: 90%">Cultivo in vitro</span></li>
+            <li class="reveal"><span class="skill-bar" style="--level: 25%">Bioinformática</span></li>
+          </ul>
+          
+          <div class="cv-download reveal">
+            <a href="CV.pdf" download class="btn">¡Descarga mi CV para saber más!</a>
+          </div>
+        </div>
+    
+      </div>
+    </section>
     
     <section id="proyectos" class="section">
-      <h2>Proyectos</h2>
+      <h2 class="reveal">Proyectos</h2>
       <div class="projects">
-        <div class="project-card">
+        <div class="project-card reveal">
           <h3>Personales</h3>
           <p>Proyectos propios.</p>
-          <a href="proyectos/master/wip.html" target="_self">Ver proyectos</a>
+          <a href="proyectos/master/wip.html">Ver proyectos</a>
         </div>
-        <div class="project-card">
+        <div class="project-card reveal">
           <h3>Máster de bioinformática</h3>
           <p>Proyectos realizados dentro del máster de bioinformática.</p>
-          <a href="proyectos/master/master.html" target="_self">Ver proyectos</a>
+          <a href="proyectos/master/master.html">Ver proyectos</a>
         </div>
-        <div class="project-card">
+        <div class="project-card reveal">
           <h3>Prácticas extracurriculares</h3>
           <p>Proyectos realizados dentro de las prácticas en el IHSM "La Mayora".</p>
-          <a href="proyectos/master/wip.html" target="_self">Ver proyectos</a>
+          <a href="proyectos/master/wip.html">Ver proyectos</a>
         </div>
       </div>
     </section>
 
-
-
     <section id="contacto" class="section">
-  <h2>Contacto</h2>
-  <div class="contact">
-    <p>¿Quieres contactar conmigo?</p>
+      <h2 class="reveal">Contacto</h2>
+      <div class="contact reveal">
+        <p>¿Quieres contactar conmigo?</p>
+    
+        <a href="tel:+34653885770" class="contact-item">
+          <i class="fas fa-phone" aria-hidden="true"></i>
+          <span>+34 653 885 770</span>
+        </a>
+    
+        <a href="mailto:alexph_lau@proton.me" class="contact-item">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          <span>alexph_lau@proton.me</span>
+        </a>
+        
+        <a href="https://www.linkedin.com/in/alejandro-pascual-0b0b401b7" target="_blank" rel="noopener noreferrer" class="contact-item">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+          <span>LinkedIn</span>
+        </a>
+      </div>
+    </section>
 
-    <!-- Teléfono -->
-    <a href="tel:+34653885770" class="contact-item">
-      <i class="fas fa-phone" aria-hidden="true" ></i>
-      <span>+34 653 885 770</span>
-    </a>
-
-    <!-- Correo -->
-    <a href="mailto:alexph_lau@proton.me" class="contact-item">
-      <i class="fas fa-envelope"></i>
-      <span>alexph_lau@proton.me</span>
-    </a>
-    <!-- Correo -->
-    <a href="https://www.linkedin.com/in/alejandro-pascual-0b0b401b7" target="_blank" rel="noopener noreferrer" class="contact-item">
-      <i class="fab fa-linkedin"></i>
-      <span>LinkedIn</span>
-    </a>
-  </div>
-</section>
-<section id="enlaces" class="section">
-  <h2>Enlaces</h2>
-  <div class="contact center-links">
-
-    <!-- Enlace a GitHub (más discreto) -->
-    <a 
-      href="https://github.com/Alex-PH-Lau/Alex-PH-Lau.github.io" 
-      class="contact-item github-link" 
-      target="_blank" 
-      rel="noopener noreferrer"
-    >
-      <i class="fa-brands fa-github"></i>
-      <span>GitHub</span>
-    </a>
-
-  </div>
-</section>
+    <section id="enlaces" class="section">
+      <h2 class="reveal">Enlaces</h2>
+      <div class="contact center-links reveal">
+    
+        <a
+          href="https://github.com/Alex-PH-Lau/Alex-PH-Lau.github.io"
+          class="contact-item github-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <span>GitHub</span>
+        </a>
+    
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -188,37 +178,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-  // Mostrar elementos al hacer scroll
-  const reveals = document.querySelectorAll(".reveal");
-  const skillBars = document.querySelectorAll(".skill-bar");
-
-  function revealOnScroll() {
-    const windowHeight = window.innerHeight;
-    reveals.forEach((el) => {
-      const revealTop = el.getBoundingClientRect().top;
-      if (revealTop < windowHeight - 80) {
-        el.classList.add("visible");
-      }
-    });
-
-    // Animar barras de habilidades
-    skillBars.forEach((bar) => {
-      const barTop = bar.getBoundingClientRect().top;
-      if (barTop < windowHeight - 80) {
-        bar.style.setProperty("--width", bar.style.getPropertyValue("--level"));
-        bar.style.transition = "width 1.2s ease";
-        bar.style.setProperty("--fill", bar.style.getPropertyValue("--level"));
-        bar.style.animation = "fillBar 1s forwards";
-        bar.style.setProperty("--animated", "true");
-        bar.classList.add("filled");
-      }
-    });
-  }
-
-  window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll();
-</script>
-
 </body>
 </html>
