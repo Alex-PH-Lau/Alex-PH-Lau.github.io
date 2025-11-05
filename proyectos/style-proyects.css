@@ -226,3 +226,98 @@ footer {
 .contact-item i {
   font-size: 1.2rem;
 }
+/* === CÓDIGO PARA AÑADIR A 'style-proyects.css' === */
+
+/* Estilos movidos desde el HTML */
+.project-hero {
+  height: 30vh; /* Altura reducida para la cabecera del proyecto */
+  min-height: 250px;
+}
+
+.btn-download {
+  color: #332E2D;
+  margin-bottom: 1rem; /* Espacio entre el botón y el PDF */
+}
+
+.btn-download:hover {
+  color: white; /* O el color que prefieras al pasar el ratón */
+}
+
+.section-subtitle {
+  margin-top: 2rem;
+  text-align: center;
+  color: #4E6159;
+  font-size: 1.5rem;
+}
+
+/* Estilo para el iframe del PDF */
+.project-card iframe {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+
+/* (NUEVO) Estilos para los Conceptos Clave (Tags) */
+.tech-stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.tech-stack-tags span {
+  background-color: #eaf2ee; /* Color suave de tu paleta */
+  color: #4E6159; /* Color oscuro de tu paleta */
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+
+/* (NUEVO) Estilos para las Conclusiones Clave */
+.key-findings {
+  background: #fdfdfd;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.key-findings h3 {
+  color: #4E6159;
+  margin-bottom: 1rem;
+}
+
+.key-findings ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.key-findings li {
+  position: relative;
+  padding-left: 2rem; /* Espacio para el icono */
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.key-findings li i {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  color: #30DB8D; /* Tu color de acento */
+  font-size: 1.1rem;
+}
+
+/* Centra el título de la sección del PDF */
+.project-embed h3 {
+  text-align: center;
+  color: #4E6159;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
