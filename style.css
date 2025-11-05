@@ -403,3 +403,16 @@ footer {
     width: 80%;
   }
 }
+/* === RESPONSIVE (MÓVIL) === */
+
+/* ... (tus otras reglas de @media) ... */
+
+/* Ocultamos el vídeo en pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .hero-video {
+    display: none; /* Oculta el vídeo por completo */
+  }
+
+  /* El .hero volverá a mostrar el 'background' que 
+     definimos como fallback (el gradiente o la imagen estática) */
+}
