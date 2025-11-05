@@ -3,79 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aspectos Éticos, Legales y Sociales en Bioinformática | Alejandro Pascual Hernández</title>
+  <title>Análisis de Caso: RGPD en Cáncer de Mama | Alejandro Pascual Hernández</title>
 
-  <!-- Iconos de Font Awesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
 
-  <!-- Hoja de estilos principal -->
-  <link rel="stylesheet" href="/proyectos/style-proyects.css" />
+  <link rel="stylesheet" href="../style-proyects.css" />
 </head>
 <body>
-  <!-- ======= HEADER ======= -->
-  <header class="hero" style="height: 30vh;">
+
+  <header class="hero project-hero">
     <div class="hero-content">
-      <h1>Aspectos Éticos, Legales y Sociales en Bioinformática</h1>
-      <p>Asignatura dedicada a comprender la labor, responsabilidades, derechos y deberes de un bioinformático desde diferentes puntos de vista.
-         Comprendiendo las leyes que rigen el tratamiento de datos biológicos, así como los conflictos tanto éticos como sociales que nos podemos encontrar. </p>
-      <a href="/index.html" class="btn">Volver al inicio</a>
-      <a href="master.html" class="btn">Volver a las asignaturas</a>
+      <h1>Análisis de Caso: RGPD en la Investigación del Cáncer de Mama</h1>
+      <p>Proyecto de la asignatura "Aspectos Éticos, Legales y Sociales en Bioinformática"</p>
+      
+      <a href="../../index.html" class="btn">Volver al inicio</a>
+      <a href="../master.html" class="btn">Volver a las asignaturas</a>
     </div>
   </header>
 
-  <!-- ======= CONTENIDO PRINCIPAL ======= -->
   <main class="section">
-    <!-- Descripción general -->
+  
+    <div class="tech-stack-tags">
+      <span>RGPD</span>
+      <span>LOPDGDD</span>
+      <span>Ética de Datos</span>
+      <span>Consentimiento Informado</span>
+      <span>Datos Sanitarios</span>
+    </div>
+
     <section>
-      <h2>Activididad: Tratamiento de datos personales. Estudio de caso sobre el cáncer de mama </h2>
+      <h2>Tratamiento de datos personales: Estudio de caso</h2>
       <p>
-        Con esta actividad tuvimos como objetivo comprender el concepto y el alcance de los datos relativos a la salud, así como su régimen 
-        jurídico específico según el RGPD y la legislación nacional aplicable. También identificar los aspectos legales, éticos y técnicos 
-        que se deben tener en cuenta en el tratamiento de datos personales relativos a la salud con fines de investigación. Y por último, 
-        plicar los principios y las garantías del RGPD y la legislación nacional aplicable al caso práctico propuesto, proponiendo soluciones 
+        Con esta actividad tuvimos como objetivo comprender el concepto y el alcance de los datos relativos a la salud, así como su régimen
+        jurídico específico según el RGPD y la legislación nacional aplicable. También identificar los aspectos legales, éticos y técnicos
+        que se deben tener en cuenta en el tratamiento de datos personales relativos a la salud con fines de investigación. Y por último,
+        aplicar los principios y las garantías del RGPD y la legislación nacional aplicable al caso práctico propuesto, proponiendo soluciones
         adecuadas y razonadas.
-
       </p>
-      <div class="project-card">
-  <a href="proyectos/master/act1derecho.pdf" download class="btn" style="color: #332E2D;">
-  Descargar PDF
-</a>
-
-  <iframe 
-    src="act1derecho.pdf?raw=true" 
-    width="100%" 
-    height="600px" 
-    style="border:2px solid #0078ff; border-radius:8px;">
-  </iframe>
-</div>
-
     </section>
 
-    <!-- Enlaces -->
+    <section class="key-findings">
+      <h3>Conclusiones Clave del Análisis</h3>
+      <p>
+        Este estudio de caso analizó la colisión entre la necesidad de investigar
+        y el derecho a la privacidad del paciente. Mis principales conclusiones fueron:
+      </p>
+      <ul>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Consentimiento Explícito:</strong> El consentimiento
+          informado es la piedra angular, pero el "consentimiento amplio" 
+          para futuras investigaciones presenta desafíos éticos.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Anonimización vs. Seudonimización:</strong> Descubrí que
+          la anonimización real es casi imposible en datos genómicos, 
+          por lo que la seudonimización robusta es la única vía legal.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Interés Público:</strong> La investigación del cáncer
+          permite ciertas excepciones en el tratamiento 
+          de datos, pero siempre bajo garantías técnicas y legales estrictas.
+        </li>
+      </ul>
+    </section>
+
+    <section class="project-embed">
+      <h3>Consulta el Análisis Completo</h3>
+      <div class="project-card">
+        
+        <a href="act1derecho.pdf" download class="btn btn-download">
+          <i class="fas fa-file-pdf" aria-hidden="true"></i>
+          Descargar PDF
+        </a>
+
+        <iframe 
+          src="act1derecho.pdf"
+          width="100%" 
+          height="600px"
+          title="Análisis de caso sobre RGPD y cáncer de mama">
+        </iframe>
+      </div>
+    </section>
+
     <section>
-      <h3 style="margin-top: 2rem";>Enlaces</h3>
+      <h3 class="section-subtitle">Enlaces</h3>
       <div class="links-container">
         <a
           href="https://github.com/Alex-PH-Lau/Alex-PH-Lau.github.io/blob/c527f10d9f117a6be9c48b888e98b86008deccba/proyectos/master/derecho.html"
-          target="_self"
+          target="_blank"
+          rel="noopener noreferrer"
           class="link-card"
         >
-          <i class="fab fa-github"></i>
+          <i class="fab fa-github" aria-hidden="true"></i>
           <span>Ver en GitHub</span>
         </a>
       </div>
     </section>
   </main>
 
-  <!-- ======= FOOTER ======= -->
   <footer>
-    <p>© 2025 Alejandro Pascual Hernández. Hecho es HTML/CSS/JS.</p>
+    <p>© 2025 Alejandro Pascual Hernández. Hecho en HTML/CSS/JS.</p>
   </footer>
 
-  <!-- Script principal -->
-  <script src="/script.js"></script>
+  <script src="../../script.js"></script>
 </body>
 </html>
