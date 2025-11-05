@@ -1,3 +1,4 @@
+/* === RESETEO Y CONFIGURACIÓN GLOBAL === */
 * {
   margin: 0;
   padding: 0;
@@ -8,10 +9,15 @@ body {
   font-family: 'Poppins', sans-serif;
   color: #222;
   background: #f9f9f9;
+  scroll-behavior: smooth; /* Esto es mejor ponerlo en el <html> */
+}
+
+/* Opcional: poner el scroll-behavior en html para que funcione siempre */
+html {
   scroll-behavior: smooth;
 }
 
-/* HERO SECTION */
+/* === SECCIÓN HERO (CABECERA) === */
 .hero {
   height: 100vh;
   display: flex;
@@ -24,38 +30,8 @@ body {
 }
 
 .hero-content {
-  animation: fadeIn 1.5s ease;
-}
-/* === Enlaces bonitos para los proyectos === */
-.links-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.link-card {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  background: linear-gradient(135deg, #30DB8D, #4E6159);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  font-weight: 600;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
-}
-
-.link-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(135deg, #4E6159, #30DB8D);
-}
-
-.link-card i {
-  font-size: 1.2rem;
+  /* La animación 'fadeIn' solo se usa aquí, está bien */
+  animation: fadeIn 1.5s ease; 
 }
 
 .profile-pic {
@@ -75,6 +51,7 @@ body {
   color: #332E2D;
 }
 
+/* Botón genérico (usado en Hero y CV) */
 .btn {
   display: inline-block;
   background: white;
@@ -83,6 +60,8 @@ body {
   border-radius: 30px;
   text-decoration: none;
   margin-top: 1rem;
+  margin-left: 0.5rem; /* Añadido para separar los botones del hero */
+  margin-right: 0.5rem;
   font-weight: 600;
   transition: all 0.3s;
 }
@@ -93,23 +72,128 @@ body {
   transform: scale(1.05);
 }
 
-/* SECTIONS */
+/* === SECCIONES GENÉRICAS === */
 .section {
   padding: 4rem 1.5rem;
   max-width: 900px;
   margin: auto;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
+  /* La animación ahora se controla con la clase .reveal */
 }
 
-.section h2 {
+.section h2,
+.section-title {
   text-align: center;
   margin-bottom: 2rem;
   font-size: 1.8rem;
   color: #4E6159;
 }
-/* PROJECTS */
+
+.section-title {
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* === SECCIÓN CV === */
+.cv-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #f8f9fa, #eaf2ee);
+  color: #333;
+}
+
+.cv-container {
+  display: flex;
+  flex-direction: row; /* Columnas en escritorio */
+  justify-content: center;
+  gap: 2rem;
+  text-align: left;
+  max-width: 1200px; /* Añadido para limitar el ancho en pantallas grandes */
+  margin: 0 auto;
+}
+
+.cv-column {
+  flex: 1; /* Cada columna toma el mismo espacio */
+  min-width: 300px; /* Ancho mínimo antes de que se rompa (manejado por media query) */
+}
+
+.cv-item {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-bottom: 1.2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cv-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+/* Lista de habilidades */
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+/* Contenedor de cada barra */
+.skill-bar {
+  position: relative; 
+  display: block;
+  background: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+  font-weight: 600;
+  padding: 10px;
+  color: #fff; /* texto blanco */
+  text-align: left;
+  z-index: 1; /* texto siempre por encima */
+}
+
+/* Relleno animado (Tu método con ::before, que está genial) */
+.skill-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0; /* Empieza en 0 */
+  background: linear-gradient(90deg, #30DB8D, #4E6159);
+  transition: width 1.5s ease-in-out;
+  border-radius: 10px;
+  z-index: -1; /* Poner negativo para que quede DETRÁS del texto */
+}
+
+/* Activación de la animación (vía JS) */
+.skill-bar.filled::before {
+  width: var(--level); /* Anima hasta el nivel definido en el HTML */
+}
+
+/* Botón Descargar CV */
+.cv-download {
+  text-align: center; /* Centra el botón dentro de la columna */
+}
+.cv-download .btn {
+  background-color: white;
+  color: #444;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  margin-top: 7rem; /* Movido desde el HTML */
+}
+
+.cv-download .btn:hover {
+  background-color: #30DB8D;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* === SECCIÓN PROYECTOS === */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -135,39 +219,10 @@ body {
   font-weight: 600;
 }
 
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 2rem;
-  background: #222;
-  color: white;
-  font-size: 0.9rem;
-}
-
-/* ANIMATIONS */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-  .hero h1 {
-    font-size: 1.6rem;
-  }
-  .section {
-    padding: 2.5rem 1rem;
-  }
-}
-/* ==== CONTACTO ==== */
+/* === SECCIÓN CONTACTO Y ENLACES === */
 #contacto {
   text-align: center;
   padding: 3rem 1rem;
-}
-
-#contacto h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
 }
 
 .contact p {
@@ -201,117 +256,60 @@ footer {
 .contact-item i {
   font-size: 1.2rem;
 }
-.cv-section {
-  padding: 4rem 2rem;
-  background: linear-gradient(135deg, #f8f9fa, #eaf2ee);
-  color: #333;
+
+#enlaces {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
   text-align: center;
 }
 
-.section-title {
-  font-size: 2.2rem;
-  margin-bottom: 2rem;
-  color: #4E6159;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+#enlaces h2 {
+  margin-bottom: 1rem;
 }
 
-.cv-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  text-align: left;
-}
-
-.cv-left, .cv-right {
-  flex: 1;
-  min-width: 300px;
-  max-width: 500px;
-}
-
-.cv-item {
-  background: white;
-  padding: 1.2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  margin-bottom: 1.2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.cv-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-}
-
-/* Lista de habilidades */
-.skills-list {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-}
-
-/* Contenedor de cada barra */
-/* Contenedor de cada barra */
-.skill-bar {
-  position: relative; /* contexto para el pseudo-elemento */
-  display: block;
-  background: #e0e0e0;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 10px 0;
-  font-weight: 600;
-  padding: 10px;
-  color: #fff; /* texto blanco */
-  text-align: left;
-  z-index: 1; /* texto siempre por encima */
-}
-
-/* Relleno animado */
-.skill-bar::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, #30DB8D, #4E6159);
-  transition: width 1.5s ease-in-out;
-  border-radius: 10px;
-  z-index: -1; /* ⚠️ importante: poner negativo para que quede DETRÁS del texto */
-}
-
-/* Activación de la animación */
-.skill-bar.filled::before {
-  width: var(--level);
-}
-
-
-/* Botón CV */
-/* === Botón Descargar CV (estilo discreto) === */
-.cv-download .btn {
+.center-links {
   display: flex;
   justify-content: center;
-  background-color: white; /* Verde grisáceo sobrio */
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Enlace GitHub */
+.github-link {
+  display: inline-flex;
+  gap: 3px;
   color: #444;
-  padding: 0.7rem 1.4rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.cv-download .btn:hover {
-  background-color: #30DB8D; /* Verde acento al pasar el ratón */
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+.github-link:hover {
+  color: #30DB8D;
+  border-color: #30DB8D;
+  box-shadow: 0 4px 10px rgba(48, 219, 141, 0.15);
+  /* Hereda el resto de estilos de .contact-item si se aplican ambas clases */
 }
 
 
-/* Animaciones de entrada */
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #222;
+  color: white;
+  font-size: 0.9rem;
+}
+
+/* === ANIMACIONES === */
+
+/* Animación de entrada del Hero */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animación de entrada al hacer scroll (controlada por JS) */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -323,59 +321,27 @@ footer {
   transform: translateY(0);
 }
 
-/* Responsive */
+
+/* === RESPONSIVE (MÓVIL) === */
 @media (max-width: 768px) {
+  /* CV se apila en vertical */
   .cv-container {
     flex-direction: column;
     align-items: center;
   }
 }
-/* Centrar el enlace */
-.center-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 7vh; /* centra verticalmente dentro de la sección */
-}
 
-/* Enlace discreto */
-.github-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  color: #444;
-  text-decoration: none;
-  font-size: 1.1rem;
-  padding: 0.6rem 1.2rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
-
-.github-link i {
-  font-size: 1.3rem;
-}
-
-.github-link:hover {
-  color: #30DB8D;
-  border-color: #30DB8D;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(48, 219, 141, 0.15);
-}
-#enlaces {
-  padding-top: 2rem; /* reduce espacio superior si .section tiene mucho */
-  padding-bottom: 1rem;
-  text-align: center;
-}
-
-#enlaces h2 {
-  margin-bottom: 1rem; /* reduce la separación entre título y botón */
-}
-
-#enlaces .center-links {
-  display: flex;
-  justify-content: center;
-  gap: 1rem; /* espacio entre botones si hay más de uno */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+  .section {
+    padding: 2.5rem 1rem;
+  }
+  /* Apila los botones del Hero en móvil */
+  .hero .btn {
+    display: block;
+    margin: 1rem auto;
+    width: 80%;
+  }
 }
