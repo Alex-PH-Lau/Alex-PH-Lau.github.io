@@ -1,0 +1,23 @@
+# === Sistema Operativo ===
+# Ignora los archivos de "basura" de macOS y Windows
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# === Editor de Código ===
+# Ignora la configuración de VS Code
+.vscode/
+
+# === Dependencias ===
+# La carpeta más importante a ignorar si alguna vez usas npm
+node_modules/
+
+# === Archivos de Log ===
+# Ignora cualquier archivo de registro de errores
+*.log
+npm-debug.log*
+
+# === Borradores o Notas ===
+# Opcional: si tienes archivos de notas que no quieres subir
+*.draft
+*.md.bak
