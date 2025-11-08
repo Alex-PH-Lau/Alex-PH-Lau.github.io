@@ -416,3 +416,49 @@ footer {
   /* El .hero volverá a mostrar el 'background' que 
      definimos como fallback (el gradiente o la imagen estática) */
 }
+.project-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  
+  position: relative; /* <-- ¡AÑADIR ESTO! */
+  overflow: hidden;   /* <-- ¡AÑADIR ESTO! */
+}
+
+
+/* Segundo, AÑADE estas nuevas reglas al final del archivo
+*/
+
+/* Estilo para tarjetas "Próximamente" (WIP) */
+.project-card.is-wip {
+  background: #f9f9f9; /* Un fondo más apagado */
+  opacity: 0.7;
+  pointer-events: none; /* Desactiva el clic en la tarjeta */
+}
+
+/* Baja la opacidad del texto y el enlace dentro de la tarjeta WIP */
+.project-card.is-wip > * { 
+  opacity: 0.8;
+}
+
+/* Opcional: desactiva el hover en la tarjeta WIP */
+.project-card.is-wip:hover {
+  transform: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge "Próximamente" */
+.wip-badge {
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  background: #649E84; /* Tu color verde secundario */
+  color: white;
+  padding: 4px 30px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
