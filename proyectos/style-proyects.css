@@ -26,9 +26,6 @@ body {
 .hero-content {
   animation: fadeIn 1.5s ease;
 }
-.hero-content h1 {
-  margin-bottom: 2rem
-}
 /* === Enlaces bonitos para los proyectos === */
 .links-container {
   display: flex;
@@ -72,7 +69,6 @@ body {
 
 .hero h1 {
   font-size: 2rem;
-  margin-bottom: 2rem
 }
 
 .hero h1 span {
