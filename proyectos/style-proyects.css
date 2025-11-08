@@ -332,3 +332,87 @@ footer {
   margin: 4rem auto; /* Da espacio entre los proyectos */
   width: 80%;
 }
+/* === CÓDIGO PARA AÑADIR A 'style-proyects.css' === */
+
+/* Estilo para la cabecera corta (movido desde el HTML) */
+.project-hero-short {
+  height: 30vh;
+  min-height: 250px;
+}
+
+/* Estilo para el subtítulo (movido desde el HTML) */
+.section-subtitle {
+  margin-top: 2rem;
+  text-align: center;
+  color: #4E6159;
+  font-size: 1.5rem;
+}
+
+/* (NUEVO) Grid para las tarjetas de asignaturas */
+.subject-grid {
+  display: grid;
+  /* Crea columnas automáticas de 250px min. */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* (NUEVO) Estilo de la tarjeta de asignatura */
+.subject-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 1.5rem;
+  min-height: 180px;
+  
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative; /* Para el badge 'wip' */
+  overflow: hidden; /* Para el badge 'wip' */
+}
+
+.subject-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.subject-card i {
+  font-size: 2.5rem; /* Icono más grande */
+  color: #30DB8D; /* Tu color de acento */
+}
+
+/* (NUEVO) Estilo para tarjetas "Próximamente" (WIP) */
+.subject-card.is-wip {
+  background: #f9f9f9;
+  opacity: 0.7;
+  pointer-events: none; /* Desactiva el clic */
+  color: #888;
+}
+
+.subject-card.is-wip i {
+  color: #bbb;
+}
+
+/* (NUEVO) Badge "Próximamente" */
+.wip-badge {
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  background: #649E84; /* Un color de tu paleta */
+  color: white;
+  padding: 4px 30px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
