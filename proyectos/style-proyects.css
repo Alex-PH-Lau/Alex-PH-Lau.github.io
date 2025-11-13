@@ -158,6 +158,9 @@ body {
 
 .project-card iframe {
   margin-top: 2rem;
+  border: 1px solid #ddd; /* Un borde sutil, mejor que el de por defecto */
+  border-radius: 8px;
+  background: #fff;
 }
 
 /* FOOTER */
