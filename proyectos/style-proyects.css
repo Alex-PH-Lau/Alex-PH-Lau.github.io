@@ -1,19 +1,22 @@
+/* === RESETEO Y CONFIGURACIÓN GLOBAL === */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   color: #222;
   background: #f9f9f9;
-  scroll-behavior: smooth;
 }
 
-/* HERO SECTION */
+/* === SECCIÓN HERO (CABECERA) === */
 .hero {
-  height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,58 +24,45 @@ body {
   color: white;
   text-align: center;
   padding: 2rem;
+  position: relative; 
+  overflow: hidden; 
+}
+
+/* Overlay para el video/fondo */
+.hero::before {
+  content: ""; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+      rgba(48, 219, 141, 0.8), 
+      rgba(78, 97, 89, 0.85)    
+  );
+  z-index: 2;
 }
 
 .hero-content {
+  position: relative; 
+  z-index: 3; 
   animation: fadeIn 1.5s ease;
 }
-/* === Enlaces bonitos para los proyectos === */
-.links-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
 
-.link-card {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  background: linear-gradient(135deg, #30DB8D, #4E6159);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  font-weight: 600;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
-}
-
-.link-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(135deg, #4E6159, #30DB8D);
-}
-
-.link-card i {
-  font-size: 1.2rem;
-}
-
-.profile-pic {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  border: 3px solid white;
-  margin-bottom: 1rem;
-  object-fit: cover;
+/* Cabecera más corta para páginas de proyecto */
+.project-hero-short {
+  height: 30vh;
+  min-height: 250px;
 }
 
 .hero h1 {
   font-size: 2rem;
 }
 
-.hero h1 span {
-  color: #332E2D;
+.hero h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-top: 0.5rem;
 }
 
 .btn {
@@ -83,6 +73,8 @@ body {
   border-radius: 30px;
   text-decoration: none;
   margin-top: 1rem;
+  margin-left: 0.5rem; 
+  margin-right: 0.5rem;
   font-weight: 600;
   transition: all 0.3s;
 }
@@ -93,118 +85,40 @@ body {
   transform: scale(1.05);
 }
 
-/* SECTIONS */
+
+/* === SECCIONES GENÉRICAS === */
 .section {
   padding: 4rem 1.5rem;
   max-width: 900px;
   margin: auto;
 }
 
-.section h2 {
+.section h2,
+.section-title {
   text-align: center;
   margin-bottom: 2rem;
   font-size: 1.8rem;
   color: #4E6159;
 }
-.section p {
-  margin-bottom: 2rem
+
+.section-subtitle {
+  margin-top: 2rem;
+  text-align: center;
+  color: #4E6159;
+  font-size: 1.5rem;
 }
 
-/* SKILLS */
-.skills {
+
+/* === ENLACES (GitHub, etc.) === */
+.links-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  margin-top: 1.5rem;
 }
 
-.skills span {
-  background: #e0f7fa;
-  padding: 0.6rem 1.2rem;
-  border-radius: 20px;
-  font-weight: 500;
-  transition: transform 0.3s;
-}
-
-.skills span:hover {
-  transform: scale(1.1);
-}
-
-/* PROJECTS */
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.project-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-.project-card a {
-  color: #332E2D;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.project-card iframe {
-  margin-top: 2rem;
-  border: 1px solid #ddd; /* Un borde sutil, mejor que el de por defecto */
-  border-radius: 8px;
-  background: #fff;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 2rem;
-  background: #222;
-  color: white;
-  font-size: 0.9rem;
-}
-
-/* ANIMATIONS */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-  .hero h1 {
-    font-size: 1.6rem;
-  }
-  .section {
-    padding: 2.5rem 1rem;
-  }
-}
-/* ==== CONTACTO ==== */
-#contacto {
-  text-align: center;
-  padding: 3rem 1rem;
-}
-
-#contacto h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.contact p {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  color: #332E2D;
-}
-
-.contact-item {
+.link-card {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -220,48 +134,119 @@ footer {
   transition: all 0.3s ease;
 }
 
-.contact-item:hover {
+.link-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
   background: linear-gradient(130deg, #4E6159, #30DB8E);
 }
 
-.contact-item i {
+.link-card i {
   font-size: 1.2rem;
 }
-/* === CÓDIGO PARA AÑADIR A 'style-proyects.css' === */
 
-/* Estilos movidos desde el HTML */
-.project-hero {
-  height: 30vh; /* Altura reducida para la cabecera del proyecto */
-  min-height: 250px;
-}
-
-.btn-download {
-  color: #332E2D;
-  margin-bottom: 1rem; /* Espacio entre el botón y el PDF */
-}
-
-.btn-download:hover {
-  color: white; /* O el color que prefieras al pasar el ratón */
-}
-
-.section-subtitle {
+/* === GRID DE ASIGNATURAS (master.html) === */
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
   margin-top: 2rem;
+}
+
+.subject-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 1.5rem;
+  min-height: 180px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
   text-align: center;
-  color: #4E6159;
-  font-size: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Estilo para el iframe del PDF */
-.project-card iframe {
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
+.subject-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.subject-card i {
+  font-size: 2.5rem; 
+  color: #30DB8D; 
+}
+
+/* Estado "Próximamente" (WIP) */
+.subject-card.is-wip {
   background: #f9f9f9;
+  opacity: 0.7;
+  pointer-events: none; 
+  color: #888;
+}
+
+.subject-card.is-wip i {
+  color: #bbb;
+}
+
+.wip-badge {
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  background: #649E84; 
+  color: white;
+  padding: 4px 30px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* === TARJETAS DE PROYECTO (index.html) === */
+.project-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative; /* Para el badge */
+  overflow: hidden;   /* Para el badge */
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project-card a {
+  color: #4E6159;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Estado WIP para project-card */
+.project-card.is-wip {
+  background-color: #f9f9f9;
+  color: #888;
+  pointer-events: none;
+}
+
+.project-card.is-wip > * { 
+  opacity: 0.8;
+}
+
+.project-card.is-wip:hover {
+  transform: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 
-/* (NUEVO) Estilos para los Conceptos Clave (Tags) */
+/* === TAGS DE CONCEPTOS CLAVE (Páginas de proyecto) === */
 .tech-stack-tags {
   display: flex;
   flex-wrap: wrap;
@@ -273,8 +258,8 @@ footer {
 }
 
 .tech-stack-tags span {
-  background-color: #eaf2ee; /* Color suave de tu paleta */
-  color: #4E6159; /* Color oscuro de tu paleta */
+  background-color: #eaf2ee; 
+  color: #4E6159; 
   padding: 0.4rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -282,14 +267,14 @@ footer {
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-
-/* (NUEVO) Estilos para las Conclusiones Clave */
+/* === SECCIÓN CONCLUSIONES (derecho.html) === */
 .key-findings {
   background: #fdfdfd;
   border: 1px solid #eee;
   border-radius: 8px;
   padding: 1.5rem 2rem;
   margin-bottom: 2.5rem;
+  text-align: left;
 }
 
 .key-findings h3 {
@@ -304,7 +289,7 @@ footer {
 
 .key-findings li {
   position: relative;
-  padding-left: 2rem; /* Espacio para el icono */
+  padding-left: 2rem; 
   margin-bottom: 1rem;
   line-height: 1.6;
 }
@@ -313,17 +298,11 @@ footer {
   position: absolute;
   left: 0;
   top: 4px;
-  color: #30DB8D; /* Tu color de acento */
+  color: #30DB8D; 
   font-size: 1.1rem;
 }
 
-/* Centra el título de la sección del PDF */
-.project-embed h3 {
-  text-align: center;
-  color: #4E6159;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
+/* === SEPARADOR DE PROYECTOS (derecho.html) === */
 .project-divider {
   border: 0;
   height: 2px;
@@ -332,90 +311,125 @@ footer {
     #ddd, 
     transparent
   );
-  margin: 4rem auto; /* Da espacio entre los proyectos */
+  margin: 4rem auto;
   width: 80%;
 }
-/* === CÓDIGO PARA AÑADIR A 'style-proyects.css' === */
 
-/* Estilo para la cabecera corta (movido desde el HTML) */
-.project-hero-short {
-  height: 30vh;
-  min-height: 250px;
-}
 
-/* Estilo para el subtítulo (movido desde el HTML) */
-.section-subtitle {
+/* === CONTENIDO R MARKDOWN (estadistica.html) === */
+.r-markdown-container {
   margin-top: 2rem;
-  text-align: center;
-  color: #4E6159;
-  font-size: 1.5rem;
+  padding: 1.5rem 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: left; 
 }
 
-/* (NUEVO) Grid para las tarjetas de asignaturas */
-.subject-grid {
-  display: grid;
-  /* Crea columnas automáticas de 250px min. */
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+.r-markdown-container h2,
+.r-markdown-container h3,
+.r-markdown-container h4 {
+  color: #4E6159; 
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-/* (NUEVO) Estilo de la tarjeta de asignatura */
-.subject-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem 1.5rem;
-  min-height: 180px;
-  
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  
-  text-decoration: none;
+.r-markdown-container p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
   color: #333;
-  font-weight: 600;
+}
+
+.r-markdown-container strong {
+  color: #222;
+}
+
+.r-markdown-container pre {
+  background-color: #f7f7f7; 
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  white-space: pre-wrap; 
+  word-wrap: break-word;
+  margin: 1.5rem 0;
+}
+
+.r-markdown-container code {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Estilo para figuras R Markdown */
+.r-plot-figure {
   text-align: center;
-  
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative; /* Para el badge 'wip' */
-  overflow: hidden; /* Para el badge 'wip' */
+  margin: 2.5rem 0;
+  padding: 1rem;
+  background-color: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #eee;
 }
 
-.subject-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+.r-plot-figure img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.subject-card i {
-  font-size: 2.5rem; /* Icono más grande */
-  color: #30DB8D; /* Tu color de acento */
+.r-plot-figure figcaption {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.8rem;
+  font-style: italic;
 }
 
-/* (NUEVO) Estilo para tarjetas "Próximamente" (WIP) */
-.subject-card.is-wip {
-  background: #f9f9f9;
-  opacity: 0.7;
-  pointer-events: none; /* Desactiva el clic */
-  color: #888;
-}
 
-.subject-card.is-wip i {
-  color: #bbb;
-}
-
-/* (NUEVO) Badge "Próximamente" */
-.wip-badge {
-  position: absolute;
-  top: 10px;
-  right: -30px;
-  background: #649E84; /* Un color de tu paleta */
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #222;
   color: white;
-  padding: 4px 30px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  transform: rotate(45deg);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 0.9rem;
+  margin-top: 4rem;
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animación de entrada (controlada por script.js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === RESPONSIVE (MÓVIL) === */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+  .section {
+    padding: 2.5rem 1rem;
+  }
+  .hero .btn {
+    display: block;
+    margin: 1rem auto;
+    width: 80%;
+  }
+  .r-markdown-container {
+    padding: 1rem;
+  }
 }
