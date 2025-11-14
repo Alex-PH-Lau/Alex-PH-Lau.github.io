@@ -433,3 +433,78 @@ footer {
     padding: 1rem;
   }
 }
+/* --- ESTILOS PARA CONTENIDO DE R MARKDOWN INTEGRADO --- */
+
+/* Contenedor principal para el contenido pegado */
+.r-markdown-container {
+  margin-top: 2rem;
+  padding: 1.5rem 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: left; /* Alinea el texto a la izquierda, que es mejor para leer */
+}
+
+/* Encabezados del informe */
+.r-markdown-container h2,
+.r-markdown-container h3,
+.r-markdown-container h4 {
+  color: #4E6159; /* Color de tus encabezados */
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Párrafos del informe */
+.r-markdown-container p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.r-markdown-container strong {
+  color: #222;
+}
+
+/* Estilo para los bloques de código R */
+.r-markdown-container pre {
+  background-color: #f7f7f7; 
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  white-space: pre-wrap; 
+  word-wrap: break-word;
+  margin: 1.5rem 0;
+}
+
+.r-markdown-container code {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Estilo para figuras e imágenes incrustadas */
+.r-plot-figure {
+  text-align: center;
+  margin: 2.5rem 0;
+  padding: 1rem;
+  background-color: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.r-plot-figure img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.r-plot-figure figcaption {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.8rem;
+  font-style: italic;
+}
