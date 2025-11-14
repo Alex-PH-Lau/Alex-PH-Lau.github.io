@@ -434,3 +434,22 @@ footer {
     padding: 1rem;
   }
 }
+/* === ESTILOS PARA ENLACES DE CONCLUSIONES === */
+.key-findings li a {
+  display: inline-block; /* Nos permite añadir padding y transform */
+  background-color: #eaf2ee; /* El mismo fondo que tus tech-tags */
+  color: #4E6159;          /* El mismo color de texto */
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  margin: 0 3px;          /* Pequeño espacio antes y después */
+  border-radius: 20px;    /* Bordes redondeados de "tag" */
+  transition: all 0.3s ease;
+}
+
+.key-findings li a:hover {
+  background-color: #4E6159; /* El verde oscuro al pasar el ratón */
+  color: white;             /* Texto blanco */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
