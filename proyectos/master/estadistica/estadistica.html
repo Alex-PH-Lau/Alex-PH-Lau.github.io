@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Estadística y R para Ciencias de la Salud | Alejandro Pascual Hernández</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  
+  <meta 
+    name="description" 
+    content="Análisis detallado de expresión génica en cáncer de mama usando R, ggplot2 y ComplexHeatmap. Proyecto de portfolio de Alejandro Pascual."
+  >
+
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -55,17 +64,17 @@
       <ul>
         <li>
           <i class="fas fa-check-circle" aria-hidden="true"></i>
-          <a href="#tarea1"><strong>Fármaco vs. Placebo</strong></a> se puede apreciar una diferencia significativa en la expresión de 10 genes de pacientes cuando estos has sido
+          <a href="#tarea-1-expresión-génica-según-el-tratamiento-aplicado-a-10-genes"><strong>Fármaco vs. Placebo</strong></a> se puede apreciar una diferencia significativa en la expresión de 10 genes de pacientes cuando estos has sido
           tratados con un fármaco o cuando se les ha dado placebo.
         </li>
         <li>
           <i class="fas fa-check-circle" aria-hidden="true"></i>
-           <a href="#tarea2"><strong>Diferencias en la distribución</strong></a> se observó como se distribuían los niveles de ciertos parámetros bioquímicos en una población y se 
+           <a href="#tarea-2-distribución-de-parámetros-bioquímicos-dentro-de-una-población"><strong>Diferencias en la distribución</strong></a> se observó como se distribuían los niveles de ciertos parámetros bioquímicos en una población y se 
           correlacionó con implicaciones biológicas como indicadores de enfermedad u otro tipo de condiciones. 
         </li>
         <li>
           <i class="fas fa-check-circle" aria-hidden="true"></i>
-           <a href="#tarea3"><strong>Clasificación y agrupación de genes</strong></a> se estudió 30 genes de interés los cuales fueron agrupados en 3 clusters que presentaban los 
+           <a href="#tarea-3-mapea-todos-los-valores-de-expresión-de-genes"><strong>Clasificación y agrupación de genes</strong></a> se estudió 30 genes de interés los cuales fueron agrupados en 3 clusters que presentaban los 
           mismos patrones de expresión entre nuestra muestra poblacional.
         </li>
       </ul>
@@ -73,41 +82,26 @@
 
     <div class="r-markdown-container">
       
-      <div id="elaboración-de-las-tareas" class="section level1">
-      <h2>Elaboración de las tareas</h2>
-      
-      <div id="pasos-previos" class="section level3">
-      <h3>Pasos previos</h3>
-      <p>Antes de empezar con el análisis de datos y el graficado tenemos que
-      crear el entorno para trabajar. Para ello tenemos que instalar los
-      paquetes que vamos a utilizar (si no los teníamos instalados antes) y
-      cargar las librerías. En esta ocasión usaremos los paquetes
-      recomendados: tidyverse, pheatmap y patchwork.</p>
-      <p>Por último también tenemos que cargar nuestro *data set* de interés.</p>
-      <pre><code class="r"># Usamos message=FALSE y warning=FALSE para que no aparezcan mensajes de alarma
-  data_gene &lt;- readr::read_csv(&quot;MUBioinfo_dataset_genes_oct2025.csv&quot;)</code></pre>
-      </div>
-      
       <div id="tarea-1-expresión-génica-según-el-tratamiento-aplicado-a-10-genes" class="section level3">
-      <h3>Tarea 1: Expresión Génica según el Tratamiento (Diagrama de Cajas)</h3>
-      <p>En esta tarea nos apoyaremos en un diagrama de cajas para comparar la
-      expresión de 10 genes (ESR1, HER2, BRCA1, BRCA2, MKI67, GATA3, FOXA1,
-      CCND1, CDH1 y TP53) con distintos tratamientos (con fármaco o con
-      placebo).</p>
-      <pre><code class="r">plot_esr1 &lt;- ggplot(
+        <h3>Tarea 1: Expresión Génica según el Tratamiento (Diagrama de Cajas)</h3>
+        <p>En esta tarea nos apoyaremos en un diagrama de cajas para comparar la
+        expresión de 10 genes (ESR1, HER2, BRCA1, BRCA2, MKI67, GATA3, FOXA1,
+        CCND1, CDH1 y TP53) con distintos tratamientos (con fármaco o con
+        placebo).</p>
+        <pre><code class="r">plot_esr1 &lt;- ggplot(
     data = data_gene, 
     aes(x = tratamiento, y = AQ_esr1, fill = tratamiento) 
   ) +
     geom_boxplot() + 
     labs(
-      title = &quot;Expresión del Gen ESR1&quot;,
-      x = &quot;Tratamiento&quot;,
-      y = &quot;Nivel de Expresión (AQ)&quot;
+      title = "Expresión del Gen ESR1",
+      x = "Tratamiento",
+      y = "Nivel de Expresión (AQ)"
     ) +
-    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
-                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) + 
+    scale_x_discrete(labels = c("placebo" = "Placebo", 
+                                "farmaco" = "Con fármaco")) + 
     theme_minimal() + 
-    theme(legend.position = &quot;none&quot;,
+    theme(legend.position = "none",
           plot.title = element_text(size = 14, hjust = 0.5),
       axis.title.x = element_text(size = 13),
       axis.title.y = element_text(size = 13),
@@ -119,14 +113,14 @@
   ) +
     geom_boxplot() +
     labs(
-      title = &quot;Expresión del Gen HER2&quot;,
-      x = &quot;Tratamiento&quot;,
-      y = &quot;Nivel de Expresión (AQ)&quot;
+      title = "Expresión del Gen HER2",
+      x = "Tratamiento",
+      y = "Nivel de Expresión (AQ)"
     ) +
-    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
-                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    scale_x_discrete(labels = c("placebo" = "Placebo", 
+                                "farmaco" = "Con fármaco")) +
     theme_minimal() + 
-    theme(legend.position = &quot;none&quot;,
+    theme(legend.position = "none",
           plot.title = element_text(size = 14, hjust = 0.5),
       axis.title.x = element_text(size = 13),
       axis.title.y = element_text(size = 13),
@@ -138,14 +132,14 @@
   ) +
     geom_boxplot() +
     labs(
-      title = &quot;Expresión del Gen BRCA1&quot;,
-      x = &quot;Tratamiento&quot;,
-      y = &quot;Nivel de Expresión (AQ)&quot;
+      title = "Expresión del Gen BRCA1",
+      x = "Tratamiento",
+      y = "Nivel de Expresión (AQ)"
     ) +
-    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
-                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    scale_x_discrete(labels = c("placebo" = "Placebo", 
+                                "farmaco" = "Con fármaco")) +
     theme_minimal() + 
-    theme(legend.position = &quot;none&quot;,
+    theme(legend.position = "none",
           plot.title = element_text(size = 14, hjust = 0.5),
       axis.title.x = element_text(size = 13),
       axis.title.y = element_text(size = 13),
@@ -157,14 +151,14 @@
   ) +
     geom_boxplot() +
     labs(
-      title = &quot;Expresión del Gen BRCA2&quot;,
-      x = &quot;Tratamiento&quot;,
-      y = &quot;Nivel de Expresión (AQ)&quot;
+      title = "Expresión del Gen BRCA2",
+      x = "Tratamiento",
+      y = "Nivel de Expresión (AQ)"
     ) +
-    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
-                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    scale_x_discrete(labels = c("placebo" = "Placebo", 
+                                "farmaco" = "Con fármaco")) +
     theme_minimal() + 
-    theme(legend.position = &quot;none&quot;,
+    theme(legend.position = "none",
           plot.title = element_text(size = 14, hjust = 0.5),
       axis.title.x = element_text(size = 13),
       axis.title.y = element_text(size = 13),
@@ -176,14 +170,14 @@
   ) +
     geom_boxplot() +
     labs(
-      title = &quot;Expresión del Gen MKI67&quot;,
-      x = &quot;Tratamiento&quot;,
-      y = &quot;Nivel de Expresión (AQ)&quot;
+      title = "Expresión del Gen MKI67",
+      x = "Tratamiento",
+      y = "Nivel de Expresión (AQ)"
     ) +
-    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
-                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    scale_x_discrete(labels = c("placebo" = "Placebo", 
+                                "farmaco" = "Con fármaco")) +
     theme_minimal() + 
-    theme(legend.position = &quot;none&quot;,
+    theme(legend.position = "none",
           plot.title = element_text(size = 14, hjust = 0.5),
       axis.title.x = element_text(size = 13),
       axis.title.y = element_text(size = 13),
@@ -195,14 +189,14 @@
   ) +
     geom_boxplot() +
     labs(
-      title = &quot;Expresión del Gen GATA3&quot;,
-      x = &quot;Tratamiento&quot;,
-      y = &quot;Nivel de Expresión (AQ)&quot;
+      title = "Expresión del Gen GATA3",
+      x = "Tratamiento",
+      y = "Nivel de Expresión (AQ)"
     ) +
-    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
-                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    scale_x_discrete(labels = c("placebo" = "Placebo", 
+                                "farmaco" = "Con fármaco")) +
     theme_minimal() + 
-    theme(legend.position = &quot;none&quot;,
+    theme(legend.position = "none",
           plot.title = element_text(size = 14, hjust = 0.5),
       axis.title.x = element_text(size = 13),
       axis.title.y = element_text(size = 13),
@@ -214,14 +208,14 @@
   ) +
     geom_boxplot() +
     labs(
-      title = &quot;Expresión del Gen FOXA1&quot;,
-      x = &quot;Tratamiento&quot;,
-      y = &quot;Nivel de Expresión (AQ)&quot;
+      title = "Expresión del Gen FOXA1",
+      x = "Tratamiento",
+      y = "Nivel de Expresión (AQ)"
     ) +
-    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
-                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    scale_x_discrete(labels = c("placebo" = "Placebo", 
+                                "farmaco" = "Con fármaco")) +
     theme_minimal() + 
-    theme(legend.position = &quot;none&quot;,
+    theme(legend.position = "none",
           plot.title = element_text(size = 14, hjust = 0.5),
       axis.title.x = element_text(size = 13),
       axis.title.y = element_text(size = 13),
@@ -233,15 +227,15 @@
   ) +
     geom_boxplot() +
     labs(
-      title = &quot;Expresión del Gen CCND1&quot;,
-      x = &quot;Tratamiento&quot;,
-      y = &quot;Nivel de Expresión (AQ)&quot;
+      title = "Expresión del Gen CCND1",
+      x = "Tratamiento",
+      y = "Nivel de Expresión (AQ)"
     ) +
-    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
-                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    scale_x_discrete(labels = c("placebo" = "Placebo", 
+                                "farmaco" = "Con fármaco")) +
     theme_minimal() + 
-    theme(legend.position = &quot;none&quot;,
-          plot.title = element_text(size = 14, hjust = 0.5),  
+    theme(legend.position = "none",
+          plot.title = element_text(size = 14, hjust = 0.5),   
       axis.title.x = element_text(size = 13),
       axis.title.y = element_text(size = 13),
       axis.text = element_text(size = 12)) 
@@ -252,15 +246,15 @@
   ) +
     geom_boxplot() +
     labs(
-      title = &quot;Expresión del Gen CDH1&quot;,
-      x = &quot;Tratamiento&quot;,
-      y = &quot;Nivel de Expresión (AQ)&quot;
+      title = "Expresión del Gen CDH1",
+      x = "Tratamiento",
+      y = "Nivel de Expresión (AQ)"
     ) +
-    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
-                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    scale_x_discrete(labels = c("placebo" = "Placebo", 
+                                "farmaco" = "Con fármaco")) +
     theme_minimal() + 
-    theme(legend.position = &quot;none&quot;,
-          plot.title = element_text(size = 14, hjust = 0.5),   
+    theme(legend.position = "none",
+          plot.title = element_text(size = 14, hjust = 0.5),    
       axis.title.x = element_text(size = 13),
       axis.title.y = element_text(size = 13),
       axis.text = element_text(size = 12)) 
@@ -271,71 +265,71 @@
   ) +
     geom_boxplot() +
     labs(
-      title = &quot;Expresión del Gen TP53&quot;,
-      x = &quot;Tratamiento&quot;,
-      y = &quot;Nivel de Expresión (AQ)&quot;
+      title = "Expresión del Gen TP53",
+      x = "Tratamiento",
+      y = "Nivel de Expresión (AQ)"
     ) +
-    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
-                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    scale_x_discrete(labels = c("placebo" = "Placebo", 
+                                "farmaco" = "Con fármaco")) +
     theme_minimal() + 
-    theme(legend.position = &quot;none&quot;,
+    theme(legend.position = "none",
           plot.title = element_text(size = 14, hjust = 0.5),    
       axis.title.x = element_text(size = 13),
       axis.title.y = element_text(size = 13),
       axis.text = element_text(size = 12))</code></pre>
-      <p>Con esto hemos creado nuestros gráficos individuales. Ahora los
-      podemos juntar en una sola gráfica conjunta utilizando la librería de
-      patchwork.</p>
-      <pre><code class="r">
+        <p>Con esto hemos creado nuestros gráficos individuales. Ahora los
+        podemos juntar en una sola gráfica conjunta utilizando la librería de
+        patchwork.</p>
+        <pre><code class="r">
   combined_plot &lt;- plot_esr1 + plot_her2 + plot_brca1 + plot_brca2 + 
-                   plot_mki67 + plot_gata3 + plot_foxa1 + plot_ccnd1 +
-                   plot_cdh1 + plot_tp53
+                    plot_mki67 + plot_gata3 + plot_foxa1 + plot_ccnd1 +
+                    plot_cdh1 + plot_tp53
   
   combined_plot + 
     plot_layout(ncol = 5) </code></pre>
-      
-      <figure id="tarea1" class="r-plot-figure">
-        <img src="img1.jpg" alt="Fig. 1: Diagrama de cajas de expresión génica">
-        <figcaption><em>Fig. 1: Diagrama de cajas en el que se compara la expresión de 10
-        genes de interés en bajo dos tratamientos distintos.</em></figcaption>
-      </figure>
+        
+        <figure class="r-plot-figure">
+          <img src="img1.jpg" alt="Fig. 1: Diagrama de cajas de expresión génica">
+          <figcaption><em>Fig. 1: Diagrama de cajas en el que se compara la expresión de 10
+          genes de interés en bajo dos tratamientos distintos.</em></figcaption>
+        </figure>
 
-      <p>Viendo los resultados obtenidos al realizar el diagrama de cajas
-      podemos observar que el tratamiento con fármacos reduce los niveles de
-      expresión génica (AQ) a valores cercanos a 0. Mientras que por otro lado
-      en el placebo podemos observar que los valores de expresión rondan
-      entorno a 0,9-1. El AQ es una medida de expresión de un gen bajo unas
-      condiciones especificas y sin la comparación directa con otra condición.
-      Podemos interpretar, por lo tanto, que <strong>en el caso de nuestros 10
-      genes analizado hay una clara diferencia de expresión cuando se está
-      administrando el fármaco al paciente y cuando se le está dando un
-      placebo</strong>. Esto puede indicar que nuestro fármaco actúe sobre la
-      misma ruta metabólica. Estos genes por lo tanto <strong>pueden estar
-      relacionados con una misma función biológica</strong> que, siendo
-      controlada, podría ayudar a que no se desarrollase o frenase la
-      enfermedad en cuestión, en este caso el cáncer de mama.</p>
-      <p>Por último, me gustaría destacar que, aunque una representación
-      gráfica puede ser muy clara y evidente, como es este caso, en nuestra
-      opinión nuestro trabajo <strong>estaría más completo si tambien
-      aportásemos una prueba estadística como lo podría ser una t de Student
-      (para 2 grupos) o U de Mann-Whitney</strong>, dependiendo de si nuestros
-      datos se distribuyen de forma normal o no.</p>
+        <p>Viendo los resultados obtenidos al realizar el diagrama de cajas
+        podemos observar que el tratamiento con fármacos reduce los niveles de
+        expresión génica (AQ) a valores cercanos a 0. Mientras que por otro lado
+        en el placebo podemos observar que los valores de expresión rondan
+        entorno a 0,9-1. El AQ es una medida de expresión de un gen bajo unas
+        condiciones especificas y sin la comparación directa con otra condición.
+        Podemos interpretar, por lo tanto, que <strong>en el caso de nuestros 10
+        genes analizado hay una clara diferencia de expresión cuando se está
+        administrando el fármaco al paciente y cuando se le está dando un
+        placebo</strong>. Esto puede indicar que nuestro fármaco actúe sobre la
+        misma ruta metabólica. Estos genes por lo tanto <strong>pueden estar
+        relacionados con una misma función biológica</strong> que, siendo
+        controlada, podría ayudar a que no se desarrollase o frenase la
+        enfermedad en cuestión, en este caso el cáncer de mama.</p>
+        <p>Por último, me gustaría destacar que, aunque una representación
+        gráfica puede ser muy clara y evidente, como es este caso, en nuestra
+        opinión nuestro trabajo <strong>estaría más completo si tambien
+        aportásemos una prueba estadística como lo podría ser una t de Student
+        (para 2 grupos) o U de Mann-Whitney</strong>, dependiendo de si nuestros
+        datos se distribuyen de forma normal o no.</p>
       </div>
       
       <div id="tarea-2-distribución-de-parámetros-bioquímicos-dentro-de-una-población" class="section level3">
-      <h3>Tarea 2: Distribución de parámetros bioquímicos (Histogramas)</h3>
-      <p>Con el apoyo de un histograma al cual le añadimos una curva de
-      densidad, estudiaremos cómo se distribuyen distintos parámetros
-      bioquímicos en nuestra población estudiada.</p>
-      <p>Para esta segunda tarea decidimos usar uno de los metodos que nos
-      permite tidyverse, el método con pivot_longer(). Este método nos permite
-      generar los graficos de una sola vez en vez de tener que juntarlos
-      despues con patchwork como en la anterior tarea.</p>
-      <pre><code class="r"># Primero definimos el vector de variables bioquímicas de interés
+        <h3>Tarea 2: Distribución de parámetros bioquímicos (Histogramas)</h3>
+        <p>Con el apoyo de un histograma al cual le añadimos una curva de
+        densidad, estudiaremos cómo se distribuyen distintos parámetros
+        bioquímicos en nuestra población estudiada.</p>
+        <p>Para esta segunda tarea decidimos usar uno de los metodos que nos
+        permite tidyverse, el método con pivot_longer(). Este método nos permite
+        generar los graficos de una sola vez en vez de tener que juntarlos
+        despues con patchwork como en la anterior tarea.</p>
+        <pre><code class="r"># Primero definimos el vector de variables bioquímicas de interés
   variables_bioquim &lt;- c(
-    &quot;glucosa&quot;, &quot;leucocitos&quot;, &quot;linfocitos&quot;, &quot;neutrofilos&quot;, &quot;chol&quot;, &quot;hdl&quot;, 
-    &quot;hierro&quot;, &quot;iga&quot;, &quot;ige&quot;, &quot;igg&quot;, &quot;ign&quot;, &quot;ldl&quot;, &quot;pcr&quot;, &quot;transferrina&quot;, 
-    &quot;trigliceridos&quot;, &quot;cpk&quot;
+    "glucosa", "leucocitos", "linfocitos", "neutrofilos", "chol", "hdl", 
+    "hierro", "iga", "ige", "igg", "ign", "ldl", "pcr", "transferrina", 
+    "trigliceridos", "cpk"
   )
   
   # Usamos el una serie de pipes (%&gt;%) para primero seleccionar las variables...
@@ -343,13 +337,13 @@
     select(all_of(variables_bioquim)) %&gt;%
     pivot_longer(
       cols = everything(),
-      names_to = &quot;variable&quot;,
-      values_to = &quot;valor&quot;
+      names_to = "variable",
+      values_to = "valor"
     ) %&gt;%
     drop_na(valor) </code></pre>
-      <p>Ahora tenemos que combinar dos tipos de gráficos, un histograma y uno
-      de densidad.</p>
-      <pre><code class="r">ggplot(
+        <p>Ahora tenemos que combinar dos tipos de gráficos, un histograma y uno
+        de densidad.</p>
+        <pre><code class="r">ggplot(
     data = datos_bio_long, 
     aes(x = valor) 
   ) +
@@ -358,94 +352,94 @@
     geom_histogram(
       aes(y = after_stat(density)), 
       bins = 30,
-      fill = &quot;steelblue&quot;, 
-      color = &quot;black&quot;,
+      fill = "steelblue", 
+      color = "black",
       alpha = 0.7
     ) +
     
     # Curva de Densidad
     geom_density(
-      color = &quot;red&quot;,
+      color = "red",
       linewidth = 1  
     ) +
     
     facet_wrap(
       ~ variable, 
-      scales = &quot;free&quot; 
+      scales = "free" 
     ) +
     
     labs(
-      title = &quot;Distribución de Variables Bioquímicas&quot;,
-      subtitle = &quot;Histograma y Curva de Densidad&quot;,
-      x = &quot;Valores del parámetro (unidad dependiente de cada parámetro)&quot;,
-      y = &quot;Densidad&quot;
+      title = "Distribución de Variables Bioquímicas",
+      subtitle = "Histograma y Curva de Densidad",
+      x = "Valores del parámetro (unidad dependiente de cada parámetro)",
+      y = "Densidad"
     ) +
     theme_minimal()+
-    theme(legend.position = &quot;none&quot;,
+    theme(legend.position = "none",
           plot.title = element_text(size = 20, hjust = 0.5),    
-      plot.subtitle = element_text(size = 17,hjust = 0.5),   
+      plot.subtitle = element_text(size = 17,hjust = 0.5),    
       axis.title.x = element_text(size = 17),
       axis.title.y = element_text(size = 17),
       axis.text = element_text(size = 11),
-      strip.text = element_text(size = 12, face = &quot;bold&quot;))</code></pre>
-      
-      <figure id="tarea2" class="r-plot-figure">
-        <img src="img2.jpg" alt="Fig. 2: Histogramas de variables bioquímicas">
-        <figcaption><em>Fig. 2: Histogramas con curvas de densidad de 12 parámetros
-        bioquímicos distintos en una población de 65 pacientes.</em></figcaption>
-      </figure>
+      strip.text = element_text(size = 12, face = "bold"))</code></pre>
+        
+        <figure class="r-plot-figure">
+          <img src="img2.jpg" alt="Fig. 2: Histogramas de variables bioquímicas">
+          <figcaption><em>Fig. 2: Histogramas con curvas de densidad de 12 parámetros
+          bioquímicos distintos en una población de 65 pacientes.</em></figcaption>
+        </figure>
 
-      <p>Observando la graficas obtenidas podemos comprobar que hay diferentes
-      tipos de distribución en una población dependiendo de los parámetros
-      analizados. Por ejemplo, si miramos parámetros como la
-      <strong>transferrina o el colesterol (chol)</strong> podríamos decir que
-      se trata de una <strong>distribución normal o gaussiana, o una
-      distribución t de student</strong>. Pero, por otra parte, algunos de los
-      parámetros parecen seguir otro tipo de distribuciones como la
-      <strong>chi cuadrado o la f de Fisher</strong>. Este es el caso de
-      parámetros como cpk, trigliceridos, leucocitos, neutrófilos, iga, ige,
-      ldl. Son distribuciones asimétricas que están claramente sesgadas hacia
-      valores bajos. El caso más evidente es el del <strong>parámetro
-      pcr</strong>.</p>
-      <p>Por lo tanto, nos encontramos con dos claros tipos de parámetros
-      bioquímicos. Por un lado, los parámetros que se encuentran distribuidos
-      de una forma gaussiana son parámetros en los que la población suele
-      tener ciertos niveles endógenos normales y niveles tanto muy bajos como
-      muy altos se suelen considerar anormales o nocivos, indicando una
-      posible enfermedad. Este podría ser el caso de la transferrina encargada
-      del transporte del hierro cuyos niveles altos o bajos pueden estar
-      relacionados con enfermedades y síntomas como la anemia y la
-      hemocromatosis (exceso de hierro), respectivamente.</p>
-      <p>Por otro lado, hay parámetros bioquímicos que tienden a quedarse en
-      niveles bajos de forma constitutiva y solo aumentan cuando hay una
-      alteración o enfermedad. Este es el caso, por ejemplo, del parámetro pcr
-      (Proteína C Reactiva) que es una proteína liberada por el hígado en los
-      procesos inflamatorios o en infecciones en el cuerpo. Normalmente los
-      niveles de pcr son casi de 0 hasta que se desencadena un proceso de
-      infección e inflamación. Este también es el caso de los leucocitos y
-      neutrófilos que son células del sistema inmune cuyos niveles normalmente
-      se encuentran bajos si no hay un ataque al sistema por parte de virus,
-      bacterias, heridas, etc.</p>
-      <p>En resumidas cuentas, la forma de la distribución de estos parámetros
-      nos indica los <strong>niveles normales de un parámetro en una población
-      y cuales son los niveles que asociamos a condiciones, enfermedades u
-      anomalías en general</strong>. Ahora podíamos comprobar y hacer una
-      relación entre nuestros pacientes con cáncer de mama y los parámetros
-      bioquímicos obtenidos (buscando aquellos que se distanciasen de la moda
-      de sus respectivas distribuciones) para buscar <strong>posibles
-      marcadores</strong>.</p>
+        <p>Observando la graficas obtenidas podemos comprobar que hay diferentes
+        tipos de distribución en una población dependiendo de los parámetros
+        analizados. Por ejemplo, si miramos parámetros como la
+        <strong>transferrina o el colesterol (chol)</strong> podríamos decir que
+        se trata de una <strong>distribución normal o gaussiana, o una
+        distribución t de student</strong>. Pero, por otra parte, algunos de los
+        parámetros parecen seguir otro tipo de distribuciones como la
+        <strong>chi cuadrado o la f de Fisher</strong>. Este es el caso de
+        parámetros como cpk, trigliceridos, leucocitos, neutrófilos, iga, ige,
+        ldl. Son distribuciones asimétricas que están claramente sesgadas hacia
+        valores bajos. El caso más evidente es el del <strong>parámetro
+        pcr</strong>.</p>
+        <p>Por lo tanto, nos encontramos con dos claros tipos de parámetros
+        bioquímicos. Por un lado, los parámetros que se encuentran distribuidos
+        de una forma gaussiana son parámetros en los que la población suele
+        tener ciertos niveles endógenos normales y niveles tanto muy bajos como
+        muy altos se suelen considerar anormales o nocivos, indicando una
+        posible enfermedad. Este podría ser el caso de la transferrina encargada
+        del transporte del hierro cuyos niveles altos o bajos pueden estar
+        relacionados con enfermedades y síntomas como la anemia y la
+        hemocromatosis (exceso de hierro), respectivamente.</p>
+        <p>Por otro lado, hay parámetros bioquímicos que tienden a quedarse en
+        niveles bajos de forma constitutiva y solo aumentan cuando hay una
+        alteración o enfermedad. Este es el caso, por ejemplo, del parámetro pcr
+        (Proteína C Reactiva) que es una proteína liberada por el hígado en los
+        procesos inflamatorios o en infecciones en el cuerpo. Normalmente los
+        niveles de pcr son casi de 0 hasta que se desencadena un proceso de
+        infección e inflamación. Este también es el caso de los leucocitos y
+        neutrófilos que son células del sistema inmune cuyos niveles normalmente
+        se encuentran bajos si no hay un ataque al sistema por parte de virus,
+        bacterias, heridas, etc.</p>
+        <p>En resumidas cuentas, la forma de la distribución de estos parámetros
+        nos indica los <strong>niveles normales de un parámetro en una población
+        y cuales son los niveles que asociamos a condiciones, enfermedades u
+        anomalías en general</strong>. Ahora podíamos comprobar y hacer una
+        relación entre nuestros pacientes con cáncer de mama y los parámetros
+        bioquímicos obtenidos (buscando aquellos que se distanciasen de la moda
+        de sus respectivas distribuciones) para buscar <strong>posibles
+        marcadores</strong>.</p>
       </div>
       
       <div id="tarea-3-mapea-todos-los-valores-de-expresión-de-genes" class="section level3">
-      <h3>Tarea 3: Mapeo de valores de expresión de genes (Heatmap)</h3>
-      <p>En esta ultima tarea nos proponemos visualizar mediante un heatmap la
-      expresión de los datos crudos de todas las variables AQ que corresponden
-      a la expresión de los 30 genes estudiados en los pacientes. En un
-      principio decidimos usar la librería de pheatmap, pero consideramos que
-      ComplexHeatmap es una herramienta más versátil y que genera unos
-      gráficos más completos y mejores visualmente.</p>
-      <pre><code class="r">datos_aq &lt;- data_gene %&gt;%
-    select(starts_with(&quot;AQ_&quot;))
+        <h3>Tarea 3: Mapeo de valores de expresión de genes (Heatmap)</h3>
+        <p>En esta ultima tarea nos proponemos visualizar mediante un heatmap la
+        expresión de los datos crudos de todas las variables AQ que corresponden
+        a la expresión de los 30 genes estudiados en los pacientes. En un
+        principio decidimos usar la librería de pheatmap, pero consideramos que
+        ComplexHeatmap es una herramienta más versátil y que genera unos
+        gráficos más completos y mejores visualmente.</p>
+        <pre><code class="r">datos_aq &lt;- data_gene %&gt;%
+    select(starts_with("AQ_"))
   
   # Escalamos los datos para que tengan media 0 y desviación estándar 1 (normalización).
   datos_aq_scaled &lt;- scale(datos_aq)
@@ -462,20 +456,20 @@
   Heatmap(
     datos_final_heatmap,
     
-    name = &quot;Nivel de expresión&quot;,
+    name = "Nivel de expresión",
     
-    column_title = &quot;Heatmap de Expresión Génica en 65 Pacientes&quot;,
+    column_title = "Heatmap de Expresión Génica en 65 Pacientes",
     column_title_gp = gpar(fontsize = 20),
     
     row_km = 3,
     column_km = 2, 
   
     #Tamaño de las separaciones
-    column_gap = unit(5, &quot;mm&quot;), 
-    row_gap = unit(3, &quot;mm&quot;), 
+    column_gap = unit(5, "mm"), 
+    row_gap = unit(3, "mm"), 
     
-    column_dend_gp = gpar(col = &quot;grey20&quot;, lwd = 3),
-    row_dend_gp = gpar(col = &quot;grey20&quot;, lwd = 3),    
+    column_dend_gp = gpar(col = "grey20", lwd = 3),
+    row_dend_gp = gpar(col = "grey20", lwd = 3),    
     
   
     row_names_gp = gpar(fontsize = 17),
@@ -484,55 +478,55 @@
     show_row_names = TRUE,
     show_column_names = TRUE,
     
-    row_labels = toupper(gsub(&quot;AQ_&quot;, &quot;&quot;, rownames(datos_final_heatmap))) 
+    row_labels = toupper(gsub("AQ_", "", rownames(datos_final_heatmap))) 
   )</code></pre>
-      
-      <figure id="tarea3" class="r-plot-figure">
-        <img src="img3.jpg" alt="Fig. 3: Heatmap de Expresión Génica">
-        <figcaption><em>Fig. 3: Heatmap que muestra la expresión de los 30 genes estudiados
-        en nuestra población de 65 pacientes.</em></figcaption>
-      </figure>
+        
+        <figure class="r-plot-figure">
+          <img src="img3.jpg" alt="Fig. 3: Heatmap de Expresión Génica">
+          <figcaption><em>Fig. 3: Heatmap que muestra la expresión de los 30 genes estudiados
+          en nuestra población de 65 pacientes.</em></figcaption>
+        </figure>
 
-      <p>En primer lugar, podemos ver que existen tres grandes grupos o
-      clusters de genes según su patrón de expresión en la población
-      estudiada. En este análisis iremos por partes y nos centraremos uno por
-      uno en cada uno de estos clusters.</p>
-      <p>El primer cluster (1 a la izquierda del heatmap) que nos encontramos
-      está conformado por los genes desde CDH1 hasta FOXA1 en el heatmap. Es
-      un claster que equivale a los genes analizados en la Tarea 1. Dentro de
-      este cluster podemos encontrar tres grupos de pacientes, un grupo cuya
-      expresión de estos genes es muy alta (entre 2 y 1 en el heatmap) que es
-      encuentra coloreado de rojo (pacientes de izquierda a derecha del 26-13
-      y 21-48). Nos referiremos a este grupo a partir de ahora como A1
-      (A=alto, 1=cluster 1). Después no encontramos un grupo con expresión
-      media (a partir de ahora M1) cuyos valores oscilan entre 1 y 0 y está
-      coloreado de un rojo claro casi blanco (pacientes de 10-23 y 17-51). Por
-      último, tenemos un grupo cuyos niveles de expresión son muy bajos, en
-      torno al -1. Está coloreado de azul claro (el resto de pacientes) y nos
-      referiremos a él como B1.</p>
-      <p>De la misma forma y con el mismo sistema de nomenclatura podemos
-      referirnos a los grupos de pacientes que nos encontramos en el cluster
-      de genes 2 (del gen EGFR al TNF). El grupo A2 comprende los pacientes
-      del 26 al 28 y del 21 al 48 y tienen una alta expresión. El resto, el
-      grupo B2 tiene muestra una expresión baja.</p>
-      <p>Por último, tenemos el cluster 3 (Del gen MYC al HLAA) que se
-      encuentra abajo del todo y está dividido en un grupo de pacientes con
-      baja expresión de los genes (B3) que comprende desde el paciente 26
-      hasta el 56; y un grupo de alta expresión (A3) que comprende desde el
-      paciente 21 hasta el 4.</p>
-      <p>Teniendo todo esto estructurado podemos ver ciertos patrones incluso
-      entre clústeres de genes y grupos de pacientes. Podemos observar que
-      <strong>los clusters 1 y 2 están más relacionados entre sí que con el
-      cluster 3</strong>. Esto se puede ver tanto atendiendo a las ramas del
-      lateral izquierdo como atendiendo al hecho de que los pacientes
-      pertenecientes el grupo A1 siempre pertenecen al grupo A2, mientras que
-      los que pertenecen al M1 siempre pertenecen al B2. Es decir, parece
-      haber una <strong>correlación entre alta expresión de los genes del
-      cluster 2 con una alta expresión de los genes del cluster 1</strong> y,
-      por otro lado, <strong>una baja expresión de los genes del cluster 2 con
-      una expresión media de los genes del cluster 1</strong>. Los genes del
-      cluster 3 no <strong>parecen tener este tipo de correlación con respecto
-      a los de otros clusters</strong>.</p>
+        <p>En primer lugar, podemos ver que existen tres grandes grupos o
+        clusters de genes según su patrón de expresión en la población
+        estudiada. En este análisis iremos por partes y nos centraremos uno por
+        uno en cada uno de estos clusters.</p>
+        <p>El primer cluster (1 a la izquierda del heatmap) que nos encontramos
+        está conformado por los genes desde CDH1 hasta FOXA1 en el heatmap. Es
+        un claster que equivale a los genes analizados en la Tarea 1. Dentro de
+        este cluster podemos encontrar tres grupos de pacientes, un grupo cuya
+        expresión de estos genes es muy alta (entre 2 y 1 en el heatmap) que es
+        encuentra coloreado de rojo (pacientes de izquierda a derecha del 26-13
+        y 21-48). Nos referiremos a este grupo a partir de ahora como A1
+        (A=alto, 1=cluster 1). Después no encontramos un grupo con expresión
+        media (a partir de ahora M1) cuyos valores oscilan entre 1 y 0 y está
+        coloreado de un rojo claro casi blanco (pacientes de 10-23 y 17-51). Por
+        último, tenemos un grupo cuyos niveles de expresión son muy bajos, en
+        torno al -1. Está coloreado de azul claro (el resto de pacientes) y nos
+        referiremos a él como B1.</p>
+        <p>De la misma forma y con el mismo sistema de nomenclatura podemos
+        referirnos a los grupos de pacientes que nos encontramos en el cluster
+        de genes 2 (del gen EGFR al TNF). El grupo A2 comprende los pacientes
+        del 26 al 28 y del 21 al 48 y tienen una alta expresión. El resto, el
+        grupo B2 tiene muestra una expresión baja.</p>
+        <p>Por último, tenemos el cluster 3 (Del gen MYC al HLAA) que se
+        encuentra abajo del todo y está dividido en un grupo de pacientes con
+        baja expresión de los genes (B3) que comprende desde el paciente 26
+        hasta el 56; y un grupo de alta expresión (A3) que comprende desde el
+        paciente 21 hasta el 4.</p>
+        <p>Teniendo todo esto estructurado podemos ver ciertos patrones incluso
+        entre clústeres de genes y grupos de pacientes. Podemos observar que
+        <strong>los clusters 1 y 2 están más relacionados entre sí que con el
+        cluster 3</strong>. Esto se puede ver tanto atendiendo a las ramas del
+        lateral izquierdo como atendiendo al hecho de que los pacientes
+        pertenecientes el grupo A1 siempre pertenecen al grupo A2, mientras que
+        los que pertenecen al M1 siempre pertenecen al B2. Es decir, parece
+        haber una <strong>correlación entre alta expresión de los genes del
+        cluster 2 con una alta expresión de los genes del cluster 1</strong> y,
+        por otro lado, <strong>una baja expresión de los genes del cluster 2 con
+        una expresión media de los genes del cluster 1</strong>. Los genes del
+        cluster 3 no <strong>parecen tener este tipo de correlación con respecto
+        a los de otros clusters</strong>.</p>
       </div>
       </div>
       
