@@ -10,16 +10,13 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
 
-  <!-- Hoja de estilos principal (Ruta original de tu archivo) -->
   <link rel="stylesheet" href="../../style-proyects.css" />
   
-  <!-- (NUEVO) Estilos para el resaltado de código -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
   
 </head>
 <body>
 
-  <!-- ======= HEADER (Tus títulos originales) ======= -->
   <header class="hero project-hero-short">
     <div class="hero-content">
       <h1> Estadística y R para Ciencias de la Salud </h1>   
@@ -28,10 +25,8 @@
     </div>
   </header>
 
-  <!-- ======= CONTENIDO PRINCIPAL ======= -->
   <main class="section">
-  
-    <!-- (NUEVO) Conceptos Clave (Tags) -->
+
     <div class="tech-stack-tags">
       <span>R</span>
       <span>RStudio</span>
@@ -42,7 +37,6 @@
       <span>ComplexHeatmap</span>
     </div>
 
-    <!-- Tu sección de introducción original -->
     <section>
       <h2>Representación gráfica de datos e interpretación de resultados</h2>
       <p>
@@ -53,10 +47,30 @@
       </p>
     </section>
 
-    <!-- 
-      AQUÍ EMPIEZA EL CONTENIDO INTEGRADO DE R MARKDOWN
-      (Se han eliminado las secciones "key-findings" e "project-embed" que tenías)
-    -->
+    <section class="key-findings">
+      <h3>CONCLUSIONES CLAVE</h3>
+      <p>
+        El estudio estuvo dividido en tres apartados en los cuales se concluyó lo siguiente:
+      </p>
+      <ul>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Fármaco vs. Placebo</strong> se puede apreciar una diferencia significativa en la expresión de 10 genes de pacientes cuando estos has sido
+          tratados con un fármaco o cuando se les ha dado placebo.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Diferencias en la distribución</strong> se observó como se distribuían los niveles de ciertos parámetros bioquímicos en una población y se 
+          correlacionó con implicaciones biológicas como indicadores de enfermedad u otro tipo de condiciones. 
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Clasificación y agrupación de genes</strong> se estudió 30 genes de interés los cuales fueron agrupados en 3 clusters que presentaban los 
+          mismos patrones de expresión entre nuestra muestra poblacional.
+        </li>
+      </ul>
+    </section>
+
     <div class="r-markdown-container">
       
       <div id="elaboración-de-las-tareas" class="section level1">
@@ -99,8 +113,158 @@
       axis.title.y = element_text(size = 13),
       axis.text = element_text(size = 12)) 
   
-  # ... (Código R para plot_her2, plot_brca1, etc.) ...
-
+  plot_her2 &lt;- ggplot(
+    data = data_gene, 
+    aes(x = tratamiento, y = AQ_her2, fill = tratamiento)
+  ) +
+    geom_boxplot() +
+    labs(
+      title = &quot;Expresión del Gen HER2&quot;,
+      x = &quot;Tratamiento&quot;,
+      y = &quot;Nivel de Expresión (AQ)&quot;
+    ) +
+    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
+                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    theme_minimal() + 
+    theme(legend.position = &quot;none&quot;,
+          plot.title = element_text(size = 14, hjust = 0.5),
+      axis.title.x = element_text(size = 13),
+      axis.title.y = element_text(size = 13),
+      axis.text = element_text(size = 12)) 
+  
+  plot_brca1 &lt;- ggplot(
+    data = data_gene, 
+    aes(x = tratamiento, y = AQ_brca1, fill = tratamiento)
+  ) +
+    geom_boxplot() +
+    labs(
+      title = &quot;Expresión del Gen BRCA1&quot;,
+      x = &quot;Tratamiento&quot;,
+      y = &quot;Nivel de Expresión (AQ)&quot;
+    ) +
+    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
+                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    theme_minimal() + 
+    theme(legend.position = &quot;none&quot;,
+          plot.title = element_text(size = 14, hjust = 0.5),
+      axis.title.x = element_text(size = 13),
+      axis.title.y = element_text(size = 13),
+      axis.text = element_text(size = 12)) 
+  
+  plot_brca2 &lt;- ggplot(
+    data = data_gene, 
+    aes(x = tratamiento, y = AQ_brca2, fill = tratamiento)
+  ) +
+    geom_boxplot() +
+    labs(
+      title = &quot;Expresión del Gen BRCA2&quot;,
+      x = &quot;Tratamiento&quot;,
+      y = &quot;Nivel de Expresión (AQ)&quot;
+    ) +
+    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
+                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    theme_minimal() + 
+    theme(legend.position = &quot;none&quot;,
+          plot.title = element_text(size = 14, hjust = 0.5),
+      axis.title.x = element_text(size = 13),
+      axis.title.y = element_text(size = 13),
+      axis.text = element_text(size = 12)) 
+  
+  plot_mki67 &lt;- ggplot(
+    data = data_gene, 
+    aes(x = tratamiento, y = AQ_mki67, fill = tratamiento)
+  ) +
+    geom_boxplot() +
+    labs(
+      title = &quot;Expresión del Gen MKI67&quot;,
+      x = &quot;Tratamiento&quot;,
+      y = &quot;Nivel de Expresión (AQ)&quot;
+    ) +
+    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
+                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    theme_minimal() + 
+    theme(legend.position = &quot;none&quot;,
+          plot.title = element_text(size = 14, hjust = 0.5),
+      axis.title.x = element_text(size = 13),
+      axis.title.y = element_text(size = 13),
+      axis.text = element_text(size = 12)) 
+  
+  plot_gata3 &lt;- ggplot(
+    data = data_gene, 
+    aes(x = tratamiento, y = AQ_gata3, fill = tratamiento)
+  ) +
+    geom_boxplot() +
+    labs(
+      title = &quot;Expresión del Gen GATA3&quot;,
+      x = &quot;Tratamiento&quot;,
+      y = &quot;Nivel de Expresión (AQ)&quot;
+    ) +
+    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
+                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    theme_minimal() + 
+    theme(legend.position = &quot;none&quot;,
+          plot.title = element_text(size = 14, hjust = 0.5),
+      axis.title.x = element_text(size = 13),
+      axis.title.y = element_text(size = 13),
+      axis.text = element_text(size = 12)) 
+  
+  plot_foxa1 &lt;- ggplot(
+    data = data_gene, 
+    aes(x = tratamiento, y = AQ_foxa1, fill = tratamiento)
+  ) +
+    geom_boxplot() +
+    labs(
+      title = &quot;Expresión del Gen FOXA1&quot;,
+      x = &quot;Tratamiento&quot;,
+      y = &quot;Nivel de Expresión (AQ)&quot;
+    ) +
+    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
+                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    theme_minimal() + 
+    theme(legend.position = &quot;none&quot;,
+          plot.title = element_text(size = 14, hjust = 0.5),
+      axis.title.x = element_text(size = 13),
+      axis.title.y = element_text(size = 13),
+      axis.text = element_text(size = 12)) 
+  
+  plot_ccnd1 &lt;- ggplot(
+    data = data_gene, 
+    aes(x = tratamiento, y = AQ_ccnd1, fill = tratamiento)
+  ) +
+    geom_boxplot() +
+    labs(
+      title = &quot;Expresión del Gen CCND1&quot;,
+      x = &quot;Tratamiento&quot;,
+      y = &quot;Nivel de Expresión (AQ)&quot;
+    ) +
+    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
+                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    theme_minimal() + 
+    theme(legend.position = &quot;none&quot;,
+          plot.title = element_text(size = 14, hjust = 0.5),  
+      axis.title.x = element_text(size = 13),
+      axis.title.y = element_text(size = 13),
+      axis.text = element_text(size = 12)) 
+  
+  plot_cdh1 &lt;- ggplot(
+    data = data_gene, 
+    aes(x = tratamiento, y = AQ_cdh1, fill = tratamiento)
+  ) +
+    geom_boxplot() +
+    labs(
+      title = &quot;Expresión del Gen CDH1&quot;,
+      x = &quot;Tratamiento&quot;,
+      y = &quot;Nivel de Expresión (AQ)&quot;
+    ) +
+    scale_x_discrete(labels = c(&quot;placebo&quot; = &quot;Placebo&quot;, 
+                                &quot;farmaco&quot; = &quot;Con fármaco&quot;)) +
+    theme_minimal() + 
+    theme(legend.position = &quot;none&quot;,
+          plot.title = element_text(size = 14, hjust = 0.5),   
+      axis.title.x = element_text(size = 13),
+      axis.title.y = element_text(size = 13),
+      axis.text = element_text(size = 12)) 
+  
   plot_tp53 &lt;- ggplot(
     data = data_gene, 
     aes(x = tratamiento, y = AQ_tp53, fill = tratamiento) 
@@ -130,9 +294,7 @@
   combined_plot + 
     plot_layout(ncol = 5) </code></pre>
       
-      <!-- IMAGEN 1 -->
       <figure class="r-plot-figure">
-        <!-- Asegúrate de que img1.jpg está en la misma carpeta que este HTML -->
         <img src="img1.jpg" alt="Fig. 1: Diagrama de cajas de expresión génica">
         <figcaption><em>Fig. 1: Diagrama de cajas en el que se compara la expresión de 10
         genes de interés en bajo dos tratamientos distintos.</em></figcaption>
@@ -227,7 +389,6 @@
       axis.text = element_text(size = 11),
       strip.text = element_text(size = 12, face = &quot;bold&quot;))</code></pre>
       
-      <!-- IMAGEN 2 -->
       <figure class="r-plot-figure">
         <img src="img2.jpg" alt="Fig. 2: Histogramas de variables bioquímicas">
         <figcaption><em>Fig. 2: Histogramas con curvas de densidad de 12 parámetros
@@ -242,7 +403,7 @@
       distribución t de student</strong>. Pero, por otra parte, algunos de los
       parámetros parecen seguir otro tipo de distribuciones como la
       <strong>chi cuadrado o la f de Fisher</strong>. Este es el caso de
-      parámetros como cpk, triglicéridos, leucocitos, neutrófilos, iga, ige,
+      parámetros como cpk, trigliceridos, leucocitos, neutrófilos, iga, ige,
       ldl. Son distribuciones asimétricas que están claramente sesgadas hacia
       valores bajos. El caso más evidente es el del <strong>parámetro
       pcr</strong>.</p>
@@ -276,7 +437,7 @@
       </div>
       
       <div id="tarea-3-mapea-todos-los-valores-de-expresión-de-genes" class="section level3">
-      <h3>Tarea 3: Mapea todos los valores de expresión de genes (Heatmap)</h3>
+      <h3>Tarea 3: Mapeo de valores de expresión de genes (Heatmap)</h3>
       <p>En esta ultima tarea nos proponemos visualizar mediante un heatmap la
       expresión de los datos crudos de todas las variables AQ que corresponden
       a la expresión de los 30 genes estudiados en los pacientes. En un
@@ -326,7 +487,6 @@
     row_labels = toupper(gsub(&quot;AQ_&quot;, &quot;&quot;, rownames(datos_final_heatmap))) 
   )</code></pre>
       
-      <!-- IMAGEN 3 -->
       <figure class="r-plot-figure">
         <img src="img3.jpg" alt="Fig. 3: Heatmap de Expresión Génica">
         <figcaption><em>Fig. 3: Heatmap que muestra la expresión de los 30 genes estudiados
@@ -377,9 +537,6 @@
       </div>
       
     </div>
-    <!-- FIN DEL CONTENIDO INTEGRADO -->
-
-
     <section>
       <h3 class="section-subtitle">Enlaces</h3>
       <div class="links-container">
@@ -401,12 +558,9 @@
     <p>© 2025 Alejandro Pascual Hernández. Hecho en HTML/CSS/JS.</p>
   </footer>
 
-  <!-- (NUEVO) Scripts para el resaltado de código -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <!-- (NUEVO) Carga el lenguaje R para highlight.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
   
-  <!-- (NUEVO) Inicializa el resaltado -->
   <script>
     document.addEventListener('DOMContentLoaded', (event) => {
       document.querySelectorAll('pre code').forEach((el) => {
@@ -415,7 +569,6 @@
     });
   </script>
   
-  <!-- Script principal (Ruta corregida para subir tres niveles) -->
   <script src="../../../script.js"></script>
 </body>
 </html>
