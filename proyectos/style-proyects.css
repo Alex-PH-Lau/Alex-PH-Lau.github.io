@@ -453,3 +453,7 @@ footer {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+/* === AJUSTE ESPACIO BOTÓN PDF === */
+.btn-download {
+  margin-bottom: 1.5rem;
+}
