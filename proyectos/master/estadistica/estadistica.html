@@ -55,17 +55,17 @@
       <ul>
         <li>
           <i class="fas fa-check-circle" aria-hidden="true"></i>
-          <a href="#r-plot-figure"><strong>Fármaco vs. Placebo</strong></a> se puede apreciar una diferencia significativa en la expresión de 10 genes de pacientes cuando estos has sido
+          <a href="#tarea1"><strong>Fármaco vs. Placebo</strong></a> se puede apreciar una diferencia significativa en la expresión de 10 genes de pacientes cuando estos has sido
           tratados con un fármaco o cuando se les ha dado placebo.
         </li>
         <li>
           <i class="fas fa-check-circle" aria-hidden="true"></i>
-          <strong>Diferencias en la distribución</strong> se observó como se distribuían los niveles de ciertos parámetros bioquímicos en una población y se 
+           <a href="#tarea2"><strong>Diferencias en la distribución</strong></a> se observó como se distribuían los niveles de ciertos parámetros bioquímicos en una población y se 
           correlacionó con implicaciones biológicas como indicadores de enfermedad u otro tipo de condiciones. 
         </li>
         <li>
           <i class="fas fa-check-circle" aria-hidden="true"></i>
-          <strong>Clasificación y agrupación de genes</strong> se estudió 30 genes de interés los cuales fueron agrupados en 3 clusters que presentaban los 
+           <a href="#tarea3"><strong>Clasificación y agrupación de genes</strong></a> se estudió 30 genes de interés los cuales fueron agrupados en 3 clusters que presentaban los 
           mismos patrones de expresión entre nuestra muestra poblacional.
         </li>
       </ul>
@@ -294,7 +294,7 @@
   combined_plot + 
     plot_layout(ncol = 5) </code></pre>
       
-      <figure class="r-plot-figure">
+      <figure id="tarea1" class="r-plot-figure">
         <img src="img1.jpg" alt="Fig. 1: Diagrama de cajas de expresión génica">
         <figcaption><em>Fig. 1: Diagrama de cajas en el que se compara la expresión de 10
         genes de interés en bajo dos tratamientos distintos.</em></figcaption>
@@ -389,7 +389,7 @@
       axis.text = element_text(size = 11),
       strip.text = element_text(size = 12, face = &quot;bold&quot;))</code></pre>
       
-      <figure class="r-plot-figure">
+      <figure id="tarea2" class="r-plot-figure">
         <img src="img2.jpg" alt="Fig. 2: Histogramas de variables bioquímicas">
         <figcaption><em>Fig. 2: Histogramas con curvas de densidad de 12 parámetros
         bioquímicos distintos en una población de 65 pacientes.</em></figcaption>
@@ -487,7 +487,7 @@
     row_labels = toupper(gsub(&quot;AQ_&quot;, &quot;&quot;, rownames(datos_final_heatmap))) 
   )</code></pre>
       
-      <figure class="r-plot-figure">
+      <figure id="tarea3" class="r-plot-figure">
         <img src="img3.jpg" alt="Fig. 3: Heatmap de Expresión Génica">
         <figcaption><em>Fig. 3: Heatmap que muestra la expresión de los 30 genes estudiados
         en nuestra población de 65 pacientes.</em></figcaption>
