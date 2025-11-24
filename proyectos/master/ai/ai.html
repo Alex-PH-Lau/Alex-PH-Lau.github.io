@@ -81,7 +81,7 @@
 
     <div class="r-markdown-container">
       
-      <div id="tarea-1-expresión-génica-según-el-tratamiento-aplicado-a-10-genes" class="section level3">
+      <div id="pasos-previos" class="section level3">
         <h3>Pasos previos</h3>
         <p>En primer lugar, tenemos que cargar todas la librerías y datos que vamos a usar para el análisis de 
           datos. Por un lado, cargamos los datos de los de “data.csv” como una matriz en el que la fila 1 corresponde 
@@ -109,6 +109,8 @@ data <- as.matrix(read.csv("data.csv", row.names = 1))</code></pre>
           técnicas que podemos utilizar, pero en esta actividad nos enfocaremos en 4 distintas que hemos escogido para enseñar diferentes 
           problemas que nos podemos encontrar a la hora de reducir la dimensionalidad. Iremos argumentando el porqué de nuestra elección 
           y como ha sido el tratamiento tanto de los datos como de los parámetros que se pueden modificar en cada método.</p>
+      </div>
+      <div id="mds" class="section level3">
         <h3>MDS</h3>
         <p>El primero de los métodos que decidimos utilizar es el MDS (multidimensional scaling, en español escalamiento multidimensional). 
           Se trata de un método en el cual se mide la distancia entre distintas muestras o puntos y los agrupa. Esta distancia puede ser medida
@@ -134,41 +136,58 @@ ggplot(mds.df, aes(x=X1, y=X2, color=labels.raw$Class)) + #Por último graficamo
 </code></pre>
         
         <figure class="r-plot-figure">
-          <img src="Fig1.png" alt="Fig. 1: MDS 2 dimensiones">
-          <figcaption><em>Fig. 1. Representación gráfica de nuestros datos usando la técnica MDS en 2 dimensiones.</em></figcaption>
+          <img src="fig1.png" alt="Fig. 1: MDS 2 dimensiones">
+          <figcaption><em>Fig. 1: Representación gráfica de nuestros datos usando la técnica MDS en 2 dimensiones.</em></figcaption>
         </figure>
 
         <p>Como podemos ver en la representación gráfica existen muchos puntos que no están bien separados y aunque ya se pueden apreciar 
           nuestros 5 clusters de las 5 enfermedades diferentes, no creemos que esto sea una buena separación. Por este motivo decidimos intentar 
           visualizarlo en 3 dimensiones para comprobar si de esta manera podríamos diferenciar mejor los diferentes grupos.Para ello debemos
           cambiar el parámetro k, que equivale al número de dimensiones.</p>
+         <pre><code class="r">mds_result <- cmdscale(distances, k = 3) # hacemos lo mismo pero para 3 dimensiones
+
+mds_df <- as.data.frame(mds_result)
+colnames(mds_df) &lt; c("Dim1", "Dim2", "Dim3")
+
+mds_df$Cancer_Type &lt; labels.raw$Class # añadimos las etiquetas del cancer
+
+fig &lt; plot_ly(mds_df, x = ~Dim1, y = ~Dim2, z = ~Dim3, #graficamos
+               color = ~Cancer_Type, colors = "Set1", 
+               marker = list(size = 4))
+
+fig </code></pre>
+        <figure class="r-plot-figure">
+          <img src="fig2.png" alt="Fig. 1: MDS 3 dimensiones">
+          <figcaption><em>Fig. 1: Representación gráfica de nuestros datos usando la técnica MDS en 3 dimensiones.</em></figcaption>
+        </figure>
+        <p>Visualizando los resultados en 3 dimensiones podemos ver más claramente los 5 grupos diferenciados. Esto es una manera muy 
+          interesante de resolver el problema inicial, pero conlleva otra serie de desventajas. La primera y más evidente es que no 
+          siempre podremos representar con graficas 3D pues no todos los medios los permiten y mucho menos si no son digitales. Otras 
+          de las desventajas del MDS es que puede ser muy costoso computacionalmente ya que requiere calcular la distancia de cada uno 
+          de los puntos entre ellos. </p>
       </div>
       
-      <div id="tarea-2-distribución-de-parámetros-bioquímicos-dentro-de-una-población" class="section level3">
-        <h3>Tarea 2: Distribución de parámetros bioquímicos (Histogramas)</h3>
-        <p>Con el apoyo de un histograma al cual le añadimos una curva de
-        densidad, estudiaremos cómo se distribuyen distintos parámetros
-        bioquímicos en nuestra población estudiada.</p>
-        <p>Para esta segunda tarea decidimos usar uno de los metodos que nos
-        permite tidyverse, el método con pivot_longer(). Este método nos permite
-        generar los graficos de una sola vez en vez de tener que juntarlos
-        despues con patchwork como en la anterior tarea.</p>
-        <pre><code class="r"># Primero definimos el vector de variables bioquímicas de interés
-  variables_bioquim &lt;- c(
-    "glucosa", "leucocitos", "linfocitos", "neutrofilos", "chol", "hdl", 
-    "hierro", "iga", "ige", "igg", "ign", "ldl", "pcr", "transferrina", 
-    "trigliceridos", "cpk"
-  )
-  
-  # Usamos el una serie de pipes (%&gt;%) para primero seleccionar las variables...
-  datos_bio_long &lt;- data_gene %&gt;%
-    select(all_of(variables_bioquim)) %&gt;%
-    pivot_longer(
-      cols = everything(),
-      names_to = "variable",
-      values_to = "valor"
-    ) %&gt;%
-    drop_na(valor) </code></pre>
+      <div id="isomap" class="section level3">
+        <h3>Isomap</h3>
+        <p>Como siguiente método vamos a utilizar uno relacionado con el anterior, el Isometric mapping (Isomap). Al igual que en el método 
+          anterior se busca medir distancias entre puntos para realizar agrupaciones, pero en esta ocasión la distancia utilizada es la distancia 
+          geodésica. Esta distancia se calcula sobre una superficie que cambia según sea la disposición del conjunto de datos. Esta disposición
+          del conjunto de datos está determinada principalmente por lo que nosotros consideremos el número de vecinos próximos o K. 
+          Este parámetro es el principal con el que jugaremos para obtener un mejor resultado a la hora de realizar agrupaciones. 
+          En un principio el numero de K que usaremos será 5.</p>
+        <pre><code class="r">set.seed(1234)
+
+isomap.results = Isomap(data=data, dims=1:10, k=5, plotResiduals=FALSE) # isomap de 1 a 10 dimensiones y con 5 vecinos. Decidimos poner plotResiduals=FALSE para no observar la varianza expicada 
+
+isomap.df &lt; data.frame(isomap.results$dim2) # Dataframe con los puntos que queremos dibujar en el plano 2D
+
+ggplot(isomap.df, aes(x = X1, y = X2, color = labels.raw$Class)) +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("red", "blue", "green", "orange", "purple")) +
+  labs(title = "Isomap - Types of Cancer", x = 'Dim 1', y = 'Dim 2', color = "Grupo") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(color = "gray90"), panel.grid.minor = element_blank(),
+        panel.background = element_rect(fill = "gray95"), plot.title=element_text(hjust=0.5)) </code></pre>
         <p>Ahora tenemos que combinar dos tipos de gráficos, un histograma y uno
         de densidad.</p>
         <pre><code class="r">ggplot(
