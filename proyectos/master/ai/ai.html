@@ -101,7 +101,7 @@ library(gridExtra)
 library(pheatmap)
 library(tidyr)
 
-labels.raw<- read.csv('labels.csv')
+labels.raw &lt;- read.csv('labels.csv')
 data <- as.matrix(read.csv("data.csv", row.names = 1))</code></pre>
         <p>Como podemos ver en la matriz creada tenemos 801 muestras de pacientes y 20532 genes estudiados, lo cual nos lleva a 
           que haya un claro problema de dimensionalidad. Para solucionarlo debemos recurrir a distintas técnicas o herramientas que 
@@ -118,13 +118,13 @@ data <- as.matrix(read.csv("data.csv", row.names = 1))</code></pre>
           la “de Manhattan”, “de Hamming”, etc. Este método nos permite seleccionar también el número de dimensiones en el que vamos a representar 
           nuestros resultados. En un principio los visualizaremos en 2 dimensiones. </p>
         <pre><code class="r">
-  distances &lt; dist(data, method = 'euclidean') # matriz de distancias
+  distances &lt;- dist(data, method = 'euclidean') # matriz de distancias
 
-mds.results &lt; cmdscale(d=distances, eig=TRUE, k=2, x.ret=TRUE) # La función cmdscale realiza el MSD
+mds.results &lt;- cmdscale(d=distances, eig=TRUE, k=2, x.ret=TRUE) # La función cmdscale realiza el MSD
 
-varianza.explicada &lt; mds.results$eig/sum(mds.results$eig) * 100 # varianza explicada
+varianza.explicada &lt;- mds.results$eig/sum(mds.results$eig) * 100 # varianza explicada
 
-mds.df &lt; data.frame(mds.results$points) # convertimos los datos del mds en un data frame
+mds.df &lt;- data.frame(mds.results$points) # convertimos los datos del mds en un data frame
 
 ggplot(mds.df, aes(x=X1, y=X2, color=labels.raw$Class)) + #Por último graficamos
   geom_point(size=3) + 
@@ -147,9 +147,9 @@ ggplot(mds.df, aes(x=X1, y=X2, color=labels.raw$Class)) + #Por último graficamo
          <pre><code class="r">mds_result <- cmdscale(distances, k = 3) # hacemos lo mismo pero para 3 dimensiones
 
 mds_df <- as.data.frame(mds_result)
-colnames(mds_df) &lt; c("Dim1", "Dim2", "Dim3")
+colnames(mds_df) &lt;- c("Dim1", "Dim2", "Dim3")
 
-mds_df$Cancer_Type &lt; labels.raw$Class # añadimos las etiquetas del cancer
+mds_df$Cancer_Type &lt;- labels.raw$Class # añadimos las etiquetas del cancer
 
 fig &lt; plot_ly(mds_df, x = ~Dim1, y = ~Dim2, z = ~Dim3, #graficamos
                color = ~Cancer_Type, colors = "Set1", 
@@ -157,8 +157,8 @@ fig &lt; plot_ly(mds_df, x = ~Dim1, y = ~Dim2, z = ~Dim3, #graficamos
 
 fig </code></pre>
         <figure class="r-plot-figure">
-          <img src="fig2.png" alt="Fig. 1: MDS 3 dimensiones">
-          <figcaption><em>Fig. 1: Representación gráfica de nuestros datos usando la técnica MDS en 3 dimensiones.</em></figcaption>
+          <img src="fig2.png" alt="Fig. 2: MDS 3 dimensiones">
+          <figcaption><em>Fig. 2: Representación gráfica de nuestros datos usando la técnica MDS en 3 dimensiones.</em></figcaption>
         </figure>
         <p>Visualizando los resultados en 3 dimensiones podemos ver más claramente los 5 grupos diferenciados. Esto es una manera muy 
           interesante de resolver el problema inicial, pero conlleva otra serie de desventajas. La primera y más evidente es que no 
@@ -179,7 +179,7 @@ fig </code></pre>
 
 isomap.results = Isomap(data=data, dims=1:10, k=5, plotResiduals=FALSE) # isomap de 1 a 10 dimensiones y con 5 vecinos. Decidimos poner plotResiduals=FALSE para no observar la varianza expicada 
 
-isomap.df &lt; data.frame(isomap.results$dim2) # Dataframe con los puntos que queremos dibujar en el plano 2D
+isomap.df &lt;- data.frame(isomap.results$dim2) # Dataframe con los puntos que queremos dibujar en el plano 2D
 
 ggplot(isomap.df, aes(x = X1, y = X2, color = labels.raw$Class)) +
   geom_point(size = 3) +
@@ -188,192 +188,168 @@ ggplot(isomap.df, aes(x = X1, y = X2, color = labels.raw$Class)) +
   theme_classic() +
   theme(panel.grid.major = element_line(color = "gray90"), panel.grid.minor = element_blank(),
         panel.background = element_rect(fill = "gray95"), plot.title=element_text(hjust=0.5)) </code></pre>
-        <p>Ahora tenemos que combinar dos tipos de gráficos, un histograma y uno
-        de densidad.</p>
-        <pre><code class="r">ggplot(
-    data = datos_bio_long, 
-    aes(x = valor) 
-  ) +
-    
-    # Histograma
-    geom_histogram(
-      aes(y = after_stat(density)), 
-      bins = 30,
-      fill = "steelblue", 
-      color = "black",
-      alpha = 0.7
-    ) +
-    
-    # Curva de Densidad
-    geom_density(
-      color = "red",
-      linewidth = 1  
-    ) +
-    
-    facet_wrap(
-      ~ variable, 
-      scales = "free" 
-    ) +
-    
-    labs(
-      title = "Distribución de Variables Bioquímicas",
-      subtitle = "Histograma y Curva de Densidad",
-      x = "Valores del parámetro (unidad dependiente de cada parámetro)",
-      y = "Densidad"
-    ) +
-    theme_minimal()+
-    theme(legend.position = "none",
-          plot.title = element_text(size = 20, hjust = 0.5),    
-      plot.subtitle = element_text(size = 17,hjust = 0.5),    
-      axis.title.x = element_text(size = 17),
-      axis.title.y = element_text(size = 17),
-      axis.text = element_text(size = 11),
-      strip.text = element_text(size = 12, face = "bold"))</code></pre>
+        <figure class="r-plot-figure">
+          <img src="fig3.png" alt="Fig. 3: Isomap 5 vecinos">
+          <figcaption><em>Fig. 3: Representación gráfica de nuestros datos usando la técnica de Isomap con un parámetro de k (nº de puntos vecinos) de 5.</em></figcaption>
+        </figure>
+        <p>Con k=5 vemos que la separación no es muy buena por lo que decidimos ir aumentando este número hasta conseguir un mejor resultado.
+          Aumentando llegamos a K=15 en el cual nos aparece el siguiente resultado.</p>
+        <pre><code class="r">set.seed(1234)
+
+isomap.results = Isomap(data=data, dims=1:10, k=15, plotResiduals=FALSE) # esta vez k=15
+
+isomap.df &lt;- data.frame(isomap.results$dim2) 
+
+ggplot(isomap.df, aes(x = X1, y = X2, color = labels.raw$Class)) +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("red", "blue", "green", "orange", "purple")) +
+  labs(title = "Isomap - Types of Cancer", x = 'Dim 1', y = 'Dim 2', color = "Grupo") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(color = "gray90"), panel.grid.minor = element_blank(),
+        panel.background = element_rect(fill = "gray95"), plot.title=element_text(hjust=0.5))
+</code></pre>
         
         <figure class="r-plot-figure">
-          <img src="img2.jpg" alt="Fig. 2: Histogramas de variables bioquímicas">
-          <figcaption><em>Fig. 2: Histogramas con curvas de densidad de 12 parámetros
-          bioquímicos distintos en una población de 65 pacientes.</em></figcaption>
+          <img src="fig4.png" alt="Fig. 4: Isomap 15 vecinos">
+          <figcaption><em>Fig. 4: Representación gráfica de nuestros datos usando la técnica de Isomap 
+            con un parámetro de k (nº de puntos vecinos) de 15.</em></figcaption>
         </figure>
 
-        <p>Observando la graficas obtenidas podemos comprobar que hay diferentes
-        tipos de distribución en una población dependiendo de los parámetros
-        analizados. Por ejemplo, si miramos parámetros como la
-        <strong>transferrina o el colesterol (chol)</strong> podríamos decir que
-        se trata de una <strong>distribución normal o gaussiana, o una
-        distribución t de student</strong>. Pero, por otra parte, algunos de los
-        parámetros parecen seguir otro tipo de distribuciones como la
-        <strong>chi cuadrado o la f de Fisher</strong>. Este es el caso de
-        parámetros como cpk, trigliceridos, leucocitos, neutrófilos, iga, ige,
-        ldl. Son distribuciones asimétricas que están claramente sesgadas hacia
-        valores bajos. El caso más evidente es el del <strong>parámetro
-        pcr</strong>.</p>
-        <p>Por lo tanto, nos encontramos con dos claros tipos de parámetros
-        bioquímicos. Por un lado, los parámetros que se encuentran distribuidos
-        de una forma gaussiana son parámetros en los que la población suele
-        tener ciertos niveles endógenos normales y niveles tanto muy bajos como
-        muy altos se suelen considerar anormales o nocivos, indicando una
-        posible enfermedad. Este podría ser el caso de la transferrina encargada
-        del transporte del hierro cuyos niveles altos o bajos pueden estar
-        relacionados con enfermedades y síntomas como la anemia y la
-        hemocromatosis (exceso de hierro), respectivamente.</p>
-        <p>Por otro lado, hay parámetros bioquímicos que tienden a quedarse en
-        niveles bajos de forma constitutiva y solo aumentan cuando hay una
-        alteración o enfermedad. Este es el caso, por ejemplo, del parámetro pcr
-        (Proteína C Reactiva) que es una proteína liberada por el hígado en los
-        procesos inflamatorios o en infecciones en el cuerpo. Normalmente los
-        niveles de pcr son casi de 0 hasta que se desencadena un proceso de
-        infección e inflamación. Este también es el caso de los leucocitos y
-        neutrófilos que son células del sistema inmune cuyos niveles normalmente
-        se encuentran bajos si no hay un ataque al sistema por parte de virus,
-        bacterias, heridas, etc.</p>
-        <p>En resumidas cuentas, la forma de la distribución de estos parámetros
-        nos indica los <strong>niveles normales de un parámetro en una población
-        y cuales son los niveles que asociamos a condiciones, enfermedades u
-        anomalías en general</strong>. Ahora podíamos comprobar y hacer una
-        relación entre nuestros pacientes con cáncer de mama y los parámetros
-        bioquímicos obtenidos (buscando aquellos que se distanciasen de la moda
-        de sus respectivas distribuciones) para buscar <strong>posibles
-        marcadores</strong>.</p>
+        <p>Aquí ya podemos observar una clara separación por grupos de nuestras 5 enfermedades. Este método pues resulta 
+          se efectivo para nuestro propósito, sin embargo, encontrar el parámetro para K adecuado puede ser 
+          muy difícil y es posible que en algunos casos no 
+          se llegue a encontrar. Por lo que este método puede tener esa limitación.</p>
       </div>
       
-      <div id="tarea-3-mapea-todos-los-valores-de-expresión-de-genes" class="section level3">
-        <h3>Tarea 3: Mapeo de valores de expresión de genes (Heatmap)</h3>
-        <p>En esta ultima tarea nos proponemos visualizar mediante un heatmap la
-        expresión de los datos crudos de todas las variables AQ que corresponden
-        a la expresión de los 30 genes estudiados en los pacientes. En un
-        principio decidimos usar la librería de pheatmap, pero consideramos que
-        ComplexHeatmap es una herramienta más versátil y que genera unos
-        gráficos más completos y mejores visualmente.</p>
-        <pre><code class="r">datos_aq &lt;- data_gene %&gt;%
-    select(starts_with("AQ_"))
-  
-  # Escalamos los datos para que tengan media 0 y desviación estándar 1 (normalización).
-  datos_aq_scaled &lt;- scale(datos_aq)
-  
-  rownames(datos_aq_scaled) &lt;- data_gene$id
-  
-  # Transponemos la matriz para que quede (Genes x Pacientes) como se indica en el enunciado
-  datos_final_heatmap &lt;- t(datos_aq_scaled)
-  
-  library(ComplexHeatmap)
-  
-  set.seed(1995)
-  
-  Heatmap(
-    datos_final_heatmap,
-    
-    name = "Nivel de expresión",
-    
-    column_title = "Heatmap de Expresión Génica en 65 Pacientes",
-    column_title_gp = gpar(fontsize = 20),
-    
-    row_km = 3,
-    column_km = 2, 
-  
-    #Tamaño de las separaciones
-    column_gap = unit(5, "mm"), 
-    row_gap = unit(3, "mm"), 
-    
-    column_dend_gp = gpar(col = "grey20", lwd = 3),
-    row_dend_gp = gpar(col = "grey20", lwd = 3),    
-    
-  
-    row_names_gp = gpar(fontsize = 17),
-    column_names_gp = gpar(fontsize = 13),
-    
-    show_row_names = TRUE,
-    show_column_names = TRUE,
-    
-    row_labels = toupper(gsub("AQ_", "", rownames(datos_final_heatmap))) 
-  )</code></pre>
+      <div id="umap" class="section level3">
+        <h3>Umap</h3>
+        <p>Ahora decidimos utilizar el método de Uniform Manifold Approximation and Projection (UMAP). Este es un método de 
+          reducción de la dimensionalidad muy complejo que asume que la muestra de datos disponibles está distribuida de manera 
+          uniforme por nuestro espacio topológico. Este especio puede aproximarse y proyectarse sobre un espacio de menor dimensión.
+          Para esto primero busca definir la estructura del especio topológico y después busca cómo representar esta estructura de
+          manera más adecuada en un espacio de menos dimensiones.</p>
+        <pre><code class="r">set.seed(1234)
+
+umap.results &lt;- umap(data, n_neighbors=0.15 * nrow(data), #Aquí hemos decidido no tocar los parámetros a excepción del nº de vecinos cercanos
+                                                         # que es el parámetro n_neighbours
+                     n_components = 2, min_dist = 0.1, local_connectivity=1, 
+                     ret_model = TRUE, verbose = TRUE)
+
+umap.df &lt;- data.frame(umap.results$embedding)
+
+m_dist &lt;- dist(umap.df)
+
+ggplot(umap.df, aes(x = X1, y = X2, color = labels.raw$Class)) +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("red", "blue", "green", "orange", "purple")) +
+  labs(title = "Método UMAP Types of Cancer", x = "X1", y = "X2", color = "Grupo") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(color = "gray90"), panel.grid.minor = element_blank(),
+        panel.background = element_rect(fill = "gray95"), plot.title=element_text(hjust=0.5))
+        </code></pre>
         
         <figure class="r-plot-figure">
-          <img src="img3.jpg" alt="Fig. 3: Heatmap de Expresión Génica">
-          <figcaption><em>Fig. 3: Heatmap que muestra la expresión de los 30 genes estudiados
-          en nuestra población de 65 pacientes.</em></figcaption>
+          <img src="fig5.png" alt="Fig. 5: Umap">
+          <figcaption><em>Fig. 5: Representación gráfica de nuestros datos usando la técnica de Umap sin alterar ningún parámetro excepto el número 
+            de vecinos cercanos (n_neighbors) que lo situamos en 0.15.</em></figcaption>
         </figure>
 
-        <p>En primer lugar, podemos ver que existen tres grandes grupos o
-        clusters de genes según su patrón de expresión en la población
-        estudiada. En este análisis iremos por partes y nos centraremos uno por
-        uno en cada uno de estos clusters.</p>
-        <p>El primer cluster (1 a la izquierda del heatmap) que nos encontramos
-        está conformado por los genes desde CDH1 hasta FOXA1 en el heatmap. Es
-        un claster que equivale a los genes analizados en la Tarea 1. Dentro de
-        este cluster podemos encontrar tres grupos de pacientes, un grupo cuya
-        expresión de estos genes es muy alta (entre 2 y 1 en el heatmap) que es
-        encuentra coloreado de rojo (pacientes de izquierda a derecha del 26-13
-        y 21-48). Nos referiremos a este grupo a partir de ahora como A1
-        (A=alto, 1=cluster 1). Después no encontramos un grupo con expresión
-        media (a partir de ahora M1) cuyos valores oscilan entre 1 y 0 y está
-        coloreado de un rojo claro casi blanco (pacientes de 10-23 y 17-51). Por
-        último, tenemos un grupo cuyos niveles de expresión son muy bajos, en
-        torno al -1. Está coloreado de azul claro (el resto de pacientes) y nos
-        referiremos a él como B1.</p>
-        <p>De la misma forma y con el mismo sistema de nomenclatura podemos
-        referirnos a los grupos de pacientes que nos encontramos en el cluster
-        de genes 2 (del gen EGFR al TNF). El grupo A2 comprende los pacientes
-        del 26 al 28 y del 21 al 48 y tienen una alta expresión. El resto, el
-        grupo B2 tiene muestra una expresión baja.</p>
-        <p>Por último, tenemos el cluster 3 (Del gen MYC al HLAA) que se
-        encuentra abajo del todo y está dividido en un grupo de pacientes con
-        baja expresión de los genes (B3) que comprende desde el paciente 26
-        hasta el 56; y un grupo de alta expresión (A3) que comprende desde el
-        paciente 21 hasta el 4.</p>
-        <p>Teniendo todo esto estructurado podemos ver ciertos patrones incluso
-        entre clústeres de genes y grupos de pacientes. Podemos observar que
-        <strong>los clusters 1 y 2 están más relacionados entre sí que con el
-        cluster 3</strong>. Esto se puede ver tanto atendiendo a las ramas del
-        lateral izquierdo como atendiendo al hecho de que los pacientes
-        pertenecientes el grupo A1 siempre pertenecen al grupo A2, mientras que
-        los que pertenecen al M1 siempre pertenecen al B2. Es decir, parece
-        haber una <strong>correlación entre alta expresión de los genes del
-        cluster 2 con una alta expresión de los genes del cluster 1</strong> y,
-        por otro lado, <strong>una baja expresión de los genes del cluster 2 con
-        una expresión media de los genes del cluster 1</strong>. Los genes del
-        cluster 3 no <strong>parecen tener este tipo de correlación con respecto
-        a los de otros clusters</strong>.</p>
+        <p>El método u-map es muy versátil y eficaz, pero a su vez esto hace que la complejidad de su manejo aumente. Como se puede observar en el código
+          existen un gran número de parámetros que se pueden modificar con el fin de conseguir un resultado optimo. Por esta razón se necesita una comprensión 
+          muy profunda del funcionamiento del método para poder optimizarlo al máximo o si no esta complejidad y versatilidad puede volverse en nuestra contra. 
+Aunque como se puede observar en la representación gráfica la separación en grupos es muy buena y eficiente. Mucho más que la de los métodos anteriores. </p>
+      </div>
+      <div id="clustering" class="section level3">
+        <h3>Clustering</h3>
+        <p>Por último, para completar esta actividad decidimos utilizar un método de clustering, más concretamente el método de jerárquico aglomerativo. Elegimos 
+          representar mediante un dendrograma nuestros resultados ya que es una forma diferente con respecto a lo que hemos visto hasta ahora en esta actividad. 
+          Un dendrograma es una representación grafica en forma de árbol invertido que muestra la manera en la que un conjunto de datos se agrupa en función de su 
+          similitud. Cada “hoja” del árbol representa un elemento individual, en nuestro caso pacientes, y los nodos intermedios representan los grupos o clusters 
+          que se forman. 
+Para interpretar un dendrograma es importante también observar la altura a la que las ramas de dos hojas se fusionan por primera vez. Cuanto menor sea esta altura 
+          dignifica que más relacionadas están. Por lo tanto, la medida de relación entre dos hojas se mide en el eje vertical, no el horizontal. 
+Para la clusterización aglomerativa el dendrograma se construyendo con un enfoque bottom-up, es decir, cada una de nuestras observaciones o muestras constituye un 
+          grupo propio el cual se va uniendo a otros grupos a medida que avanza la jerarquía. Estas uniones se van haciendo dependiendo de la distancia que se calcule 
+          entre los grupos. Esta distancia puede ser medida de 4 formas diferentes y es un parámetro que podemos cambiar en nuestro código que nos dará como resultado 
+          4 dendrogramas diferentes.</p>
+        <p>Esto lo tendremos en cuenta a la hora de realizar nuestro dendrograma.</p>
+        <pre><code class="r">df &lt;- read.csv("data.csv") # esta vez leemos el .csv como data frame
+
+df_genes &lt;- df %&gt;% dplyr::select(starts_with("gene_")) # eliminamos la columna de los nombres de las muestras dejando solo la de los genes
+
+df_genes_scale &lt;- scale(df_genes)  # Normalizamos
+        </code></pre>
+        <p>A la hora de realizar el clustering <strong> nos saltaron varios fallos en este punto</strong>. La causa de estos fallos es que el data frame de datos normalizados 
+          presentaba varios genes (columnas enteras) con NaN, es decir, sin datos. Por eso primero debemos eliminar todos estos NaN antes de realizar el clustering.</p>
+        <pre><code class="r">df_genes_scale_tibble &lt;- as_tibble(df_genes_scale)
+df_clean_final &lt;- df_genes_scale_tibble %>% select(where(~ !all(is.na(.)))) %>% drop_na() # eliminamos todas las posibles NAs
+
+dist_matrix &lt;- dist(df_clean_final) # matriz de distancia
+
+# Se ejecuta el algoritmo de clusterización jerárquica aglomerativa usando los 4 métodos de linkage distintos
+
+hclust_model_single &lt;- hclust(dist_matrix, method = "single") 
+
+hclust_model_complete &lt;- hclust(dist_matrix, method = "complete") 
+
+hclust_model_average &lt;- hclust(dist_matrix, method = "average") 
+
+hclust_model_ward &lt;- hclust(dist_matrix, method = "ward.D") 
+
+colors &lt;- rainbow(5) # colores en los dendogramas
+
+clust_single &lt;- fviz_dend(hclust_model_single, 
+                          cex = 0.5,
+                          k = 5,
+                          palette = colors,
+                          main = "Single",
+                          xlab = "Índice de Observaciones",
+                          ylab = "Distancia") + theme_classic()
+
+clust_complete &lt;- fviz_dend(hclust_model_complete, 
+                            cex = 0.5,
+                            k = 5,
+                            palette = colors,
+                            main = "Complete",
+                            xlab = "Índice de Observaciones",
+                            ylab = "Distancia") + 
+  theme_classic()
+
+clust_average &lt;- fviz_dend(hclust_model_average, 
+                           cex = 0.5,
+                           k = 5,
+                           palette = colors,
+                           main = "Average",
+                           xlab = "Índice de Observaciones",
+                           ylab = "Distancia") + 
+  theme_classic()
+
+clust_ward &lt;- fviz_dend(hclust_model_ward, 
+                        cex = 0.5,
+                        k = 5,
+                        palette = colors,
+                        main = "Ward",
+                        xlab = "Índice de Observaciones",
+                        ylab = "Distancia") + 
+  theme_classic()
+
+grid.arrange(clust_single, clust_complete, clust_average, clust_ward, nrow = 2) </code></pre>
+        <figure class="r-plot-figure">
+          <img src="fig6.png" alt="Fig. 6: clustering 4">
+          <figcaption><em>Fig. 6: Representación de los cuatro tipos de dendrogramas que se pueden 
+            obtener usando el método de clustering jerárquico aglomerativo, cambiando el parámetro del método de linkage usado</em></figcaption>
+        </figure>
+
+        <p>Como hemos mencionado antes se crean 4 dendrogramas distintos dependiendo del método de linkage usado. Para los objetivos de esta actividad
+          buscamos clusters compactos y homogéneos, que tengan muy poca variabilidad interna. Por este motivo el método de Ward es el que nos muestra mejores
+          resultados ya que es un método que busca la menor varianza interna dentro de un cluster.  
+El dendrograma resultante es el siguiente, en él se pueden observar 5 clusters bien diferenciados y compactos que nos ayudan a la hora de interpretar nuestro 
+          conjunto de datos iniciales. </p>
+        <figure class="r-plot-figure">
+          <img src="fig7.png" alt="Fig. 7: clustering warp">
+          <figcaption><em>Fig. 6: Dendrograma de nuestros datos usando la técnica de clustering jerárquico aglomerativo usando a su vez el método de linkage
+            de Ward.</em></figcaption>
+        </figure>
       </div>
       </div>
      </div> 
