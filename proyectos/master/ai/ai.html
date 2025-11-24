@@ -56,25 +56,30 @@
     </section>
 
     <section class="key-findings reveal">
-      <h3>CONCLUSIONES CLAVE</h3>
+      <h3>MÉTODOS DE REDUCCIÓN DE LA DIMENSIONALIDAD</h3>
       <p>
-        El estudio estuvo dividido en tres apartados en los cuales se concluyó lo siguiente:
+        Estos son los métodos seleccionados y las conclusiones finales:
       </p>
       <ul>
         <li>
           <i class="fas fa-check-circle" aria-hidden="true"></i>
-          <a href="#tarea-1-expresión-génica-según-el-tratamiento-aplicado-a-10-genes"><strong>Fármaco vs. Placebo</strong></a> se puede apreciar una diferencia significativa en la expresión de 10 genes de pacientes cuando estos has sido
+          <a href="#mds"><strong>MDS</strong></a> se puede apreciar una diferencia significativa en la expresión de 10 genes de pacientes cuando estos has sido
           tratados con un fármaco o cuando se les ha dado placebo.
         </li>
         <li>
           <i class="fas fa-check-circle" aria-hidden="true"></i>
-           <a href="#tarea-2-distribución-de-parámetros-bioquímicos-dentro-de-una-población"><strong>Diferencias en la distribución</strong></a> se observó como se distribuían los niveles de ciertos parámetros bioquímicos en una población y se 
+           <a href="#isomap"><strong>Isomap</strong></a> se observó como se distribuían los niveles de ciertos parámetros bioquímicos en una población y se 
           correlacionó con implicaciones biológicas como indicadores de enfermedad u otro tipo de condiciones. 
         </li>
         <li>
           <i class="fas fa-check-circle" aria-hidden="true"></i>
-           <a href="#tarea-3-mapea-todos-los-valores-de-expresión-de-genes"><strong>Clasificación y agrupación de genes</strong></a> se estudió 30 genes de interés los cuales fueron agrupados en 3 clusters que presentaban los 
+           <a href="#umap"><strong>Umap</strong></a> se estudió 30 genes de interés los cuales fueron agrupados en 3 clusters que presentaban los 
           mismos patrones de expresión entre nuestra muestra poblacional.
+        </li>
+        li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <a href="#clustering"><strong>Clustering</strong></a> se puede apreciar una diferencia significativa en la expresión de 10 genes de pacientes cuando estos has sido
+          tratados con un fármaco o cuando se les ha dado placebo.
         </li>
       </ul>
     </section>
@@ -350,6 +355,29 @@ El dendrograma resultante es el siguiente, en él se pueden observar 5 clusters 
           <figcaption><em>Fig. 6: Dendrograma de nuestros datos usando la técnica de clustering jerárquico aglomerativo usando a su vez el método de linkage
             de Ward.</em></figcaption>
         </figure>
+        <div id="mds" class="section level3">
+          <h3>Conclusiones</h3>
+          <p>Partimos con ventaja al realizar estos análisis ya que conocemos nuestro conjunto de datos. Se trata de lecturas de expresión de 20532 genes 
+            realizados sobre 801 pacientes. Estos pacientes han sido diagnosticados con un tipo de cáncer, 5 tipos diferentes en total. Por lo que nuestra 
+            búsqueda está enfocada en encontrar cuales de estos métodos nos permiten agrupar y proyectar en gráficas los grupos o clusters que generan todos 
+            los pacientes diagnosticados con un mismo tipo de cáncer. Por esta razón decimos que partimos con ventaja ya que <strong>nos enfocaremos solo en aquellos
+            resultados en los que se vea una clara separación de 5 grupos diferentes y equivalentes a los 5 tipos de cáncer</strong>. Solo este tipo de resultados 
+            tendría un sentido biológico para nosotros y podrían sernos útiles.Una vez seleccionados los cuatro tipos de métodos y habiéndolos probado sobre 
+            nuestros datos podemos resaltar algunos aspectos interesantes de cada uno de ellos:</p>
+          <p>1. MDS: podemos observar como este método es fácilmente interpretable y <strong>bastante versátil</strong> ya que podemos jugar con varios parámetros, como el
+            <strong>número de dimensiones</strong> (Fig 1 vs. 2) o el <strong>tipo de distancia calculada</strong>, dependiendo del tipo de datos con el que estemos tratando. 
+            Pero a su vez podemos observar que para nuestro conjunto de datos <strong>no ha sido el más efectivo</strong>.</p>
+          <p>2. Isomap: Este método nos dio mejores resultados que el anterior y también lo consideramos de la misma versatilidad. El punto que nosotros decidimos destacar es
+            que <strong>puede llegar a ser muy complicado ajustar el parámetro de k para obtener unos buenos resultados</strong> (Fig. 3 y 4).</p>
+          <p>3. Umap: Este es <strong>el método que mejores resultados  proporciona</strong> (Fig. 5) y, con diferencia, <strong>el más versátil</strong>. Pero esta versatilidad es a 
+            costa de tener muchos parámetros que definir y por lo tanto <strong>se necesita un conocimiento muy profundo del método para poder utilizarlo con la mayor 
+            precisión</strong>. Es por esto que nos parece también <strong>el método menos accesible inicialmente</strong>.</p>
+          <p>4. Clustering jerárquico aglomerativo: este método nos permitió <strong>observar el conjunto de datos desde otra perspectiva</strong> ya que los dendrogramas muestran de una manera 
+            más visual cual es el <strong>grado de relación entre distintos clusters</strong>. En esta ocasión destacamos que <strong>es muy importante conocer nuestro conjunto de datos y los objetivos 
+            que buscamos para elegir bien el método de linkage a la hora de realizar el clustering</strong> (Fig. 6 y 7).</p>
+          <p>Por último, también añadiremos que todos estos métodos han sido <strong>muy demandantes computacionalmente</strong>. Una posible solución a esto podría ser seleccionar 
+            un menor número de genes, por ejemplo, los 500 primeros, o seleccionar métodos menos demandantes. </p>
+        </div>
       </div>
       </div>
      </div> 
@@ -358,7 +386,7 @@ El dendrograma resultante es el siguiente, en él se pueden observar 5 clusters 
       <div class="links-container">
         
         <a
-          href="https://github.com/Alex-PH-Lau/Alex-PH-Lau.github.io/blob/main/proyectos/master/estadistica/Actividad-1-Alex.html"
+          href="https://github.com/Alex-PH-Lau/Alex-PH-Lau.github.io/blob/main/proyectos/master/ai/ai.html"
           target="_blank"
           rel="noopener noreferrer"
           class="link-card"
