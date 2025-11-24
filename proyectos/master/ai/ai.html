@@ -51,7 +51,7 @@
       <p>
        El objetivo de esta actividad es determinar de forma justificada aquellos algoritmos 
         de aprendizaje no supervisado más eficientes a la hora de detectar patrones en el conjunto 
-        de datos propuesto.En este caso el conjunto de unos datos sobre cancer.
+        de datos propuesto.En este caso el conjunto de unos datos sobre cáncer.
       </p>
     </section>
 
@@ -154,9 +154,9 @@ ggplot(mds.df, aes(x=X1, y=X2, color=labels.raw$Class)) + #Por último graficamo
 mds_df <- as.data.frame(mds_result)
 colnames(mds_df) &lt;- c("Dim1", "Dim2", "Dim3")
 
-mds_df$Cancer_Type &lt;- labels.raw$Class # añadimos las etiquetas del cancer
+mds_df$Cancer_Type &lt;- labels.raw$Class # añadimos las etiquetas del cáncer
 
-fig &lt; plot_ly(mds_df, x = ~Dim1, y = ~Dim2, z = ~Dim3, #graficamos
+fig &lt;- plot_ly(mds_df, x = ~Dim1, y = ~Dim2, z = ~Dim3, #graficamos
                color = ~Cancer_Type, colors = "Set1", 
                marker = list(size = 4))
 
@@ -230,8 +230,8 @@ ggplot(isomap.df, aes(x = X1, y = X2, color = labels.raw$Class)) +
         <h3>Umap</h3>
         <p>Ahora decidimos utilizar el método de Uniform Manifold Approximation and Projection (UMAP). Este es un método de 
           reducción de la dimensionalidad muy complejo que asume que la muestra de datos disponibles está distribuida de manera 
-          uniforme por nuestro espacio topológico. Este especio puede aproximarse y proyectarse sobre un espacio de menor dimensión.
-          Para esto primero busca definir la estructura del especio topológico y después busca cómo representar esta estructura de
+          uniforme por nuestro espacio topológico. Este espacio puede aproximarse y proyectarse sobre un espacio de menor dimensión.
+          Para esto primero busca definir la estructura del espacio topológico y después busca cómo representar esta estructura de
           manera más adecuada en un espacio de menos dimensiones.</p>
         <pre><code class="r">set.seed(1234)
 
@@ -273,7 +273,7 @@ Aunque como se puede observar en la representación gráfica la separación en g
           que se forman. 
 Para interpretar un dendrograma es importante también observar la altura a la que las ramas de dos hojas se fusionan por primera vez. Cuanto menor sea esta altura 
           significa que más relacionadas están. Por lo tanto, la medida de relación entre dos hojas se mide en el eje vertical, no el horizontal. 
-Para la clusterización aglomerativa el dendrograma se construyendo con un enfoque bottom-up, es decir, cada una de nuestras observaciones o muestras constituye un 
+Para la clusterización aglomerativa el dendrograma se construye con un enfoque bottom-up, es decir, cada una de nuestras observaciones o muestras constituye un 
           grupo propio el cual se va uniendo a otros grupos a medida que avanza la jerarquía. Estas uniones se van haciendo dependiendo de la distancia que se calcule 
           entre los grupos. Esta distancia puede ser medida de 4 formas diferentes y es un parámetro que podemos cambiar en nuestro código que nos dará como resultado 
           4 dendrogramas diferentes.</p>
@@ -351,8 +351,8 @@ grid.arrange(clust_single, clust_complete, clust_average, clust_ward, nrow = 2) 
 El dendrograma resultante es el siguiente, en él se pueden observar 5 clusters bien diferenciados y compactos que nos ayudan a la hora de interpretar nuestro 
           conjunto de datos iniciales. </p>
         <figure class="r-plot-figure">
-          <img src="fig7.png" alt="Fig. 7: clustering warp">
-          <figcaption><em>Fig. 6: Dendrograma de nuestros datos usando la técnica de clustering jerárquico aglomerativo usando a su vez el método de linkage
+          <img src="fig7.png" alt="Fig. 7: clustering ward">
+          <figcaption><em>Fig. 7: Dendrograma de nuestros datos usando la técnica de clustering jerárquico aglomerativo usando a su vez el método de linkage
             de Ward.</em></figcaption>
         </figure>
         <div id="conclusiones" class="section level3">
