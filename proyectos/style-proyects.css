@@ -27,6 +27,10 @@ body {
   position: relative; 
   overflow: hidden; 
 }
+/* Scroll margin para que el título no quede pegado al techo al hacer click en anclas */
+[id] {
+  scroll-margin-top: 2rem; 
+}
 
 /* Overlay para el video/fondo */
 .hero::before {
