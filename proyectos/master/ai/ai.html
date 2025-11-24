@@ -11,7 +11,7 @@
   
   <meta 
     name="description" 
-    content="Análisis detallado de expresión génica en cáncer de mama usando R y diferéntes técnicas de reducción de la dimensionalidad. Proyecto de portfolio de Alejandro Pascual."
+    content="Análisis detallado de expresión génica en cáncer de mama usando R y diferentes técnicas de reducción de la dimensionalidad. Proyecto de portfolio de Alejandro Pascual."
   >
 
   <link
@@ -90,8 +90,8 @@
         <h3>Pasos previos</h3>
         <p>En primer lugar, tenemos que cargar todas la librerías y datos que vamos a usar para el análisis de 
           datos. Por un lado, cargamos los datos de los de “data.csv” como una matriz en el que la fila 1 corresponde 
-          a las muestras de nuestros pacientes y que debemos indiciar que en nuestra matriz no será una columna de genes 
-          más sino la los nombres. “lebels.csv” corresponde a un data frame que asocia los nombres de estas muestras con el 
+          a las muestras de nuestros pacientes y que debemos indicar que en nuestra matriz no será una columna de genes 
+          más sino la los nombres. “labels.csv” corresponde a un data frame que asocia los nombres de estas muestras con el 
           tipo de cáncer que tiene el paciente al que corresponde esta muestra. </p>
         <pre><code class="r">library(plotly)
 library(stats)
@@ -272,7 +272,7 @@ Aunque como se puede observar en la representación gráfica la separación en g
           similitud. Cada “hoja” del árbol representa un elemento individual, en nuestro caso pacientes, y los nodos intermedios representan los grupos o clusters 
           que se forman. 
 Para interpretar un dendrograma es importante también observar la altura a la que las ramas de dos hojas se fusionan por primera vez. Cuanto menor sea esta altura 
-          dignifica que más relacionadas están. Por lo tanto, la medida de relación entre dos hojas se mide en el eje vertical, no el horizontal. 
+          significa que más relacionadas están. Por lo tanto, la medida de relación entre dos hojas se mide en el eje vertical, no el horizontal. 
 Para la clusterización aglomerativa el dendrograma se construyendo con un enfoque bottom-up, es decir, cada una de nuestras observaciones o muestras constituye un 
           grupo propio el cual se va uniendo a otros grupos a medida que avanza la jerarquía. Estas uniones se van haciendo dependiendo de la distancia que se calcule 
           entre los grupos. Esta distancia puede ser medida de 4 formas diferentes y es un parámetro que podemos cambiar en nuestro código que nos dará como resultado 
