@@ -82,237 +82,66 @@
     <div class="r-markdown-container">
       
       <div id="tarea-1-expresión-génica-según-el-tratamiento-aplicado-a-10-genes" class="section level3">
-        <h3>Tarea 1: Expresión Génica según el Tratamiento (Diagrama de Cajas)</h3>
-        <p>En esta tarea nos apoyaremos en un diagrama de cajas para comparar la
-        expresión de 10 genes (ESR1, HER2, BRCA1, BRCA2, MKI67, GATA3, FOXA1,
-        CCND1, CDH1 y TP53) con distintos tratamientos (con fármaco o con
-        placebo).</p>
-        <pre><code class="r">plot_esr1 &lt;- ggplot(
-    data = data_gene, 
-    aes(x = tratamiento, y = AQ_esr1, fill = tratamiento) 
-  ) +
-    geom_boxplot() + 
-    labs(
-      title = "Expresión del Gen ESR1",
-      x = "Tratamiento",
-      y = "Nivel de Expresión (AQ)"
-    ) +
-    scale_x_discrete(labels = c("placebo" = "Placebo", 
-                                "farmaco" = "Con fármaco")) + 
-    theme_minimal() + 
-    theme(legend.position = "none",
-          plot.title = element_text(size = 14, hjust = 0.5),
-      axis.title.x = element_text(size = 13),
-      axis.title.y = element_text(size = 13),
-      axis.text = element_text(size = 12)) 
-  
-  plot_her2 &lt;- ggplot(
-    data = data_gene, 
-    aes(x = tratamiento, y = AQ_her2, fill = tratamiento)
-  ) +
-    geom_boxplot() +
-    labs(
-      title = "Expresión del Gen HER2",
-      x = "Tratamiento",
-      y = "Nivel de Expresión (AQ)"
-    ) +
-    scale_x_discrete(labels = c("placebo" = "Placebo", 
-                                "farmaco" = "Con fármaco")) +
-    theme_minimal() + 
-    theme(legend.position = "none",
-          plot.title = element_text(size = 14, hjust = 0.5),
-      axis.title.x = element_text(size = 13),
-      axis.title.y = element_text(size = 13),
-      axis.text = element_text(size = 12)) 
-  
-  plot_brca1 &lt;- ggplot(
-    data = data_gene, 
-    aes(x = tratamiento, y = AQ_brca1, fill = tratamiento)
-  ) +
-    geom_boxplot() +
-    labs(
-      title = "Expresión del Gen BRCA1",
-      x = "Tratamiento",
-      y = "Nivel de Expresión (AQ)"
-    ) +
-    scale_x_discrete(labels = c("placebo" = "Placebo", 
-                                "farmaco" = "Con fármaco")) +
-    theme_minimal() + 
-    theme(legend.position = "none",
-          plot.title = element_text(size = 14, hjust = 0.5),
-      axis.title.x = element_text(size = 13),
-      axis.title.y = element_text(size = 13),
-      axis.text = element_text(size = 12)) 
-  
-  plot_brca2 &lt;- ggplot(
-    data = data_gene, 
-    aes(x = tratamiento, y = AQ_brca2, fill = tratamiento)
-  ) +
-    geom_boxplot() +
-    labs(
-      title = "Expresión del Gen BRCA2",
-      x = "Tratamiento",
-      y = "Nivel de Expresión (AQ)"
-    ) +
-    scale_x_discrete(labels = c("placebo" = "Placebo", 
-                                "farmaco" = "Con fármaco")) +
-    theme_minimal() + 
-    theme(legend.position = "none",
-          plot.title = element_text(size = 14, hjust = 0.5),
-      axis.title.x = element_text(size = 13),
-      axis.title.y = element_text(size = 13),
-      axis.text = element_text(size = 12)) 
-  
-  plot_mki67 &lt;- ggplot(
-    data = data_gene, 
-    aes(x = tratamiento, y = AQ_mki67, fill = tratamiento)
-  ) +
-    geom_boxplot() +
-    labs(
-      title = "Expresión del Gen MKI67",
-      x = "Tratamiento",
-      y = "Nivel de Expresión (AQ)"
-    ) +
-    scale_x_discrete(labels = c("placebo" = "Placebo", 
-                                "farmaco" = "Con fármaco")) +
-    theme_minimal() + 
-    theme(legend.position = "none",
-          plot.title = element_text(size = 14, hjust = 0.5),
-      axis.title.x = element_text(size = 13),
-      axis.title.y = element_text(size = 13),
-      axis.text = element_text(size = 12)) 
-  
-  plot_gata3 &lt;- ggplot(
-    data = data_gene, 
-    aes(x = tratamiento, y = AQ_gata3, fill = tratamiento)
-  ) +
-    geom_boxplot() +
-    labs(
-      title = "Expresión del Gen GATA3",
-      x = "Tratamiento",
-      y = "Nivel de Expresión (AQ)"
-    ) +
-    scale_x_discrete(labels = c("placebo" = "Placebo", 
-                                "farmaco" = "Con fármaco")) +
-    theme_minimal() + 
-    theme(legend.position = "none",
-          plot.title = element_text(size = 14, hjust = 0.5),
-      axis.title.x = element_text(size = 13),
-      axis.title.y = element_text(size = 13),
-      axis.text = element_text(size = 12)) 
-  
-  plot_foxa1 &lt;- ggplot(
-    data = data_gene, 
-    aes(x = tratamiento, y = AQ_foxa1, fill = tratamiento)
-  ) +
-    geom_boxplot() +
-    labs(
-      title = "Expresión del Gen FOXA1",
-      x = "Tratamiento",
-      y = "Nivel de Expresión (AQ)"
-    ) +
-    scale_x_discrete(labels = c("placebo" = "Placebo", 
-                                "farmaco" = "Con fármaco")) +
-    theme_minimal() + 
-    theme(legend.position = "none",
-          plot.title = element_text(size = 14, hjust = 0.5),
-      axis.title.x = element_text(size = 13),
-      axis.title.y = element_text(size = 13),
-      axis.text = element_text(size = 12)) 
-  
-  plot_ccnd1 &lt;- ggplot(
-    data = data_gene, 
-    aes(x = tratamiento, y = AQ_ccnd1, fill = tratamiento)
-  ) +
-    geom_boxplot() +
-    labs(
-      title = "Expresión del Gen CCND1",
-      x = "Tratamiento",
-      y = "Nivel de Expresión (AQ)"
-    ) +
-    scale_x_discrete(labels = c("placebo" = "Placebo", 
-                                "farmaco" = "Con fármaco")) +
-    theme_minimal() + 
-    theme(legend.position = "none",
-          plot.title = element_text(size = 14, hjust = 0.5),   
-      axis.title.x = element_text(size = 13),
-      axis.title.y = element_text(size = 13),
-      axis.text = element_text(size = 12)) 
-  
-  plot_cdh1 &lt;- ggplot(
-    data = data_gene, 
-    aes(x = tratamiento, y = AQ_cdh1, fill = tratamiento)
-  ) +
-    geom_boxplot() +
-    labs(
-      title = "Expresión del Gen CDH1",
-      x = "Tratamiento",
-      y = "Nivel de Expresión (AQ)"
-    ) +
-    scale_x_discrete(labels = c("placebo" = "Placebo", 
-                                "farmaco" = "Con fármaco")) +
-    theme_minimal() + 
-    theme(legend.position = "none",
-          plot.title = element_text(size = 14, hjust = 0.5),    
-      axis.title.x = element_text(size = 13),
-      axis.title.y = element_text(size = 13),
-      axis.text = element_text(size = 12)) 
-  
-  plot_tp53 &lt;- ggplot(
-    data = data_gene, 
-    aes(x = tratamiento, y = AQ_tp53, fill = tratamiento) 
-  ) +
-    geom_boxplot() +
-    labs(
-      title = "Expresión del Gen TP53",
-      x = "Tratamiento",
-      y = "Nivel de Expresión (AQ)"
-    ) +
-    scale_x_discrete(labels = c("placebo" = "Placebo", 
-                                "farmaco" = "Con fármaco")) +
-    theme_minimal() + 
-    theme(legend.position = "none",
-          plot.title = element_text(size = 14, hjust = 0.5),    
-      axis.title.x = element_text(size = 13),
-      axis.title.y = element_text(size = 13),
-      axis.text = element_text(size = 12))</code></pre>
-        <p>Con esto hemos creado nuestros gráficos individuales. Ahora los
-        podemos juntar en una sola gráfica conjunta utilizando la librería de
-        patchwork.</p>
+        <h3>Pasos previos</h3>
+        <p>En primer lugar, tenemos que cargar todas la librerías y datos que vamos a usar para el análisis de 
+          datos. Por un lado, cargamos los datos de los de “data.csv” como una matriz en el que la fila 1 corresponde 
+          a las muestras de nuestros pacientes y que debemos indiciar que en nuestra matriz no será una columna de genes 
+          más sino la los nombres. “lebels.csv” corresponde a un data frame que asocia los nombres de estas muestras con el 
+          tipo de cáncer que tiene el paciente al que corresponde esta muestra. </p>
+        <pre><code class="r">library(plotly)
+library(stats)
+library(uwot)
+library(RDRToolbox)
+library(dplyr)
+library(factoextra)
+library(ggdendro)
+library(cluster)
+library(ggplot2) 
+library(gridExtra)
+library(pheatmap)
+library(tidyr)
+
+labels.raw<- read.csv('labels.csv')
+data <- as.matrix(read.csv("data.csv", row.names = 1))</code></pre>
+        <p>Como podemos ver en la matriz creada tenemos 801 muestras de pacientes y 20532 genes estudiados, lo cual nos lleva a 
+          que haya un claro problema de dimensionalidad. Para solucionarlo debemos recurrir a distintas técnicas o herramientas que 
+          nos permitan reducir todos estos datos a un nivel de dimensiones comprensibles e interpretables. Existen muchas es estas 
+          técnicas que podemos utilizar, pero en esta actividad nos enfocaremos en 4 distintas que hemos escogido para enseñar diferentes 
+          problemas que nos podemos encontrar a la hora de reducir la dimensionalidad. Iremos argumentando el porqué de nuestra elección 
+          y como ha sido el tratamiento tanto de los datos como de los parámetros que se pueden modificar en cada método.</p>
+        <h3>MDS</h3>
+        <p>El primero de los métodos que decidimos utilizar es el MDS (multidimensional scaling, en español escalamiento multidimensional). 
+          Se trata de un método en el cual se mide la distancia entre distintas muestras o puntos y los agrupa. Esta distancia puede ser medida
+          de diferentes formas. Aunque nosotros en este caso decidimos usar la más común, la distancia euclidiana, también existen distancias como 
+          la “de Manhattan”, “de Hamming”, etc. Este método nos permite seleccionar también el número de dimensiones en el que vamos a representar 
+          nuestros resultados. En un principio los visualizaremos en 2 dimensiones. </p>
         <pre><code class="r">
-  combined_plot &lt;- plot_esr1 + plot_her2 + plot_brca1 + plot_brca2 + 
-                    plot_mki67 + plot_gata3 + plot_foxa1 + plot_ccnd1 +
-                    plot_cdh1 + plot_tp53
-  
-  combined_plot + 
-    plot_layout(ncol = 5) </code></pre>
+  distances &lt; dist(data, method = 'euclidean') # matriz de distancias
+
+mds.results &lt; cmdscale(d=distances, eig=TRUE, k=2, x.ret=TRUE) # La función cmdscale realiza el MSD
+
+varianza.explicada &lt; mds.results$eig/sum(mds.results$eig) * 100 # varianza explicada
+
+mds.df &lt; data.frame(mds.results$points) # convertimos los datos del mds en un data frame
+
+ggplot(mds.df, aes(x=X1, y=X2, color=labels.raw$Class)) + #Por último graficamos
+  geom_point(size=3) + 
+  scale_color_manual(values=c("red", "blue", "green", "orange", "purple")) +
+  labs(title="MDS - Types of Cancer", x="Dimension 1 (X1)", y="Dimension 2 (X2)", color = "Grupo") +
+  theme_classic() + 
+  theme(panel.grid.major = element_line(color = "gray90"), panel.grid.minor = element_blank(),
+        panel.background = element_rect(fill = "gray95"), plot.title=element_text(hjust=0.5))
+</code></pre>
         
         <figure class="r-plot-figure">
-          <img src="img1.jpg" alt="Fig. 1: Diagrama de cajas de expresión génica">
-          <figcaption><em>Fig. 1: Diagrama de cajas en el que se compara la expresión de 10
-          genes de interés en bajo dos tratamientos distintos.</em></figcaption>
+          <img src="Fig1.png" alt="Fig. 1: MDS 2 dimensiones">
+          <figcaption><em>Fig. 1. Representación gráfica de nuestros datos usando la técnica MDS en 2 dimensiones.</em></figcaption>
         </figure>
 
-        <p>Viendo los resultados obtenidos al realizar el diagrama de cajas
-        podemos observar que el tratamiento con fármacos reduce los niveles de
-        expresión génica (AQ) a valores cercanos a 0. Mientras que por otro lado
-        en el placebo podemos observar que los valores de expresión rondan
-        entorno a 0,9-1. El AQ es una medida de expresión de un gen bajo unas
-        condiciones especificas y sin la comparación directa con otra condición.
-        Podemos interpretar, por lo tanto, que <strong>en el caso de nuestros 10
-        genes analizado hay una clara diferencia de expresión cuando se está
-        administrando el fármaco al paciente y cuando se le está dando un
-        placebo</strong>. Esto puede indicar que nuestro fármaco actúe sobre la
-        misma ruta metabólica. Estos genes por lo tanto <strong>pueden estar
-        relacionados con una misma función biológica</strong> que, siendo
-        controlada, podría ayudar a que no se desarrollase o frenase la
-        enfermedad en cuestión, en este caso el cáncer de mama.</p>
-        <p>Por último, me gustaría destacar que, aunque una representación
-        gráfica puede ser muy clara y evidente, como es este caso, en nuestra
-        opinión nuestro trabajo <strong>estaría más completo si tambien
-        aportásemos una prueba estadística como lo podría ser una t de Student
-        (para 2 grupos) o U de Mann-Whitney</strong>, dependiendo de si nuestros
-        datos se distribuyen de forma normal o no.</p>
+        <p>Como podemos ver en la representación gráfica existen muchos puntos que no están bien separados y aunque ya se pueden apreciar 
+          nuestros 5 clusters de las 5 enfermedades diferentes, no creemos que esto sea una buena separación. Por este motivo decidimos intentar 
+          visualizarlo en 3 dimensiones para comprobar si de esta manera podríamos diferenciar mejor los diferentes grupos.Para ello debemos
+          cambiar el parámetro k, que equivale al número de dimensiones.</p>
       </div>
       
       <div id="tarea-2-distribución-de-parámetros-bioquímicos-dentro-de-una-población" class="section level3">
