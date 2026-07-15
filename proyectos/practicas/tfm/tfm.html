@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atlas de expresión interactivo de papaya | Alejandro Pascual Hernández</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+  <meta
+    name="description"
+    content="Trabajo de Fin de Máster: Atlas de expresión interactivo de Carica papaya, desarrollado a partir de 8 datasets públicos de RNA-Seq e integrado en el portal genómico IHSM Subtropicals (EasyGDB). Proyecto de portfolio de Alejandro Pascual."
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="../../style-proyects.css" />
+</head>
+<body>
+
+  <header class="hero project-hero-short reveal">
+    <div class="hero-content">
+      <h1> Atlas de expresión interactivo de papaya (<em>Carica papaya</em>) </h1>
+      <a href="../../../index.html" class="btn">Volver al inicio</a>
+      <a href="../practicas.html" class="btn">Volver a prácticas</a>
+    </div>
+  </header>
+
+  <main class="section">
+
+    <div class="tech-stack-tags reveal">
+      <span>RNA-Seq</span>
+      <span>Bash</span>
+      <span>FastQC / MultiQC</span>
+      <span>HISAT2</span>
+      <span>featureCounts</span>
+      <span>R</span>
+      <span>EasyGDB</span>
+      <span>Docker</span>
+      <span>Supercomputación (Picasso, UMA)</span>
+    </div>
+
+    <section class="reveal">
+      <h2>Trabajo de Fin de Máster · Máster Universitario en Bioinformática (UNIR)</h2>
+      <p>
+        La papaya (<em>Carica papaya</em>) es el tercer cultivo tropical más importante a nivel
+        mundial según la FAO, con una producción global que superó los 14 millones de toneladas
+        en 2022. Pese a su relevancia económica y nutricional, su información transcriptómica
+        se encontraba dispersa en distintos repositorios públicos sin ningún portal centralizado.
+      </p>
+      <p>
+        El objetivo de este TFM fue desarrollar un <strong>atlas de expresión público</strong> para
+        <em>Carica papaya</em>, minando y procesando 8 datasets de RNA-Seq disponibles en el
+        European Nucleotide Archive (ENA), e integrando los resultados en el portal genómico
+        <strong>IHSM Subtropicals</strong>, construido sobre la herramienta EasyGDB desarrollada
+        en el mismo grupo de investigación del IHSM "La Mayora" (Málaga).
+      </p>
+
+      <div class="links-container" style="margin-top: 1.5rem;">
+        <a
+          href="https://ihsmsubtropicals.uma.es/easy_gdb/index.php"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-card"
+        >
+          <i class="fas fa-dna" aria-hidden="true"></i>
+          <span>Explorar el atlas en vivo</span>
+        </a>
+        <a href="01_TFM_Alejandro_Pascual_UNIR.pdf" download class="btn btn-download">
+          <i class="fas fa-file-pdf" aria-hidden="true"></i>
+          Descargar TFM completo (PDF)
+        </a>
+      </div>
+    </section>
+
+    <section class="key-findings reveal">
+      <h3>Conclusiones clave</h3>
+      <ul>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Primer atlas público de papaya:</strong> se integraron 8 BioProjects del ENA
+          (47 muestras en total) cubriendo maduración de fruto, dimorfismo sexual, morfogénesis
+          del gineceo, regeneración in vitro y estrés hídrico y biótico — centralizando por primera
+          vez información que estaba dispersa en proyectos no relacionados entre sí.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Pipeline bioinformático reproducible:</strong> control de calidad (FastQC/MultiQC),
+          descontaminación (Kraken2), procesado de lecturas (FastP), alineamiento (HISAT2),
+          cuantificación (featureCounts) y normalización a TPM (R, DGEobj.utils), ejecutado tanto
+          en local como en el supercomputador Picasso de la UMA.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Validación biológica de los datos:</strong> el análisis de reducción de
+          dimensionalidad (PCA, MDS, ICA, t-SNE, UMAP) mostró agrupamientos coherentes por sexo
+          floral y estadio de desarrollo, confirmando la consistencia biológica del conjunto de
+          datos antes de su publicación.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Caso de uso real con genes candidatos:</strong> usando el propio atlas se
+          identificaron y validaron patrones de expresión diferencial entre flores masculinas y
+          femeninas para genes como <em>CYC</em>, <em>SUP</em>, <em>HEC2</em>, <em>MUTE</em>,
+          <em>TGA9</em>, <em>AGL11</em> y <em>CYCD3-1</em>, reproduciendo resultados ya descritos
+          en la literatura científica.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Publicado y en producción:</strong> el atlas está integrado en
+          <a href="https://ihsmsubtropicals.uma.es/easy_gdb/index.php" target="_blank" rel="noopener noreferrer">IHSM Subtropicals DB</a>,
+          con visualizaciones interactivas y archivos de anotaciones cruzadas con Araport11,
+          SwissProt, TrEMBL, NCBI e InterPro.
+        </li>
+      </ul>
+    </section>
+
+    <section class="reveal">
+      <h3 class="section-subtitle">Un caso de uso real: diferenciación sexual en papaya</h3>
+      <p>
+        Para demostrar la utilidad del atlas se analizó el perfil de expresión de un dataset
+        centrado en el desarrollo del pistilo, comparando flores masculinas y femeninas en tres
+        estadios de desarrollo. Estas son algunas de las visualizaciones que ofrece la herramienta:
+      </p>
+
+      <figure class="r-plot-figure">
+        <img src="atlas-bars-femeninas.png" alt="Gráfico de barras con genes de mayor expresión en flor femenina">
+        <figcaption><em>Genes como CYC, SUP y HEC2 se expresan mayoritariamente en flores
+        femeninas, siendo imprescindibles para su diferenciación.</em></figcaption>
+      </figure>
+
+      <figure class="r-plot-figure">
+        <img src="atlas-bars-masculinas.png" alt="Gráfico de barras con genes de mayor expresión en flor masculina">
+        <figcaption><em>El gen MUTE, implicado en la diferenciación de estomas, se expresa con
+        mayor intensidad en flores masculinas y únicamente en los primeros estadios de desarrollo.</em></figcaption>
+      </figure>
+
+      <figure class="r-plot-figure">
+        <img src="atlas-expression-cards.png" alt="Cartas de expresión del gen AGL11 en distintas muestras">
+        <figcaption><em>Las cartas de expresión combinan el valor numérico con imágenes del
+        fenotipo real de la muestra — aquí, el gen AGL11 muestra mayor expresión en flores
+        femeninas en los estadios finales de desarrollo.</em></figcaption>
+      </figure>
+
+      <figure class="r-plot-figure">
+        <img src="atlas-heatmap.png" alt="Mapa de calor de expresión diferencial de genes de interés">
+        <figcaption><em>El heatmap permite ver de un vistazo el patrón general de expresión
+        diferencial entre flores femeninas y masculinas en todos los genes seleccionados.</em></figcaption>
+      </figure>
+
+      <figure class="r-plot-figure">
+        <img src="atlas-replicas.png" alt="Gráfico de réplicas biológicas del gen CYCD3-1">
+        <figcaption><em>El gráfico de réplicas muestra la consistencia entre réplicas biológicas
+        para cada gen — aquí, CYCD3-1, implicado en la biosíntesis de brasinoesteroides.</em></figcaption>
+      </figure>
+
+      <p>
+        Todos estos resultados reprodujeron fielmente los perfiles de expresión descritos en el
+        estudio original del que se obtuvieron los datos, validando tanto la calidad del pipeline
+        como la utilidad del atlas para la exploración <em>in silico</em> de genes candidatos.
+      </p>
+    </section>
+
+    <section>
+      <h3 class="section-subtitle">Enlaces</h3>
+      <div class="links-container">
+
+        <a
+          href="https://ihsmsubtropicals.uma.es/easy_gdb/index.php"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-card"
+        >
+          <i class="fas fa-dna" aria-hidden="true"></i>
+          <span>Ver atlas en IHSM Subtropicals</span>
+        </a>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Alejandro Pascual Hernández. Hecho en HTML/CSS/JS.</p>
+  </footer>
+
+  <script src="../../../script.js"></script>
+</body>
+</html>
