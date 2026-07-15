@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--
+  PLANTILLA INTERNA — NO ENLAZAR DESDE master.html NI index.html
+  Para cada asignatura nueva:
+    1. Crea la carpeta proyectos/master/NOMBRE-ASIGNATURA/
+    2. Copia este archivo dentro como NOMBRE-ASIGNATURA.html
+    3. Rellena los placeholders en MAYÚSCULAS
+    4. Añade la tarjeta correspondiente en master.html
+  Las rutas relativas de este archivo asumen esa profundidad exacta
+  (proyectos/master/NOMBRE-ASIGNATURA/archivo.html), igual que
+  derecho.html, ai.html y estadistica.html.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOMBRE DE LA ASIGNATURA | Alejandro Pascual Hernández</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+  <meta
+    name="description"
+    content="DESCRIPCIÓN BREVE PARA SEO DEL PROYECTO. Proyecto de portfolio de Alejandro Pascual."
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="../../style-proyects.css" />
+</head>
+<body>
+
+  <header class="hero project-hero-short reveal">
+    <div class="hero-content">
+      <h1> NOMBRE DE LA ASIGNATURA </h1>
+      <a href="../../../index.html" class="btn">Volver al inicio</a>
+      <a href="../master.html" class="btn">Volver a las asignaturas</a>
+    </div>
+  </header>
+
+  <main class="section">
+
+    <div class="tech-stack-tags reveal">
+      <span>ETIQUETA 1</span>
+      <span>ETIQUETA 2</span>
+      <span>ETIQUETA 3</span>
+    </div>
+
+    <section class="reveal">
+      <h2>NOMBRE DEL PROYECTO/ACTIVIDAD</h2>
+      <p>
+        DESCRIPCIÓN DEL OBJETIVO DE LA ACTIVIDAD
+      </p>
+    </section>
+
+    <section class="key-findings reveal">
+      <h3>CONCLUSIONES CLAVE</h3>
+      <p>
+        INTRODUCCIÓN A LAS CONCLUSIONES
+      </p>
+      <ul>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>CONCLUSIÓN 1:</strong> DESCRIPCIÓN DE LA CONCLUSIÓN
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>CONCLUSIÓN 2:</strong> DESCRIPCIÓN DE LA CONCLUSIÓN
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>CONCLUSIÓN 3:</strong> DESCRIPCIÓN DE LA CONCLUSIÓN
+        </li>
+      </ul>
+    </section>
+
+    <!--
+      Si el proyecto tiene un PDF adjunto, usa este bloque
+      (como en derecho.html). Si es un análisis en R Markdown,
+      usa un <div class="r-markdown-container"> como en ai.html
+      en su lugar, y borra este bloque.
+    -->
+    <section class="project-embed">
+      <h3>Consulta el trabajo completo</h3>
+      <div class="project-card">
+
+        <a href="NOMBRE_PDF.pdf" download class="btn btn-download">
+          <i class="fas fa-file-pdf" aria-hidden="true"></i>
+          Descargar PDF
+        </a>
+
+        <iframe
+          src="NOMBRE_PDF.pdf"
+          width="100%"
+          height="600px"
+          title="NOMBRE DEL PROYECTO">
+        </iframe>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section-subtitle">Enlaces</h3>
+      <div class="links-container">
+
+        <a
+          href="https://github.com/Alex-PH-Lau/Alex-PH-Lau.github.io/tree/main/proyectos/master/NOMBRE-CARPETA"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-card"
+        >
+          <i class="fab fa-github" aria-hidden="true"></i>
+          <span>Ver en GitHub</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Alejandro Pascual Hernández. Hecho en HTML/CSS/JS.</p>
+  </footer>
+
+  <script src="../../../script.js"></script>
+</body>
+</html>
