@@ -1,3 +1,14 @@
+/* === VARIABLES GLOBALES === */
+:root {
+  --verde-principal: #30DB8D;
+  --verde-principal-alt: #30DB8E; /* usado en el gradiente de contact-item */
+  --verde-secundario: #649E84;
+  --gris-verde: #4E6159;
+  --oscuro: #332E2D;
+  --texto: #222;
+  --fondo: #f9f9f9;
+}
+
 /* === RESETEO Y CONFIGURACIÓN GLOBAL === */
 * {
   margin: 0;
@@ -5,16 +16,38 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  color: #222;
-  background: #f9f9f9;
-  scroll-behavior: smooth; /* Esto es mejor ponerlo en el <html> */
-}
-
-/* Opcional: poner el scroll-behavior en html para que funcione siempre */
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+}
+
+/* === ACCESIBILIDAD: FOCO VISIBLE === */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--gris-verde);
+  outline-offset: 3px;
+}
+
+/* === RESPETAR PREFERENCIA DE MOVIMIENTO REDUCIDO === */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .skill-bar::before,
+  .btn,
+  .cv-item,
+  .project-card,
+  .contact-item {
+    transition: none !important;
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* === SECCIÓN HERO (CABECERA) === */
@@ -26,69 +59,50 @@ html {
   color: white;
   text-align: center;
   padding: 2rem;
-  
-  /* --- ESTO ES CLAVE --- */
+
   position: relative; /* Contexto para posicionar el vídeo y el overlay */
   overflow: hidden; /* Evita que el vídeo se desborde */
 
-  /* --- CAPA 1 (FALLBACK) --- */
-  /* Un fondo estático por si el vídeo no carga o en móviles.
-     Puede ser tu gradiente sólido original o una captura del vídeo. */
-  background: linear-gradient(135deg, #30DB8D, #4E6159);
-  
-  /* Opcional: una imagen estática de fallback
-  background-image: url('images/captura-del-video.jpg');
-  background-size: cover;
-  background-position: center;
-  */
+  /* Fallback por si el vídeo no carga o en móviles */
+  background: linear-gradient(135deg, var(--verde-principal), var(--gris-verde));
 }
 
 /* --- CAPA 2 (EL VÍDEO) --- */
 .hero-video {
-  position: absolute; /* Lo saca del flujo normal */
-  top: 50%; /* Centrado vertical */
-  left: 50%; /* Centrado horizontal */
-  transform: translate(-50%, -50%); /* Ajuste fino del centrado */
-  
-  min-width: 100%; /* Asegura que cubre todo, incluso si la pantalla es ancha */
-  min-height: 100%; /* Asegura que cubre todo, incluso si la pantalla es alta */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  min-width: 100%;
+  min-height: 100%;
   width: auto;
   height: auto;
-  
-  /* object-fit: cover; es una alternativa moderna a lo de arriba */
-  /* object-fit: cover;
-  width: 100%;
-  height: 100%; */
-  
-  z-index: 1; /* Se pone en la capa 1 (detrás de todo) */
+
+  z-index: 1; /* Detrás del overlay y el contenido */
 }
 
 /* --- CAPA 3 (EL OVERLAY) --- */
 .hero::before {
-  content: ""; /* Obligatorio para los pseudo-elementos */
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  
-  /* Tu gradiente, pero con transparencia (RGBA) */
-  background: linear-gradient(135deg, 
-      rgba(48, 219, 141, 0.8), /* #30DB8D con 80% opacidad */
-      rgba(78, 97, 89, 0.85)    /* #4E6159 con 85% opacidad */
-  );
-  
-  z-index: 2; /* Se pone ENCIMA del vídeo (z-index: 1) */
-}
 
+  background: linear-gradient(135deg,
+      rgba(48, 219, 141, 0.8),
+      rgba(78, 97, 89, 0.85)
+  );
+
+  z-index: 2; /* Encima del vídeo */
+}
 
 /* --- CAPA 4 (EL CONTENIDO) --- */
 .hero-content {
-  /* ...tus estilos actuales... */
-  
-  /* Nos aseguramos de que esté por encima de todo */
-  position: relative; /* O 'static', pero 'relative' es más seguro */
-  z-index: 3; /* La capa más alta */
+  position: relative;
+  z-index: 3;
   animation: fadeIn 1.5s ease;
 }
 
@@ -106,27 +120,27 @@ html {
 }
 
 .hero h1 span {
-  color: #332E2D;
+  color: var(--oscuro);
 }
 
 /* Botón genérico (usado en Hero y CV) */
 .btn {
   display: inline-block;
   background: white;
-  color: #30DB8D;
+  color: var(--verde-principal);
   padding: 0.8rem 1.5rem;
   border-radius: 30px;
   text-decoration: none;
   margin-top: 1rem;
-  margin-left: 0.5rem; /* Añadido para separar los botones del hero */
+  margin-left: 0.5rem;
   margin-right: 0.5rem;
   font-weight: 600;
   transition: all 0.3s;
 }
 
 .btn:hover {
-  background: #649E84;
-  color: #332E2D;
+  background: var(--verde-secundario);
+  color: var(--oscuro);
   transform: scale(1.05);
 }
 
@@ -135,7 +149,6 @@ html {
   padding: 4rem 1.5rem;
   max-width: 900px;
   margin: auto;
-  /* La animación ahora se controla con la clase .reveal */
 }
 
 .section h2,
@@ -143,7 +156,7 @@ html {
   text-align: center;
   margin-bottom: 2rem;
   font-size: 1.8rem;
-  color: #4E6159;
+  color: var(--gris-verde);
 }
 
 .section-title {
@@ -161,17 +174,17 @@ html {
 
 .cv-container {
   display: flex;
-  flex-direction: row; /* Columnas en escritorio */
+  flex-direction: row;
   justify-content: center;
   gap: 2rem;
   text-align: left;
-  max-width: 1200px; /* Añadido para limitar el ancho en pantallas grandes */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .cv-column {
-  flex: 1; /* Cada columna toma el mismo espacio */
-  min-width: 300px; /* Ancho mínimo antes de que se rompa (manejado por media query) */
+  flex: 1;
+  min-width: 300px;
 }
 
 .cv-item {
@@ -195,9 +208,8 @@ html {
   margin: 20px 0;
 }
 
-/* Contenedor de cada barra */
 .skill-bar {
-  position: relative; 
+  position: relative;
   display: block;
   background: #e0e0e0;
   border-radius: 10px;
@@ -205,33 +217,31 @@ html {
   margin: 10px 0;
   font-weight: 600;
   padding: 10px;
-  color: #fff; /* texto blanco */
+  color: #fff;
   text-align: left;
-  z-index: 1; /* texto siempre por encima */
+  z-index: 1;
 }
 
-/* Relleno animado (Tu método con ::before, que está genial) */
 .skill-bar::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: 0; /* Empieza en 0 */
-  background: linear-gradient(90deg, #30DB8D, #4E6159);
+  width: 0;
+  background: linear-gradient(90deg, var(--verde-principal), var(--gris-verde));
   transition: width 1.5s ease-in-out;
   border-radius: 10px;
-  z-index: -1; /* Poner negativo para que quede DETRÁS del texto */
+  z-index: -1;
 }
 
-/* Activación de la animación (vía JS) */
 .skill-bar.filled::before {
-  width: var(--level); /* Anima hasta el nivel definido en el HTML */
+  width: var(--level);
 }
 
 /* Botón Descargar CV */
 .cv-download {
-  text-align: center; /* Centra el botón dentro de la columna */
+  text-align: center;
 }
 .cv-download .btn {
   background-color: white;
@@ -241,11 +251,11 @@ html {
   font-weight: 500;
   font-size: 1rem;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  margin-top: 7rem; /* Movido desde el HTML */
+  margin-top: 7rem;
 }
 
 .cv-download .btn:hover {
-  background-color: #30DB8D;
+  background-color: var(--verde-principal);
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -264,6 +274,8 @@ html {
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
 .project-card:hover {
@@ -272,9 +284,39 @@ html {
 }
 
 .project-card a {
-  color: #4E6159;
+  color: var(--gris-verde);
   text-decoration: none;
   font-weight: 600;
+}
+
+/* Estilo para tarjetas "Próximamente" (WIP) */
+.project-card.is-wip {
+  background: #f9f9f9;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.project-card.is-wip > * {
+  opacity: 0.8;
+}
+
+.project-card.is-wip:hover {
+  transform: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge "Próximamente" */
+.wip-badge {
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  background: var(--verde-secundario);
+  color: white;
+  padding: 4px 30px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /* === SECCIÓN CONTACTO Y ENLACES === */
@@ -286,7 +328,7 @@ html {
 .contact p {
   font-size: 1.1rem;
   margin-bottom: 2rem;
-  color: #332E2D;
+  color: var(--oscuro);
 }
 
 .contact-item {
@@ -294,7 +336,7 @@ html {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  background: linear-gradient(130deg, #30DB8E, #4E6159);
+  background: linear-gradient(130deg, var(--verde-principal-alt), var(--gris-verde));
   color: white;
   text-decoration: none;
   padding: 0.75rem 1.5rem;
@@ -308,7 +350,7 @@ html {
 .contact-item:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  background: linear-gradient(130deg, #4E6159, #30DB8E);
+  background: linear-gradient(130deg, var(--gris-verde), var(--verde-principal-alt));
 }
 
 .contact-item i {
@@ -343,12 +385,10 @@ html {
 }
 
 .github-link:hover {
-  color: #30DB8D;
-  border-color: #30DB8D;
+  color: var(--verde-principal);
+  border-color: var(--verde-principal);
   box-shadow: 0 4px 10px rgba(48, 219, 141, 0.15);
-  /* Hereda el resto de estilos de .contact-item si se aplican ambas clases */
 }
-
 
 /* === FOOTER === */
 footer {
@@ -360,14 +400,11 @@ footer {
 }
 
 /* === ANIMACIONES === */
-
-/* Animación de entrada del Hero */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Animación de entrada al hacer scroll (controlada por JS) */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -379,13 +416,16 @@ footer {
   transform: translateY(0);
 }
 
-
 /* === RESPONSIVE (MÓVIL) === */
 @media (max-width: 768px) {
-  /* CV se apila en vertical */
   .cv-container {
     flex-direction: column;
     align-items: center;
+  }
+
+  /* Ocultamos el vídeo en pantallas pequeñas: usa el fallback del .hero */
+  .hero-video {
+    display: none;
   }
 }
 
@@ -396,69 +436,9 @@ footer {
   .section {
     padding: 2.5rem 1rem;
   }
-  /* Apila los botones del Hero en móvil */
   .hero .btn {
     display: block;
     margin: 1rem auto;
     width: 80%;
   }
-}
-/* === RESPONSIVE (MÓVIL) === */
-
-/* ... (tus otras reglas de @media) ... */
-
-/* Ocultamos el vídeo en pantallas pequeñas (móviles) */
-@media (max-width: 768px) {
-  .hero-video {
-    display: none; /* Oculta el vídeo por completo */
-  }
-
-  /* El .hero volverá a mostrar el 'background' que 
-     definimos como fallback (el gradiente o la imagen estática) */
-}
-.project-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  
-  position: relative; /* <-- ¡AÑADIR ESTO! */
-  overflow: hidden;   /* <-- ¡AÑADIR ESTO! */
-}
-
-
-/* Segundo, AÑADE estas nuevas reglas al final del archivo
-*/
-
-/* Estilo para tarjetas "Próximamente" (WIP) */
-.project-card.is-wip {
-  background: #f9f9f9; /* Un fondo más apagado */
-  opacity: 0.7;
-  pointer-events: none; /* Desactiva el clic en la tarjeta */
-}
-
-/* Baja la opacidad del texto y el enlace dentro de la tarjeta WIP */
-.project-card.is-wip > * { 
-  opacity: 0.8;
-}
-
-/* Opcional: desactiva el hover en la tarjeta WIP */
-.project-card.is-wip:hover {
-  transform: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Badge "Próximamente" */
-.wip-badge {
-  position: absolute;
-  top: 10px;
-  right: -30px;
-  background: #649E84; /* Tu color verde secundario */
-  color: white;
-  padding: 4px 30px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  transform: rotate(45deg);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
