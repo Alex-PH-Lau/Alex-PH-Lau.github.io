@@ -3,7 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EasyGDB | Alejandro Pascual Hernández</title>
+  <title>EasyGDB: Sequence Explorer | Alejandro Pascual Hernández</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+  <meta
+    name="description"
+    content="Desarrollo del módulo Sequence Explorer para EasyGDB, un visualizador de secuencias genómicas, de transcrito y de proteína con coloreado de exones, intrones y UTRs, integrado con JBrowse y BLAST. Proyecto de portfolio de Alejandro Pascual."
+  >
 
   <link
     rel="stylesheet"
@@ -14,23 +23,90 @@
 </head>
 <body>
 
-  <header class="hero project-hero-short">
+  <header class="hero project-hero-short reveal">
     <div class="hero-content">
-      <h1>EasyGDB</h1>
+      <h1> EasyGDB: Sequence Explorer </h1>
       <a href="../../../index.html" class="btn">Volver al inicio</a>
       <a href="../practicas.html" class="btn">Volver a prácticas</a>
     </div>
   </header>
 
   <main class="section">
-    <section style="text-align:center;">
-      <h2>Próximamente</h2>
+
+    <div class="tech-stack-tags reveal">
+      <span>PHP</span>
+      <span>JavaScript</span>
+      <span>samtools</span>
+      <span>GFF3</span>
+      <span>JSON</span>
+      <span>JBrowse</span>
+      <span>BLAST</span>
+    </div>
+
+    <section class="reveal">
+      <h2>Sequence Explorer</h2>
       <p>
-        Estoy preparando esta página sobre EasyGDB, una base de datos
-        genómica con módulos de GWAS y Sequence Explorer. Vuelve pronto
-        para verlo.
+        <strong>EasyGDB</strong> es una herramienta desarrollada en el IHSM "La Mayora" para crear
+        portales genómicos de manera sencilla y mantenible — la misma que sustenta IHSM
+        Subtropicals, MangoBase y otros portales de especies subtropicales. Durante mis prácticas
+        contribuí al desarrollo de varios de sus módulos, entre ellos el <strong>Sequence
+        Explorer</strong>: una herramienta que permite buscar cualquier gen por su identificador y
+        obtener su secuencia genómica, de transcrito y de proteína, con exones, intrones, UTRs y
+        regiones flanqueantes resaltados en color directamente a partir de la anotación GFF3
+        del genoma.
       </p>
     </section>
+
+    <section class="key-findings reveal">
+      <h3>Aspectos clave del desarrollo</h3>
+      <ul>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Multi-organismo por configuración, sin tocar código:</strong> cada genoma se
+          registra en un fichero <code>seq_exp.json</code> con su lista de genes, su anotación
+          GFF3, su base de datos BLAST y (opcionalmente) su enlace a JBrowse — permitiendo que
+          cualquier portal basado en EasyGDB active la herramienta para una especie nueva sin
+          modificar una sola línea de PHP.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Vista coloreada de la estructura génica:</strong> exones/CDS, intrones y UTRs se
+          distinguen visualmente tanto en la secuencia genómica completa como en la vista de
+          transcrito, facilitando la interpretación biológica de un vistazo.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Depuración de un bug de hebra negativa:</strong> detecté y corregí un error por
+          el cual los genes en hebra negativa mostraban los bloques de exones e intrones en
+          posiciones incorrectas. El problema estaba en que, tras hacer el reverse complement de
+          la secuencia devuelta por samtools, los offsets de exones/CDS seguían calculándose como
+          si el gen estuviera en hebra positiva.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Integración con JBrowse y BLAST:</strong> desde los resultados de búsqueda se
+          puede saltar directamente a la posición del gen en JBrowse, o lanzar una búsqueda BLAST
+          sobre la secuencia obtenida, sin salir del flujo de trabajo.
+        </li>
+      </ul>
+    </section>
+
+    <section class="reveal">
+      <h3 class="section-subtitle">La herramienta en acción</h3>
+
+      <figure class="r-plot-figure">
+        <img src="seqexplorer-overview.gif" alt="Demostración del Sequence Explorer buscando un gen y mostrando su secuencia coloreada">
+        <figcaption><em>Búsqueda de un gen y visualización de su secuencia genómica con exones,
+        intrones y UTRs coloreados.</em></figcaption>
+      </figure>
+
+      <figure class="r-plot-figure">
+        <img src="seqexplorer-jbrowse-blast.gif" alt="Demostración de la integración del Sequence Explorer con JBrowse y BLAST">
+        <figcaption><em>Salto directo desde los resultados a JBrowse y lanzamiento de una
+        búsqueda BLAST sobre la secuencia.</em></figcaption>
+      </figure>
+    </section>
+
   </main>
 
   <footer>
