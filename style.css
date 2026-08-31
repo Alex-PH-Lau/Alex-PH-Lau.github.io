@@ -201,6 +201,17 @@ button:focus-visible {
   box-shadow: 0 6px 14px rgba(0,0,0,0.15);
 }
 
+/* Subtítulo de categoría dentro de Habilidades */
+.skills-subtitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gris-verde);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
 /* Lista de habilidades */
 .skills-list {
   list-style: none;
@@ -262,6 +273,130 @@ button:focus-visible {
 }
 
 /* === SECCIÓN PROYECTOS === */
+/* Anula el max-width del .section genérico solo para permitir que
+   el split-container ocupe todo el ancho; el título vuelve a
+   centrarse mediante .section-heading-wrap */
+.section-full {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.section-heading-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Contenedor de los dos paneles */
+.split-container {
+  display: flex;
+  height: 65vh;
+  min-height: 420px;
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+.split-panel {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  color: white;
+  text-decoration: none;
+  transition: flex 0.5s ease;
+  cursor: pointer;
+}
+
+/* Oscurece la parte baja del panel para que el texto sea legible
+   sobre cualquier imagen/gif que se añada más adelante */
+.split-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0) 55%);
+  z-index: 1;
+}
+
+.split-title,
+.split-list {
+  position: relative;
+  z-index: 2;
+}
+
+.split-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Placeholder de color hasta tener imagen/gif real.
+   Sustituir por background-image cuando estén listas las fotos. */
+.split-wetlab {
+  background: linear-gradient(135deg, var(--verde-principal), var(--gris-verde));
+}
+
+.split-drylab {
+  background:
+    repeating-linear-gradient(
+      100deg,
+      rgba(255,255,255,0.04) 0px,
+      rgba(255,255,255,0.04) 2px,
+      transparent 2px,
+      transparent 14px
+    ),
+    linear-gradient(135deg, var(--oscuro), var(--gris-verde));
+}
+
+/* Lista de contenido: oculta hasta expandir */
+.split-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.8rem 0 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+.split-list li {
+  padding: 0.3rem 0;
+  font-size: 0.95rem;
+  border-top: 1px solid rgba(255,255,255,0.25);
+}
+
+.split-list li:first-child {
+  border-top: none;
+}
+
+/* Estado expandido: por hover en escritorio, o por la clase .expanded
+   que añade script.js al primer toque en dispositivos táctiles */
+.split-panel:hover,
+.split-panel.expanded {
+  flex: 2.2;
+}
+
+.split-panel:hover .split-list,
+.split-panel.expanded .split-list {
+  max-height: 200px;
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .split-container {
+    height: auto;
+    flex-direction: column;
+  }
+  .split-panel {
+    min-height: 180px;
+  }
+}
+
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

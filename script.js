@@ -48,3 +48,28 @@ document.addEventListener("DOMContentLoaded", () => {
   elementsToAnimate.forEach((el) => observer.observe(el));
 
 });
+
+/**
+ * Paneles "split" de Wet Lab / Dry Lab.
+ * En escritorio, la expansión se gestiona solo con CSS (:hover).
+ * En dispositivos táctiles (sin hover real) el primer toque expande
+ * el panel y muestra la lista; un segundo toque sobre el mismo panel
+ * ya expandido navega con normalidad al enlace.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  const splitPanels = document.querySelectorAll(".split-panel");
+  const isTouchDevice = window.matchMedia("(hover: none)").matches;
+
+  if (!isTouchDevice || splitPanels.length === 0) return;
+
+  splitPanels.forEach((panel) => {
+    panel.addEventListener("click", (event) => {
+      if (!panel.classList.contains("expanded")) {
+        event.preventDefault();
+        splitPanels.forEach((p) => p.classList.remove("expanded"));
+        panel.classList.add("expanded");
+      }
+      // Si ya estaba expandido, se deja que el enlace navegue normalmente.
+    });
+  });
+});
