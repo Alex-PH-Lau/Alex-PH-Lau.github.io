@@ -311,8 +311,21 @@ button:focus-visible {
   cursor: pointer;
 }
 
+/* --- VÍDEO DE FONDO --- */
+/* Se coloca detrás de todo con object-fit: cover, igual que el hero
+   pero usando la técnica moderna (más simple al no necesitar
+   min-width/min-height con transform de centrado). */
+.split-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
 /* Oscurece la parte baja del panel para que el texto sea legible
-   sobre cualquier imagen/gif que se añada más adelante */
+   sobre el vídeo/gif o el gradiente de fondo */
 .split-panel::after {
   content: "";
   position: absolute;
@@ -335,8 +348,9 @@ button:focus-visible {
   gap: 0.6rem;
 }
 
-/* Placeholder de color hasta tener imagen/gif real.
-   Sustituir por background-image cuando estén listas las fotos. */
+/* Placeholder de color, visible mientras no cargue el <video>
+   (o si el navegador no lo soporta) — actúa como fallback real,
+   no solo mientras decides las imágenes definitivas. */
 .split-wetlab {
   background: linear-gradient(135deg, var(--verde-principal), var(--gris-verde));
 }
@@ -394,6 +408,11 @@ button:focus-visible {
   }
   .split-panel {
     min-height: 180px;
+  }
+  /* Igual que con el vídeo del hero: se oculta en móvil por
+     rendimiento y consumo de datos, dejando el gradiente de fondo */
+  .split-video {
+    display: none;
   }
 }
 
