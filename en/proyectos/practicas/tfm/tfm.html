@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Papaya Expression Atlas | Alejandro Pascual Hernández</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+  <meta
+    name="description"
+    content="Master's Thesis: Interactive expression atlas for Carica papaya, built from 8 public RNA-Seq datasets and integrated into the IHSM Subtropicals genomic portal (EasyGDB)."
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="../../style-proyects.css" />
+  <link rel="stylesheet" href="../../style-journal.css" />
+</head>
+<body>
+
+  <div class="lang-switcher">
+    <a href="../../../../proyectos/practicas/tfm/tfm.html" aria-label="Versión en español" lang="es">🇪🇸</a>
+    <a href="tfm.html" class="current-lang" aria-label="English version" lang="en">🇬🇧</a>
+  </div>
+
+  <nav class="journal-masthead">
+    <a href="../../../index.html">Alejandro Pascual Hernández's Portfolio</a>
+    <span>Master's Thesis · Bioinformatics, UNIR · 2026</span>
+  </nav>
+
+  <header class="journal-header">
+    <p class="journal-kicker">Master's Thesis · Dry Lab</p>
+    <h1 class="journal-title">Interactive expression atlas for <em>Carica papaya</em></h1>
+    <p class="journal-meta">
+      <strong>Alejandro Pascual Hernández</strong>
+      <span class="meta-divider">·</span>
+      MSc in Bioinformatics, UNIR
+      <br>
+      Supervised by Noé Fernández Pozo (scientific advisor) and Carolina Sánchez Rodríguez (academic advisor)
+      <span class="meta-divider">·</span>
+      IHSM "La Mayora" · July 15, 2026
+    </p>
+  </header>
+
+  <main class="journal-article">
+
+    <div class="journal-keywords">
+      <span class="keywords-label">Keywords</span>
+      <span class="tag">RNA-Seq</span>
+      <span class="tag">Expression atlas</span>
+      <span class="tag">EasyGDB</span>
+      <span class="tag">Plant genomics</span>
+      <span class="tag">Carica papaya</span>
+    </div>
+
+    <p style="font-size: 0.85rem; color: #777; margin-bottom: 2rem;">
+      <i class="fas fa-circle-info" aria-hidden="true"></i>
+      The full thesis PDF linked below is only available in Spanish, the language in which it
+      was written and submitted.
+    </p>
+
+    <div class="journal-abstract">
+      <span class="abstract-label">Abstract</span>
+      Papaya (<em>Carica papaya</em>) is the third most commercially relevant tropical fruit
+      according to the FAO, with global production exceeding 14 million tons in 2022. Despite its
+      importance, the available genomic information is fragmented and scattered. This work
+      presents an expression atlas built by mining 8 public RNA-Seq datasets from the European
+      Nucleotide Archive (ENA), processed through a quality control, alignment, quantification and
+      normalization pipeline. The results were integrated into the IHSM Subtropicals genomic
+      portal, built on EasyGDB, turning scattered information into a centralized, freely
+      accessible resource for papaya genetic improvement research.
+    </div>
+
+    <section>
+      <h2><span class="section-number">1.</span>Introduction</h2>
+      <p class="drop-cap">
+        Papaya is a semi-woody, perennial plant widely distributed across tropical and
+        subtropical regions, with great phenotypic plasticity and notable economic, nutritional
+        and medical importance. Its relatively small genome (371 Mbp, 2n=18) was sequenced from
+        the transgenic "SunUp" variety, resistant to Papaya Ringspot Virus (PRSV) and now the
+        dominant variety in commercial cultivation worldwide.
+      </p>
+      <p>
+        Despite this relevance, until now there was no genomic portal or public expression atlas
+        specifically focused on this species. Expression atlases allow large-scale
+        transcriptomic data to be integrated, standardized and visualized, making it easier to
+        identify candidate genes and optimize resources in genetic improvement programs —
+        precisely the gap this work addresses.
+      </p>
+    </section>
+
+    <section>
+      <h2><span class="section-number">2.</span>Objectives</h2>
+      <p>
+        The overall goal was to develop a public expression atlas for <em>Carica papaya</em>
+        based on publicly available RNA-Seq data, integrated into a single, freely accessible
+        portal. Specific objectives included: designing a reproducible RNA-Seq pipeline,
+        processing the selected ENA datasets, decontaminating sequences using the Picasso
+        supercomputer (UMA), generating normalized expression matrices, and integrating the
+        results into the IHSM Subtropicals portal.
+      </p>
+    </section>
+
+    <section>
+      <h2><span class="section-number">3.</span>Materials and Methods</h2>
+      <p>
+        8 BioProjects from the ENA were selected (47 samples in total), covering key aspects of
+        plant physiology: fruit ripening, sexual dimorphism, gynoecium morphogenesis, in vitro
+        regeneration, and response to water and biotic stress. The bioinformatics pipeline
+        included quality control (FastQC/MultiQC), read decontamination (Kraken2), read
+        processing (FastP), alignment against the "SunUp" reference genome (HISAT2),
+        quantification (featureCounts) and normalization to TPM (R, <code>DGEobj.utils</code>).
+        The work was carried out both locally and on the Picasso supercomputer at the University
+        of Málaga.
+      </p>
+    </section>
+
+    <section>
+      <h2><span class="section-number">4.</span>Results</h2>
+      <p>
+        Before publication, the biological consistency of the dataset was validated using
+        dimensionality reduction methods (PCA, MDS, ICA, t-SNE, UMAP), which showed consistent
+        groupings by floral sex and developmental stage. As a real use case, the expression
+        profile of a dataset focused on pistil development was analyzed, identifying
+        differential expression patterns between male and female flowers for genes such as
+        <em>CYC</em>, <em>SUP</em>, <em>HEC2</em>, <em>MUTE</em>, <em>TGA9</em>, <em>AGL11</em>
+        and <em>CYCD3-1</em>, consistent with the published literature.
+      </p>
+
+      <figure class="journal-figure">
+        <img src="atlas-bars-femeninas.png" alt="Bar chart of genes with higher expression in female flowers">
+        <figcaption><span class="fig-number">Figure 1.</span> Genes such as CYC, SUP and HEC2 are
+        mostly expressed in female flowers, and are essential for their differentiation.</figcaption>
+      </figure>
+
+      <figure class="journal-figure">
+        <img src="atlas-bars-masculinas.png" alt="Bar chart of genes with higher expression in male flowers">
+        <figcaption><span class="fig-number">Figure 2.</span> The MUTE gene, involved in stomatal
+        differentiation, is expressed more strongly in male flowers and only in the earliest
+        developmental stages.</figcaption>
+      </figure>
+
+      <figure class="journal-figure">
+        <img src="atlas-expression-cards.png" alt="Expression cards for gene AGL11 across different samples">
+        <figcaption><span class="fig-number">Figure 3.</span> Expression cards for the AGL11
+        gene: they combine the numeric value with images of the sample's actual phenotype,
+        showing higher expression in female flowers in the final developmental stages.</figcaption>
+      </figure>
+
+      <figure class="journal-figure">
+        <img src="atlas-heatmap.png" alt="Heatmap of differential expression of genes of interest">
+        <figcaption><span class="fig-number">Figure 4.</span> Heatmap of the overall
+        differential-expression pattern between female and male flowers across all selected
+        genes.</figcaption>
+      </figure>
+
+      <figure class="journal-figure">
+        <img src="atlas-replicas.png" alt="Biological replicate chart for gene CYCD3-1">
+        <figcaption><span class="fig-number">Figure 5.</span> Consistency across biological
+        replicates for the CYCD3-1 gene, involved in brassinosteroid biosynthesis.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2><span class="section-number">5.</span>Conclusions</h2>
+      <div class="key-findings">
+        <h3>Key contributions</h3>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            First public expression atlas specific to <em>Carica papaya</em>, integrating 47
+            samples from 8 BioProjects that had previously been scattered across unrelated
+            projects.
+          </li>
+          <li>
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            Reproducible bioinformatics pipeline, run both locally and on a supercomputer,
+            applicable to future datasets for the species.
+          </li>
+          <li>
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            Robust biological validation through dimensionality reduction and a real use case
+            with candidate genes, reproducing already-published results.
+          </li>
+          <li>
+            <i class="fas fa-check-circle" aria-hidden="true"></i>
+            Published and in production on IHSM Subtropicals DB, with interactive
+            visualizations and annotations cross-referenced with Araport11, SwissProt, TrEMBL,
+            NCBI and InterPro.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="journal-actions">
+      <a href="../../../../proyectos/practicas/tfm/01_TFM_Alejandro_Pascual_UNIR.pdf" download class="btn">
+        <i class="fas fa-file-pdf" aria-hidden="true"></i> Download full thesis (PDF, Spanish)
+      </a>
+      <a href="https://ihsmsubtropicals.uma.es/easy_gdb/index.php" target="_blank" rel="noopener noreferrer" class="btn">
+        <i class="fas fa-dna" aria-hidden="true"></i> Explore the live atlas
+      </a>
+    </div>
+
+  </main>
+
+  <nav class="journal-footer-nav">
+    <a href="../../../index.html">&larr; Back to home</a>
+  </nav>
+
+  <footer>
+    <p>© 2026 Alejandro Pascual Hernández. Built with HTML/CSS/JS.</p>
+  </footer>
+
+  <script src="../../../../script.js"></script>
+</body>
+</html>
