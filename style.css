@@ -257,12 +257,12 @@ button:focus-visible {
 .cv-download .btn {
   background-color: white;
   color: #444;
-  padding: 0.7rem 1.4rem;
+  padding: 0.7rem 0.5rem;
   border-radius: 10px;
   font-weight: 500;
   font-size: 1rem;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  margin-top: 7rem;
+  margin-top: 3rem;
 }
 
 .cv-download .btn:hover {
@@ -777,4 +777,24 @@ footer {
     margin: 1rem auto;
     width: 80%;
   }
+}
+
+/* Insignia para trabajos ya realizados pero aún no publicados
+   (distinta del wip-badge: aquí no falta contenido, está en proceso
+   editorial fuera de tu control) */
+.pending-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: #fff3cd;
+  color: #8a6d00;
+  padding: 0.15rem 0.6rem;
+  border-radius: 20px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  white-space: nowrap;
 }
