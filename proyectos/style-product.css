@@ -1,0 +1,116 @@
+/**
+ * === PLANTILLA "SHOWCASE DE HERRAMIENTA / PRODUCTO" ===
+ * Estilo reutilizable para proyectos de software (no papers/TFM):
+ * cabecera oscura tipo terminal, tags de stack tecnológico en estilo
+ * monoespaciado, y demos (gif/vídeo/capturas) enmarcadas como ventana
+ * de navegador.
+ *
+ * Se carga JUNTO a style-proyects.css, no en su lugar.
+ */
+
+/* === CABECERA OSCURA TIPO "PRODUCTO" === */
+/* Mismo lenguaje visual que el panel Dry Lab de la portada: degradado
+   oscuro con finas líneas diagonales sugiriendo código/terminal. */
+.product-header {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+  padding: 4rem 1.5rem 3rem;
+
+  background:
+    repeating-linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0.04) 0px,
+      rgba(255, 255, 255, 0.04) 2px,
+      transparent 2px,
+      transparent 14px
+    ),
+    linear-gradient(135deg, var(--oscuro), var(--gris-verde));
+}
+
+.product-kicker {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.85;
+  margin-bottom: 0.7rem;
+}
+
+.product-header h1 {
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  margin-bottom: 0.7rem;
+}
+
+.product-subtitle {
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  line-height: 1.6;
+}
+
+/* === TAGS DE STACK TECNOLÓGICO (estilo monoespaciado) === */
+.product-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.product-tech-tags span {
+  font-family: 'Courier New', Consolas, monospace;
+  background: #1e1e1e;
+  color: #7ee787;
+  padding: 0.35rem 0.9rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* === MARCO TIPO "VENTANA DE NAVEGADOR" PARA DEMOS === */
+.browser-frame {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+  margin: 0 0 0.8rem;
+}
+
+.browser-frame-bar {
+  background: #e8e8e8;
+  padding: 0.6rem 0.8rem;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.browser-frame-bar span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.browser-frame-bar span:nth-child(1) { background: #ff5f57; }
+.browser-frame-bar span:nth-child(2) { background: #febc2e; }
+.browser-frame-bar span:nth-child(3) { background: #28c840; }
+
+.browser-frame img,
+.browser-frame video {
+  display: block;
+  width: 100%;
+}
+
+/* === ICONO DE ENLACE EXTERNO === */
+/* Mismo lenguaje visual que los enlaces de la portada: deja claro
+   que ese elemento navega a otro sitio (a menudo fuera del portfolio). */
+.external-link-icon {
+  font-size: 0.75rem;
+  margin-left: 0.4rem;
+  opacity: 0.75;
+}

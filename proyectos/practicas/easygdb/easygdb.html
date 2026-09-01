@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EasyGDB: Sequence Explorer | Alejandro Pascual Hernández</title>
-  
+
   <link rel="stylesheet" href="../../../style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,20 +21,23 @@
   />
 
   <link rel="stylesheet" href="../../style-proyects.css" />
+  <link rel="stylesheet" href="../../style-product.css" />
 </head>
 <body>
 
-  <header class="hero project-hero-short reveal">
-    <div class="hero-content">
-      <h1> EasyGDB: Sequence Explorer </h1>
-      <a href="../../../index.html" class="btn">Volver al inicio</a>
-      <a href="../practicas.html" class="btn">Volver a prácticas</a>
-    </div>
+  <header class="product-header reveal">
+    <p class="product-kicker">Herramienta · Dry Lab</p>
+    <h1>EasyGDB: Sequence Explorer</h1>
+    <p class="product-subtitle">
+      Módulo de EasyGDB para visualizar secuencias genómicas, de transcrito y de proteína,
+      con la estructura génica coloreada directamente desde la anotación GFF3.
+    </p>
+    <a href="../../../index.html" class="btn">Volver al inicio</a>
   </header>
 
   <main class="section">
 
-    <div class="tech-stack-tags reveal">
+    <div class="product-tech-tags reveal">
       <span>PHP</span>
       <span>JavaScript</span>
       <span>blastdbcmd</span>
@@ -96,13 +99,23 @@
       <h3 class="section-subtitle">La herramienta en acción</h3>
 
       <figure class="r-plot-figure">
-        <img src="seqexplorer-overview.gif" alt="Demostración del Sequence Explorer buscando un gen y mostrando su secuencia coloreada">
+        <div class="browser-frame">
+          <div class="browser-frame-bar">
+            <span></span><span></span><span></span>
+          </div>
+          <img src="seqexplorer-overview.gif" alt="Demostración del Sequence Explorer buscando un gen y mostrando su secuencia coloreada">
+        </div>
         <figcaption><em>Búsqueda de un gen y visualización de su secuencia genómica con exones,
         intrones y UTRs coloreados.</em></figcaption>
       </figure>
 
       <figure class="r-plot-figure">
-        <img src="seqexplorer-jbrowse-blast.gif" alt="Demostración de la integración del Sequence Explorer con JBrowse y BLAST">
+        <div class="browser-frame">
+          <div class="browser-frame-bar">
+            <span></span><span></span><span></span>
+          </div>
+          <img src="seqexplorer-jbrowse-blast.gif" alt="Demostración de la integración del Sequence Explorer con JBrowse y BLAST">
+        </div>
         <figcaption><em>Salto directo desde los resultados a JBrowse y lanzamiento de una
         búsqueda BLAST sobre la secuencia.</em></figcaption>
       </figure>
@@ -112,18 +125,21 @@
       <h2 class="reveal">Sitios de interés</h2>
       <div class="contact reveal">
         <p>Más información relacionada en:</p>
-    
+
         <a href="https://github.com/noefp/easy_gdb" target="_blank" rel="noopener noreferrer" class="contact-item">
           <i class="fab fa-github" aria-hidden="true"></i>
           <span>EasyGDB Github</span>
+          <i class="fa-solid fa-arrow-up-right-from-square external-link-icon" aria-hidden="true"></i>
         </a>
-    
+
         <a href="https://ihsmsubtropicals.uma.es/easy_gdb/index.php" target="_blank" rel="noopener noreferrer" class="contact-item">
           <span>IHSM Subtropicals</span>
+          <i class="fa-solid fa-arrow-up-right-from-square external-link-icon" aria-hidden="true"></i>
         </a>
-        
+
         <a href="https://mangobase.org/easy_gdb/index.php" target="_blank" rel="noopener noreferrer" class="contact-item">
           <span>MangoBase</span>
+          <i class="fa-solid fa-arrow-up-right-from-square external-link-icon" aria-hidden="true"></i>
         </a>
       </div>
     </section>

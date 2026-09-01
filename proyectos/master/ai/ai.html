@@ -20,40 +20,47 @@
   />
 
   <link rel="stylesheet" href="../../style-proyects.css" />
+  <link rel="stylesheet" href="../../style-journal.css" />
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
   
 </head>
 <body>
 
-  <header class="hero project-hero-short reveal">
-    <div class="hero-content">
-      <h1> Algoritmos e inteligencia artificial </h1>   
-      <a href="../../../index.html" class="btn">Volver al inicio</a>
-      <a href="../master.html" class="btn">Volver a las asignaturas</a>
-    </div>
+  <nav class="journal-masthead">
+    <a href="../../../index.html">Portfolio de Alejandro Pascual Hernández</a>
+    <span>Asignatura · Máster en Bioinformática, UNIR</span>
+  </nav>
+
+  <header class="journal-header">
+    <p class="journal-kicker">Algoritmos e Inteligencia Artificial</p>
+    <h1 class="journal-title">Aprendizaje no supervisado sobre datos de expresión génica en cáncer</h1>
+    <p class="journal-meta">
+      <strong>Alejandro Pascual Hernández</strong>
+      <span class="meta-divider">·</span>
+      801 muestras · 20.532 genes · 5 tipos de cáncer
+    </p>
   </header>
 
-  <main class="section">
+  <main class="journal-article">
 
-    <div class="tech-stack-tags reveal">
-      <span>R</span>
-      <span>RStudio</span>
-      <span>R Markdown</span>
-      <span>MDS</span>
-      <span>Isomap</span>
-      <span>Umap</span>
-      <span>Clustering</span>
+    <div class="journal-keywords reveal">
+      <span class="keywords-label">Herramientas</span>
+      <span class="tag">R</span>
+      <span class="tag">RStudio</span>
+      <span class="tag">R Markdown</span>
+      <span class="tag">MDS</span>
+      <span class="tag">Isomap</span>
+      <span class="tag">Umap</span>
+      <span class="tag">Clustering</span>
     </div>
 
-    <section class="reveal">
-      <h2>Aplicación de técnicas de aprendizaje no supervisado sobre datos biológicos</h2>
-      <p>
-       El objetivo de esta actividad es determinar de forma justificada aquellos algoritmos 
-        de aprendizaje no supervisado más eficientes a la hora de detectar patrones en el conjunto 
-        de datos propuesto.En este caso el conjunto de unos datos sobre cáncer.
-      </p>
-    </section>
+    <div class="journal-abstract">
+      <span class="abstract-label">Objetivo</span>
+      Determinar de forma justificada aquellos algoritmos de aprendizaje no supervisado más
+      eficientes a la hora de detectar patrones en el conjunto de datos propuesto: un dataset de
+      expresión génica sobre 801 pacientes diagnosticados con 5 tipos distintos de cáncer.
+    </div>
 
     <section class="key-findings reveal">
       <h3>MÉTODOS DE REDUCCIÓN DE LA DIMENSIONALIDAD</h3>
@@ -398,8 +405,12 @@ El dendrograma resultante es el siguiente, en él se pueden observar 5 clusters 
     </section>
   </main>
 
+  <nav class="journal-footer-nav">
+    <a href="../master.html">&larr; Volver a las asignaturas</a>
+  </nav>
+
   <footer>
-    <p>© 2025 Alejandro Pascual Hernández. Hecho en HTML/CSS/JS.</p>
+    <p>© 2026 Alejandro Pascual Hernández. Hecho en HTML/CSS/JS.</p>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
