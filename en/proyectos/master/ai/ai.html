@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorithms and Artificial Intelligence | Alejandro Pascual Hernández</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+  <meta
+    name="description"
+    content="Detailed analysis of gene expression in breast cancer using R and different dimensionality reduction techniques. Portfolio project by Alejandro Pascual."
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="../../style-proyects.css" />
+  <link rel="stylesheet" href="../../style-journal.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
+
+</head>
+<body>
+
+  <div class="lang-switcher">
+    <a href="../../../../proyectos/master/ai/ai.html" aria-label="Versión en español" lang="es">🇪🇸</a>
+    <a href="ai.html" class="current-lang" aria-label="English version" lang="en">🇬🇧</a>
+  </div>
+
+  <nav class="journal-masthead">
+    <a href="../../../index.html">Alejandro Pascual Hernández's Portfolio</a>
+    <span>Course · MSc in Bioinformatics, UNIR</span>
+  </nav>
+
+  <header class="journal-header">
+    <p class="journal-kicker">Algorithms and Artificial Intelligence</p>
+    <h1 class="journal-title">Unsupervised learning on cancer gene expression data</h1>
+    <p class="journal-meta">
+      <strong>Alejandro Pascual Hernández</strong>
+      <span class="meta-divider">·</span>
+      801 samples · 20,532 genes · 5 cancer types
+    </p>
+  </header>
+
+  <main class="journal-article">
+
+    <div class="journal-keywords reveal">
+      <span class="keywords-label">Tools</span>
+      <span class="tag">R</span>
+      <span class="tag">RStudio</span>
+      <span class="tag">R Markdown</span>
+      <span class="tag">MDS</span>
+      <span class="tag">Isomap</span>
+      <span class="tag">Umap</span>
+      <span class="tag">Clustering</span>
+    </div>
+
+    <div class="journal-abstract">
+      <span class="abstract-label">Objective</span>
+      To determine, on well-justified grounds, which unsupervised learning algorithms are most
+      effective at detecting patterns in the proposed dataset: a gene expression dataset covering
+      801 patients diagnosed with 5 different types of cancer.
+    </div>
+
+    <section class="key-findings reveal">
+      <h3>DIMENSIONALITY REDUCTION METHODS</h3>
+      <p>
+        These are the selected methods and the final conclusions:
+      </p>
+      <ul>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <a href="#mds"><strong>MDS</strong></a> Multidimensional scaling
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+           <a href="#isomap"><strong>Isomap</strong></a> Isometric mapping.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+           <a href="#umap"><strong>Umap</strong></a> Uniform Manifold Approximation and Projection.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <a href="#clustering"><strong>Clustering</strong></a> Agglomerative hierarchical clustering method.
+        </li>
+         <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <a href="#conclusiones"><strong>Conclusions</strong></a> The final conclusions of the assignment.
+        </li>
+      </ul>
+    </section>
+
+    <div class="r-markdown-container">
+
+      <div id="pasos-previos" class="section level3">
+        <h3>Preliminary steps</h3>
+        <p>First, we need to load all the libraries and data we'll use for the analysis. On one
+          hand, we load the data from "data.csv" as a matrix, in which row 1 corresponds to our
+          patients' samples — note that in our matrix this will not be treated as an extra gene
+          column but as the row names. "labels.csv" is a data frame that links these sample names
+          to the type of cancer the corresponding patient has.</p>
+        <pre><code class="r">library(plotly)
+library(stats)
+library(uwot)
+library(RDRToolbox)
+library(dplyr)
+library(factoextra)
+library(ggdendro)
+library(cluster)
+library(ggplot2) 
+library(gridExtra)
+library(pheatmap)
+library(tidyr)
+
+labels.raw &lt;- read.csv('labels.csv')
+data <- as.matrix(read.csv("data.csv", row.names = 1))</code></pre>
+        <p>As we can see in the resulting matrix, we have 801 patient samples and 20,532 genes
+          studied, which clearly gives us a dimensionality problem. To solve this we need to use
+          different techniques or tools that allow us to reduce all this data down to a level of
+          dimensions that is understandable and interpretable. There are many such techniques we
+          could use, but in this assignment we'll focus on 4 different ones, chosen to illustrate
+          different challenges we may encounter when reducing dimensionality. We'll walk through
+          the reasoning behind our choices and how we handled both the data and the parameters
+          that can be tuned in each method.</p>
+      </div>
+      <div id="mds" class="section level3">
+        <h3>MDS</h3>
+        <p>The first method we decided to use is MDS (multidimensional scaling). It's a method
+          that measures the distance between different samples or points and groups them
+          accordingly. This distance can be measured in different ways. Although in this case we
+          chose to use the most common one, Euclidean distance, other distances also exist, such
+          as "Manhattan" or "Hamming" distance. This method also lets us choose the number of
+          dimensions in which to represent our results. Initially we'll visualize them in 2
+          dimensions.</p>
+        <pre><code class="r">
+  distances &lt;- dist(data, method = 'euclidean') # distance matrix
+
+mds.results &lt;- cmdscale(d=distances, eig=TRUE, k=2, x.ret=TRUE) # the cmdscale function performs the MDS
+
+varianza.explicada &lt;- mds.results$eig/sum(mds.results$eig) * 100 # explained variance
+
+mds.df &lt;- data.frame(mds.results$points) # convert the MDS output into a data frame
+
+ggplot(mds.df, aes(x=X1, y=X2, color=labels.raw$Class)) + # finally, plot
+  geom_point(size=3) + 
+  scale_color_manual(values=c("red", "blue", "green", "orange", "purple")) +
+  labs(title="MDS - Types of Cancer", x="Dimension 1 (X1)", y="Dimension 2 (X2)", color = "Grupo") +
+  theme_classic() + 
+  theme(panel.grid.major = element_line(color = "gray90"), panel.grid.minor = element_blank(),
+        panel.background = element_rect(fill = "gray95"), plot.title=element_text(hjust=0.5))
+</code></pre>
+
+        <figure class="r-plot-figure">
+          <img src="fig1.png" alt="Fig. 1: MDS in 2 dimensions">
+          <figcaption><em>Fig. 1: Graphical representation of our data using MDS in 2 dimensions.</em></figcaption>
+        </figure>
+
+        <p>As we can see in the plot, many points are not well separated, and although our 5
+          clusters (for the 5 different diseases) are already visible, we don't think this is a
+          good separation. For this reason we decided to try visualizing it in 3 dimensions to
+          check whether we could better distinguish the different groups. To do this we need to
+          change the k parameter, which corresponds to the number of dimensions.</p>
+         <pre><code class="r">mds_result <- cmdscale(distances, k = 3) # same as before, but for 3 dimensions
+
+mds_df <- as.data.frame(mds_result)
+colnames(mds_df) &lt;- c("Dim1", "Dim2", "Dim3")
+
+mds_df$Cancer_Type &lt;- labels.raw$Class # add the cancer labels
+
+fig &lt;- plot_ly(mds_df, x = ~Dim1, y = ~Dim2, z = ~Dim3, # plot
+               color = ~Cancer_Type, colors = "Set1", 
+               marker = list(size = 4))
+
+fig </code></pre>
+        <figure class="r-plot-figure">
+          <img src="fig2.png" alt="Fig. 2: MDS in 3 dimensions">
+          <figcaption><em>Fig. 2: Graphical representation of our data using MDS in 3 dimensions.</em></figcaption>
+        </figure>
+        <p>Visualizing the results in 3 dimensions, we can much more clearly see the 5 distinct
+          groups. This is a very interesting way of solving the initial problem, but it comes
+          with its own set of drawbacks. The first and most obvious is that we can't always
+          display 3D plots, since not every medium supports them — even less so outside a digital
+          format. Another drawback of MDS is that it can be computationally expensive, since it
+          requires calculating the distance between every pair of points.</p>
+      </div>
+
+      <div id="isomap" class="section level3">
+        <h3>Isomap</h3>
+        <p>As our next method we'll use one related to the previous one, Isometric mapping
+          (Isomap). Like the previous method, it seeks to measure distances between points in
+          order to form groups, but this time the distance used is geodesic distance. This
+          distance is calculated over a surface that varies depending on how the dataset is
+          arranged. This arrangement is mainly determined by what we consider the number of
+          nearest neighbors, or K. This is the main parameter we'll tune to obtain a better
+          clustering result. Initially, we'll use K = 5.</p>
+        <pre><code class="r">set.seed(1234)
+
+isomap.results = Isomap(data=data, dims=1:10, k=5, plotResiduals=FALSE) # isomap from 1 to 10 dimensions with 5 neighbors. We set plotResiduals=FALSE to skip the explained-variance plot 
+
+isomap.df &lt;- data.frame(isomap.results$dim2) # data frame with the points to plot in the 2D plane
+
+ggplot(isomap.df, aes(x = X1, y = X2, color = labels.raw$Class)) +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("red", "blue", "green", "orange", "purple")) +
+  labs(title = "Isomap - Types of Cancer", x = 'Dim 1', y = 'Dim 2', color = "Grupo") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(color = "gray90"), panel.grid.minor = element_blank(),
+        panel.background = element_rect(fill = "gray95"), plot.title=element_text(hjust=0.5)) </code></pre>
+        <figure class="r-plot-figure">
+          <img src="fig3.png" alt="Fig. 3: Isomap with 5 neighbors">
+          <figcaption><em>Fig. 3: Graphical representation of our data using Isomap with a k parameter (number of neighboring points) of 5.</em></figcaption>
+        </figure>
+        <p>With k=5 we see that the separation isn't very good, so we decided to keep increasing
+          this number until we got a better result. Increasing it, we reached K=15, which gave us
+          the following result.</p>
+        <pre><code class="r">set.seed(1234)
+
+isomap.results = Isomap(data=data, dims=1:10, k=15, plotResiduals=FALSE) # this time k=15
+
+isomap.df &lt;- data.frame(isomap.results$dim2) 
+
+ggplot(isomap.df, aes(x = X1, y = X2, color = labels.raw$Class)) +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("red", "blue", "green", "orange", "purple")) +
+  labs(title = "Isomap - Types of Cancer", x = 'Dim 1', y = 'Dim 2', color = "Grupo") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(color = "gray90"), panel.grid.minor = element_blank(),
+        panel.background = element_rect(fill = "gray95"), plot.title=element_text(hjust=0.5))
+</code></pre>
+
+        <figure class="r-plot-figure">
+          <img src="fig4.png" alt="Fig. 4: Isomap with 15 neighbors">
+          <figcaption><em>Fig. 4: Graphical representation of our data using Isomap
+            with a k parameter (number of neighboring points) of 15.</em></figcaption>
+        </figure>
+
+        <p>Here we can already observe a clear separation into groups for our 5 diseases. This
+          method turns out to be effective for our purpose; however, finding the right value for
+          K can be very difficult, and in some cases it may not be possible to find one at all.
+          This is a limitation this method can have.</p>
+      </div>
+
+      <div id="umap" class="section level3">
+        <h3>Umap</h3>
+        <p>Next, we decided to use Uniform Manifold Approximation and Projection (UMAP). This is
+          a very complex dimensionality reduction method that assumes the available data sample
+          is uniformly distributed across our topological space. This space can be approximated
+          and projected onto a lower-dimensional space. To do this, it first seeks to define the
+          structure of the topological space, and then looks for the best way to represent that
+          structure in a lower-dimensional space.</p>
+        <pre><code class="r">set.seed(1234)
+
+umap.results &lt;- umap(data, n_neighbors=0.15 * nrow(data), # here we decided not to touch any parameters except the number of nearest neighbors
+                                                         # which is the n_neighbours parameter
+                     n_components = 2, min_dist = 0.1, local_connectivity=1, 
+                     ret_model = TRUE, verbose = TRUE)
+
+umap.df &lt;- data.frame(umap.results$embedding)
+
+m_dist &lt;- dist(umap.df)
+
+ggplot(umap.df, aes(x = X1, y = X2, color = labels.raw$Class)) +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("red", "blue", "green", "orange", "purple")) +
+  labs(title = "Método UMAP Types of Cancer", x = "X1", y = "X2", color = "Grupo") +
+  theme_classic() +
+  theme(panel.grid.major = element_line(color = "gray90"), panel.grid.minor = element_blank(),
+        panel.background = element_rect(fill = "gray95"), plot.title=element_text(hjust=0.5))
+        </code></pre>
+
+        <figure class="r-plot-figure">
+          <img src="fig5.png" alt="Fig. 5: Umap">
+          <figcaption><em>Fig. 5: Graphical representation of our data using Umap without altering any parameter except the number
+            of nearest neighbors (n_neighbors), which we set to 0.15.</em></figcaption>
+        </figure>
+
+        <p>The UMAP method is very versatile and effective, but this also makes it more complex
+          to work with. As you can see in the code, there's a large number of parameters that can
+          be tuned in order to achieve an optimal result. For this reason, a very deep
+          understanding of how the method works is needed to fully optimize it — otherwise this
+          complexity and versatility can work against you. That said, as the plot shows, the
+          separation into groups is very good and efficient — much better than the previous
+          methods.</p>
+      </div>
+      <div id="clustering" class="section level3">
+        <h3>Clustering</h3>
+        <p>Finally, to round off this assignment we decided to use a clustering method — more
+          specifically, agglomerative hierarchical clustering. We chose to represent our results
+          with a dendrogram, since it's a different approach from what we've seen so far in this
+          assignment. A dendrogram is a tree-like graphical representation, shown upside down,
+          that shows how a dataset groups together based on similarity. Each "leaf" of the tree
+          represents an individual element — in our case, patients — and the intermediate nodes
+          represent the groups or clusters that form.
+          To interpret a dendrogram, it's also important to look at the height at which the
+          branches of two leaves first merge. The lower this height, the more closely related
+          they are. So the measure of relatedness between two leaves is read on the vertical
+          axis, not the horizontal one.
+          For agglomerative clustering, the dendrogram is built with a bottom-up approach: each
+          of our observations or samples starts out as its own group, which then gets merged with
+          other groups as the hierarchy progresses. These merges are made based on a calculated
+          distance between groups. This distance can be measured in 4 different ways, and it's a
+          parameter we can change in our code, which will give us 4 different dendrograms as a
+          result.</p>
+        <p>We'll keep this in mind when building our dendrogram.</p>
+        <pre><code class="r">df &lt;- read.csv("data.csv") # this time we read the .csv as a data frame
+
+df_genes &lt;- df %&gt;% dplyr::select(starts_with("gene_")) # remove the sample-name column, keeping only the gene columns
+
+df_genes_scale &lt;- scale(df_genes)  # normalize
+        </code></pre>
+        <p>When performing the clustering, <strong>we ran into several errors at this point</strong>.
+          The cause of these errors was that the normalized data frame had several genes (entire
+          columns) containing NaN, i.e. no data. So we first need to remove all these NaNs before
+          performing the clustering.</p>
+        <pre><code class="r">df_genes_scale_tibble &lt;- as_tibble(df_genes_scale)
+df_clean_final &lt;- df_genes_scale_tibble %>% select(where(~ !all(is.na(.)))) %>% drop_na() # remove all possible NAs
+
+dist_matrix &lt;- dist(df_clean_final) # distance matrix
+
+# Run the agglomerative hierarchical clustering algorithm using the 4 different linkage methods
+
+hclust_model_single &lt;- hclust(dist_matrix, method = "single") 
+
+hclust_model_complete &lt;- hclust(dist_matrix, method = "complete") 
+
+hclust_model_average &lt;- hclust(dist_matrix, method = "average") 
+
+hclust_model_ward &lt;- hclust(dist_matrix, method = "ward.D") 
+
+colors &lt;- rainbow(5) # colors for the dendrograms
+
+clust_single &lt;- fviz_dend(hclust_model_single, 
+                          cex = 0.5,
+                          k = 5,
+                          palette = colors,
+                          main = "Single",
+                          xlab = "Índice de Observaciones",
+                          ylab = "Distancia") + theme_classic()
+
+clust_complete &lt;- fviz_dend(hclust_model_complete, 
+                            cex = 0.5,
+                            k = 5,
+                            palette = colors,
+                            main = "Complete",
+                            xlab = "Índice de Observaciones",
+                            ylab = "Distancia") + 
+  theme_classic()
+
+clust_average &lt;- fviz_dend(hclust_model_average, 
+                           cex = 0.5,
+                           k = 5,
+                           palette = colors,
+                           main = "Average",
+                           xlab = "Índice de Observaciones",
+                           ylab = "Distancia") + 
+  theme_classic()
+
+clust_ward &lt;- fviz_dend(hclust_model_ward, 
+                        cex = 0.5,
+                        k = 5,
+                        palette = colors,
+                        main = "Ward",
+                        xlab = "Índice de Observaciones",
+                        ylab = "Distancia") + 
+  theme_classic()
+
+grid.arrange(clust_single, clust_complete, clust_average, clust_ward, nrow = 2) </code></pre>
+        <figure class="r-plot-figure">
+          <img src="fig6.png" alt="Fig. 6: 4 clustering methods">
+          <figcaption><em>Fig. 6: Representation of the four types of dendrograms that can be
+            obtained using agglomerative hierarchical clustering, changing the linkage method used.</em></figcaption>
+        </figure>
+
+        <p>As mentioned above, 4 different dendrograms are produced depending on the linkage
+          method used. For the purposes of this assignment we're looking for compact, homogeneous
+          clusters with very little internal variability. For this reason, the Ward method gives
+          us the best results, since it's a method that seeks to minimize internal variance
+          within a cluster.
+          The resulting dendrogram is shown below; in it, 5 well-differentiated, compact clusters
+          can be observed, which help us interpret our initial dataset.</p>
+        <figure class="r-plot-figure">
+          <img src="fig7.png" alt="Fig. 7: Ward clustering">
+          <figcaption><em>Fig. 7: Dendrogram of our data using agglomerative hierarchical clustering with the Ward
+            linkage method.</em></figcaption>
+        </figure>
+        <div id="conclusiones" class="section level3">
+          <h3>Conclusions</h3>
+          <p>We start this analysis with an advantage, since we already know our dataset. It
+            consists of expression readings for 20,532 genes across 801 patients. These patients
+            have been diagnosed with a type of cancer — 5 different types in total. So our search
+            is focused on finding which of these methods let us group and plot the clusters
+            formed by all patients diagnosed with the same type of cancer. This is why we say we
+            start with an advantage: <strong>we'll focus only on those results that show a clear
+            separation into 5 different groups, matching the 5 cancer types</strong>. Only this
+            kind of result would make biological sense to us and could be useful. Having selected
+            the four types of methods and tested them on our data, we can highlight some
+            interesting aspects of each:</p>
+          <p>1. MDS: we can see that this method is easily interpretable and <strong>quite
+            versatile</strong>, since we can play with several parameters, such as the
+            <strong>number of dimensions</strong> (Fig. 1 vs. 2) or the <strong>type of distance
+            calculated</strong>, depending on the kind of data we're working with. That said, we
+            can also see that for our dataset <strong>it wasn't the most effective</strong>.</p>
+          <p>2. Isomap: this method gave us better results than the previous one, and we also
+            consider it equally versatile. The point we chose to highlight is that
+            <strong>tuning the k parameter to get good results can be quite difficult</strong>
+            (Fig. 3 and 4).</p>
+          <p>3. Umap: this is <strong>the method that gives the best results</strong> (Fig. 5)
+            and, by a wide margin, <strong>the most versatile</strong>. But this versatility comes
+            at the cost of having many parameters to define, and therefore <strong>a very deep
+            understanding of the method is needed to use it with the greatest precision</strong>.
+            This is also why we find it <strong>the least accessible method initially</strong>.</p>
+          <p>4. Agglomerative hierarchical clustering: this method allowed us to <strong>look at
+            the dataset from a different perspective</strong>, since dendrograms show, in a more
+            visual way, the <strong>degree of relatedness between different clusters</strong>. On
+            this occasion we'd highlight that <strong>it's very important to know your dataset
+            and the goals you're pursuing in order to choose the right linkage method when
+            clustering</strong> (Fig. 6 and 7).</p>
+          <p>Lastly, we should also add that all these methods were <strong>very computationally
+            demanding</strong>. A possible solution to this could be selecting a smaller number of
+            genes — for example, the first 500 — or choosing less demanding methods.</p>
+        </div>
+      </div>
+      </div>
+     </div> 
+    <section>
+      <h3 class="section-subtitle">Links</h3>
+      <div class="links-container">
+        
+        <a
+          href="https://github.com/Alex-PH-Lau/Alex-PH-Lau.github.io/blob/main/proyectos/master/ai/ai.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link-card"
+        >
+          <i class="fab fa-github" aria-hidden="true"></i>
+          <span>View on GitHub</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <nav class="journal-footer-nav">
+    <a href="../master.html">&larr; Back to courses</a>
+  </nav>
+
+  <footer>
+    <p>© 2026 Alejandro Pascual Hernández. Built with HTML/CSS/JS.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/r.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+  <script src="../../../../script.js"></script>
+</body>
+</html>
