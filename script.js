@@ -51,10 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /**
  * Paneles "split" de Wet Lab / Dry Lab.
- * En escritorio, la expansión se gestiona solo con CSS (:hover).
- * En dispositivos táctiles (sin hover real) el primer toque expande
- * el panel y muestra la lista; un segundo toque sobre el mismo panel
- * ya expandido navega con normalidad al enlace.
+ * En escritorio, la expansión se gestiona solo con CSS (:hover / :focus-within).
+ * En dispositivos táctiles (sin hover real), tocar el panel lo expande o
+ * lo contrae; tocar directamente uno de los enlaces de la lista navega
+ * con normalidad, sin interferencia.
  */
 document.addEventListener("DOMContentLoaded", () => {
   const splitPanels = document.querySelectorAll(".split-panel");
@@ -64,12 +64,97 @@ document.addEventListener("DOMContentLoaded", () => {
 
   splitPanels.forEach((panel) => {
     panel.addEventListener("click", (event) => {
-      if (!panel.classList.contains("expanded")) {
-        event.preventDefault();
-        splitPanels.forEach((p) => p.classList.remove("expanded"));
+      // Si el toque fue directamente sobre un enlace o botón de la
+      // lista, se deja actuar con normalidad, sin interferir.
+      const clickedItem = event.target.closest(".split-list a, .split-list button");
+      if (clickedItem) return;
+
+      // Si no, se trata de un toque sobre el panel: expande o contrae.
+      const alreadyExpanded = panel.classList.contains("expanded");
+      splitPanels.forEach((p) => p.classList.remove("expanded"));
+      if (!alreadyExpanded) {
         panel.classList.add("expanded");
       }
-      // Si ya estaba expandido, se deja que el enlace navegue normalmente.
     });
   });
+});
+
+/**
+ * Panel integrado de resumen (usado por ICM y Semillas Fitó): al pulsar
+ * el botón correspondiente en la lista, se despliega un panel dentro
+ * de la propia página (empujando el contenido de más abajo), en vez
+ * de un modal superpuesto.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  const panel = document.getElementById("labInfoPanel");
+  if (!panel) return;
+
+  const closeBtn = panel.querySelector(".lab-info-close");
+  const contents = panel.querySelectorAll(".lab-info-content");
+  const triggers = document.querySelectorAll("[data-modal-target]");
+
+  function openPanel(targetId) {
+    contents.forEach((content) => {
+      content.hidden = content.id !== targetId;
+    });
+    panel.hidden = false;
+    // requestAnimationFrame para asegurar que el navegador aplica el
+    // estado inicial (max-height: 0) antes de añadir .open, y así
+    // se vea la transición en vez de saltar directamente al final.
+    requestAnimationFrame(() => panel.classList.add("open"));
+    panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function closePanel() {
+    panel.classList.remove("open");
+  }
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => {
+      const targetId = trigger.dataset.modalTarget;
+      // Si ya estaba abierto mostrando el mismo contenido, el botón
+      // actúa como cierre; si no, lo abre (o cambia de contenido).
+      const isSameAndOpen =
+        panel.classList.contains("open") &&
+        !document.getElementById(targetId).hidden;
+      if (isSameAndOpen) {
+        closePanel();
+      } else {
+        openPanel(targetId);
+      }
+    });
+  });
+
+  closeBtn.addEventListener("click", closePanel);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && panel.classList.contains("open")) {
+      closePanel();
+    }
+  });
+});
+
+/**
+ * Barra de navegación flotante: permanece oculta mientras se está en
+ * el hero (que ya tiene sus propios botones) y aparece con una
+ * transición suave en cuanto se hace scroll hacia abajo.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.getElementById("floatingNav");
+  const hero = document.querySelector(".hero");
+  if (!nav || !hero) return;
+
+  const heroObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        // Cuando el hero deja de ser visible (se ha hecho scroll más
+        // allá de él), se muestra la barra; cuando vuelve a verse
+        // (se ha vuelto arriba del todo), se oculta de nuevo.
+        nav.classList.toggle("visible", !entry.isIntersecting);
+      });
+    },
+    { threshold: 0 }
+  );
+
+  heroObserver.observe(hero);
 });

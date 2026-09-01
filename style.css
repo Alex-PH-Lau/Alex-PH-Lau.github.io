@@ -129,7 +129,7 @@ button:focus-visible {
   background: white;
   color: var(--verde-principal);
   padding: 0.8rem 1.5rem;
-  border-radius: 30px;
+  border-radius: 10px;
   text-decoration: none;
   margin-top: 1rem;
   margin-left: 0.5rem;
@@ -258,7 +258,7 @@ button:focus-visible {
   background-color: white;
   color: #444;
   padding: 0.7rem 1.4rem;
-  border-radius: 8px;
+  border-radius: 10px;
   font-weight: 500;
   font-size: 1rem;
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
@@ -388,14 +388,168 @@ button:focus-visible {
   border-top: none;
 }
 
-/* Estado expandido: por hover en escritorio, o por la clase .expanded
-   que añade script.js al primer toque en dispositivos táctiles */
+.split-list a,
+.split-list button {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  background: none;
+  border: none;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+}
+
+.split-list a:hover,
+.split-list a:focus-visible,
+.split-list button:hover,
+.split-list button:focus-visible {
+  text-decoration: underline;
+}
+
+/* Icono que indica el tipo de interacción: enlace real a otra
+   página (↗) o contenido desplegable en la misma página (chevron) */
+.split-icon {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  flex-shrink: 0;
+}
+
+.split-list a .split-icon {
+  color: var(--verde-principal);
+}
+
+.split-list button .split-icon {
+  color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.2s ease;
+}
+
+/* === PANEL INTEGRADO (ICM / Fitó) === */
+/* A diferencia de un modal, este panel forma parte del flujo normal
+   de la página: aparece justo debajo de los paneles Wet Lab/Dry Lab
+   empujando el contenido de más abajo, sin oscurecer ni superponerse
+   a nada. Se anima con max-height en vez de display, para permitir
+   la transición de apertura/cierre. */
+.lab-info-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: linear-gradient(135deg, #f8f9fa, #eaf2ee);
+}
+
+.lab-info-panel.open {
+  max-height: 500px;
+}
+
+.lab-info-panel[hidden] {
+  display: none;
+}
+
+.lab-info-inner {
+  position: relative;
+  padding: 2.5rem 1.5rem 2rem;
+}
+
+.lab-info-content[hidden] {
+  display: none;
+}
+
+.lab-info-content h3 {
+  color: var(--gris-verde);
+  margin-bottom: 1rem;
+  padding-right: 2rem;
+}
+
+.lab-info-content p {
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+}
+
+.lab-info-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--gris-verde);
+  padding: 0.3rem;
+}
+
+.lab-info-close:hover {
+  color: var(--oscuro);
+}
+
+/* === BARRA DE NAVEGACIÓN FLOTANTE === */
+/* Oculta mientras se está en el hero (que ya tiene sus propios
+   botones); aparece con una transición suave al hacer scroll,
+   gestionado por script.js mediante la clase .visible. */
+.floating-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.9rem 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  z-index: 900;
+
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.floating-nav.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.floating-nav a {
+  color: var(--gris-verde);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.2rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.floating-nav a:hover,
+.floating-nav a:focus-visible {
+  color: var(--verde-principal);
+  border-bottom-color: var(--verde-principal);
+}
+
+@media (max-width: 600px) {
+  .floating-nav {
+    gap: 1.2rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Estado expandido: por hover en escritorio, por foco de teclado
+   (al tabular hasta un enlace oculto de la lista), o por la clase
+   .expanded que añade script.js al primer toque en táctil */
 .split-panel:hover,
+.split-panel:focus-within,
 .split-panel.expanded {
   flex: 2.2;
 }
 
 .split-panel:hover .split-list,
+.split-panel:focus-within .split-list,
 .split-panel.expanded .split-list {
   max-height: 200px;
   opacity: 1;

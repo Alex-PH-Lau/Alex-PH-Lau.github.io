@@ -17,6 +17,12 @@
   />
 </head>
 <body>
+  <nav class="floating-nav" id="floatingNav">
+    <a href="#cv">CV</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
   <header class="hero">
     <video autoplay loop muted playsinline class="hero-video">
   <source src="adn-fondo.webm" type="video/webm">
@@ -158,7 +164,7 @@
       </div>
 
       <div class="split-container reveal">
-        <a href="proyectos/wetlab.html" class="split-panel split-wetlab">
+        <div class="split-panel split-wetlab">
           <video autoplay loop muted playsinline class="split-video">
             <source src="proyectos/wetlab-bg.webm" type="video/webm">
             <source src="proyectos/wetlab-bg.mp4" type="video/mp4">
@@ -167,12 +173,12 @@
             <i class="fa-solid fa-flask-vial" aria-hidden="true"></i> Wet Lab
           </span>
           <ul class="split-list">
-            <li>Generación de clones infecciosos de virus PDV y PNRSV (IBMCP)</li>
-            <li>Diagnóstico genético (ICM Lugo)</li>
-            <li>Cultivo in vitro y fitopatología (Semillas Fitó)</li>
+            <li><a href="proyectos/practicas/ibmcp/ibmcp.html"><span>Generación de clones infecciosos de virus PDV y PNRSV (IBMCP)</span><i class="fa-solid fa-arrow-up-right-from-square split-icon" aria-hidden="true"></i></a></li>
+            <li><button type="button" data-modal-target="modal-icm"><span>Diagnóstico genético (ICM Lugo)</span><i class="fa-solid fa-chevron-down split-icon" aria-hidden="true"></i></button></li>
+            <li><button type="button" data-modal-target="modal-fito"><span>Cultivo in vitro y fitopatología (Semillas Fitó)</span><i class="fa-solid fa-chevron-down split-icon" aria-hidden="true"></i></button></li>
           </ul>
-        </a>
-        <a href="proyectos/drylab.html" class="split-panel split-drylab">
+        </div>
+        <div class="split-panel split-drylab">
           <video autoplay loop muted playsinline class="split-video">
             <source src="proyectos/drylab-bg.webm" type="video/webm">
             <source src="proyectos/drylab-bg.mp4" type="video/mp4">
@@ -181,11 +187,38 @@
             <i class="fa-solid fa-laptop-code" aria-hidden="true"></i> Dry Lab
           </span>
           <ul class="split-list">
-            <li>Atlas de expresión de papaya (IHSM "La Mayora")</li>
-            <li>EasyGDB (IHSM "La Mayora")</li>
-            <li>Asignaturas del máster de bioinformática</li>
+            <li><a href="proyectos/practicas/tfm/tfm.html"><span>Atlas de expresión de papaya (IHSM "La Mayora")</span><i class="fa-solid fa-arrow-up-right-from-square split-icon" aria-hidden="true"></i></a></li>
+            <li><a href="proyectos/practicas/easygdb/easygdb.html"><span>EasyGDB (IHSM "La Mayora")</span><i class="fa-solid fa-arrow-up-right-from-square split-icon" aria-hidden="true"></i></a></li>
+            <li><a href="proyectos/master/master.html"><span>Asignaturas del máster de bioinformática</span><i class="fa-solid fa-arrow-up-right-from-square split-icon" aria-hidden="true"></i></a></li>
           </ul>
-        </a>
+        </div>
+      </div>
+
+      <div class="lab-info-panel" id="labInfoPanel" hidden>
+        <div class="section-heading-wrap lab-info-inner">
+          <button type="button" class="lab-info-close" aria-label="Cerrar">&times;</button>
+
+          <div class="lab-info-content" id="modal-icm" hidden>
+            <h3>Diagnóstico genético (ICM Lugo)</h3>
+            <p><strong>Instituto de Estudios Celulares y Moleculares (ICM), Lugo</strong> · Ago 2020 - Sep 2020</p>
+            <p>
+              Prácticas en un laboratorio de diagnóstico genético centrado en el análisis de
+              enfermedades genéticas humanas. Participé en la secuenciación de muestras mediante
+              NGS, Sanger y microarrays de SNPs, y colaboré en la toma de muestras y el análisis
+              de pruebas de COVID-19 durante la pandemia.
+            </p>
+          </div>
+
+          <div class="lab-info-content" id="modal-fito" hidden>
+            <h3>Cultivo in vitro y fitopatología (Semillas Fitó)</h3>
+            <p><strong>Semillas Fitó</strong> · May 2025 - Dic 2025</p>
+            <p>
+              Técnico en cultivo in vitro de especies hortícolas (sandía, pepino, pimiento,
+              berenjena y melón) y en el control fitosanitario mediante análisis ELISA para la
+              detección de virus en tomate, sandía, melón y otras hortícolas.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
