@@ -158,3 +158,88 @@ document.addEventListener("DOMContentLoaded", () => {
 
   heroObserver.observe(hero);
 });
+
+/**
+ * Botón "volver arriba": aparece tras hacer scroll hacia abajo en
+ * cualquier página del sitio, y sube suavemente al inicio de la
+ * página actual al pulsarlo.
+ *
+ * Se inyecta por completo desde aquí (HTML + CSS), en vez de añadirlo
+ * a cada .html/.css por separado, porque script.js es el único
+ * archivo que TODAS las páginas cargan de forma garantizada — así
+ * este cambio se aplica a todo el sitio con solo sustituir este
+ * archivo.
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  // --- Estilos del botón (inyectados una única vez) ---
+  const style = document.createElement("style");
+  style.textContent = `
+    .back-to-top-btn {
+      position: fixed;
+      bottom: 1.8rem;
+      right: 1.8rem;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: none;
+      background: var(--verde-principal, #30DB8D);
+      color: white;
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      z-index: 950;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+    }
+    .back-to-top-btn.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .back-to-top-btn:hover,
+    .back-to-top-btn:focus-visible {
+      background: var(--gris-verde, #4E6159);
+    }
+    @media (max-width: 600px) {
+      .back-to-top-btn {
+        bottom: 1.2rem;
+        right: 1.2rem;
+        width: 42px;
+        height: 42px;
+        font-size: 1.15rem;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .back-to-top-btn {
+        transition: none;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // --- Creación del botón ---
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "back-to-top-btn";
+  btn.setAttribute("aria-label", "Volver arriba");
+  btn.innerHTML = "&uarr;";
+  document.body.appendChild(btn);
+
+  // --- Mostrar/ocultar según la posición de scroll ---
+  const SCROLL_THRESHOLD = 400; // píxeles bajados antes de mostrar el botón
+
+  function toggleVisibility() {
+    btn.classList.toggle("visible", window.scrollY > SCROLL_THRESHOLD);
+  }
+
+  window.addEventListener("scroll", toggleVisibility, { passive: true });
+  toggleVisibility(); // por si la página ya carga con scroll (ej. #ancla)
+
+  // --- Acción: sube al inicio de ESTA página, no navega a otra ---
+  btn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
