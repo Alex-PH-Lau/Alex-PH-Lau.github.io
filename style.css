@@ -127,7 +127,7 @@ button:focus-visible {
 .btn {
   display: inline-block;
   background: white;
-  color: var(--verde-principal);
+  color: var(--gris-verde);
   padding: 0.8rem 1.5rem;
   border-radius: 10px;
   text-decoration: none;
