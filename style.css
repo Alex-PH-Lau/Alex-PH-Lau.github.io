@@ -798,3 +798,36 @@ footer {
   vertical-align: middle;
   white-space: nowrap;
 }
+/* === SELECTOR DE IDIOMA === */
+/* Fijo y siempre visible (a diferencia de .floating-nav, que solo
+   aparece tras hacer scroll), para poder cambiar de idioma desde el
+   primer segundo en cualquier página. */
+.lang-switcher {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1100;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lang-switcher a {
+  font-size: 1.5rem;
+  line-height: 1;
+  text-decoration: none;
+  display: inline-block;
+  opacity: 0.9;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.lang-switcher a.current-lang {
+  opacity: 1;
+  pointer-events: none;
+  transform: scale(1.1);
+}
+
+.lang-switcher a:hover,
+.lang-switcher a:focus-visible {
+  opacity: 1;
+  transform: scale(1.15);
+}

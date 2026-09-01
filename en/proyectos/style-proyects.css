@@ -1,0 +1,463 @@
+/* === RESETEO Y CONFIGURACIÓN GLOBAL === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #222;
+  background: #f9f9f9;
+}
+
+/* === SECCIÓN HERO (CABECERA) === */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #30DB8D, #4E6159);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  position: relative; 
+  overflow: hidden; 
+}
+/* Scroll margin para que el título no quede pegado al techo al hacer click en anclas */
+[id] {
+  scroll-margin-top: 2rem; 
+}
+
+/* Overlay para el video/fondo */
+.hero::before {
+  content: ""; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+      rgba(48, 219, 141, 0.8), 
+      rgba(78, 97, 89, 0.85)   
+  );
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative; 
+  z-index: 3; 
+  animation: fadeIn 1.5s ease;
+}
+
+/* Cabecera más corta para páginas de proyecto */
+.project-hero-short {
+  height: 30vh;
+  min-height: 250px;
+}
+
+.hero h1 {
+  font-size: 2rem;
+}
+
+.hero h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-top: 0.5rem;
+}
+
+/* === ESTILO DE BOTÓN CORREGIDO (Mejor contraste) === */
+.btn {
+  display: inline-block;
+  background: #30DB8D; /* Fondo verde */
+  color: white; /* Texto blanco */
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  margin-top: 1rem;
+  margin-left: 0.5rem; 
+  margin-right: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background: #649E84; /* Verde más oscuro */
+  color: white;
+  transform: scale(1.05);
+}
+
+
+/* === SECCIONES GENÉRICAS === */
+.section {
+  padding: 4rem 1.5rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.section h2,
+.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: #4E6159;
+}
+
+.section-subtitle {
+  margin-top: 2rem;
+  text-align: center;
+  color: #4E6159;
+  font-size: 1.5rem;
+}
+
+
+/* === ENLACES (GitHub, etc.) === */
+.links-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.link-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(130deg, #30DB8E, #4E6159);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  margin: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.link-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(130deg, #4E6159, #30DB8E);
+}
+
+.link-card i {
+  font-size: 1.2rem;
+}
+
+/* === GRID DE ASIGNATURAS (master.html) === */
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.subject-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 1.5rem;
+  min-height: 180px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.subject-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.subject-card i {
+  font-size: 2.5rem; 
+  color: #30DB8D; 
+}
+
+/* Estado "Próximamente" (WIP) */
+.subject-card.is-wip {
+  background: #f9f9f9;
+  opacity: 0.7;
+  pointer-events: none; 
+  color: #888;
+}
+
+.subject-card.is-wip i {
+  color: #bbb;
+}
+
+.wip-badge {
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  background: #649E84; 
+  color: white;
+  padding: 4px 30px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transform: rotate(45deg);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* === TARJETAS DE PROYECTO (index.html) === */
+.project-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative; /* Para el badge */
+  overflow: hidden;   /* Para el badge */
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project-card a {
+  color: #4E6159;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Estado WIP para project-card */
+.project-card.is-wip {
+  background-color: #f9f9f9;
+  color: #888;
+  pointer-events: none;
+}
+
+.project-card.is-wip > * { 
+  opacity: 0.8;
+}
+
+.project-card.is-wip:hover {
+  transform: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* === TAGS DE CONCEPTOS CLAVE (Páginas de proyecto) === */
+.tech-stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.tech-stack-tags span {
+  background-color: #eaf2ee; 
+  color: #4E6159; 
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* === SECCIÓN CONCLUSIONES (derecho.html) === */
+.key-findings {
+  background: #fdfdfd;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+.key-findings h3 {
+  color: #4E6159;
+  margin-bottom: 1rem;
+}
+
+.key-findings ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.key-findings li {
+  position: relative;
+  padding-left: 2rem; 
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.key-findings li i {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  color: #30DB8D; 
+  font-size: 1.1rem;
+}
+
+/* === SEPARADOR DE PROYECTOS (derecho.html) === */
+.project-divider {
+  border: 0;
+  height: 2px;
+  background: linear-gradient(to right, 
+    transparent, 
+    #ddd, 
+    transparent
+  );
+  margin: 4rem auto;
+  width: 80%;
+}
+
+
+/* === CONTENIDO R MARKDOWN (estadistica.html) === */
+.r-markdown-container {
+  margin-top: 2rem;
+  padding: 1.5rem 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: left; 
+}
+
+.r-markdown-container h2,
+.r-markdown-container h3,
+.r-markdown-container h4 {
+  color: #4E6159; 
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.r-markdown-container p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.r-markdown-container strong {
+  color: #222;
+}
+
+.r-markdown-container pre {
+  background-color: #f7f7f7; 
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  white-space: pre-wrap; 
+  word-wrap: break-word;
+  margin: 1.5rem 0;
+}
+
+.r-markdown-container code {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Estilo para figuras R Markdown */
+.r-plot-figure {
+  text-align: center;
+  margin: 2.5rem 0;
+  padding: 1rem;
+  background-color: #fafafa;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.r-plot-figure img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.r-plot-figure figcaption {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.8rem;
+  font-style: italic;
+}
+
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #222;
+  color: white;
+  font-size: 0.9rem;
+  margin-top: 4rem;
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Animación de entrada (controlada por script.js) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === RESPONSIVE (MÓVIL) === */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+  .section {
+    padding: 2.5rem 1rem;
+  }
+  .hero .btn {
+    display: block;
+    margin: 1rem auto;
+    width: 80%;
+  }
+  .r-markdown-container {
+    padding: 1rem;
+  }
+}
+/* === ESTILOS PARA ENLACES DE CONCLUSIONES === */
+.key-findings li a {
+  display: inline-block; /* Nos permite añadir padding y transform */
+  background-color: #eaf2ee; /* El mismo fondo que tus tech-tags */
+  color: #4E6159;          /* El mismo color de texto */
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  margin: 0 3px;          /* Pequeño espacio antes y después */
+  border-radius: 20px;    /* Bordes redondeados de "tag" */
+  transition: all 0.3s ease;
+}
+
+.key-findings li a:hover {
+  background-color: #4E6159; /* El verde oscuro al pasar el ratón */
+  color: white;             /* Texto blanco */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* === AJUSTE ESPACIO BOTÓN PDF === */
+.btn-download {
+  margin-bottom: 1.5rem;
+}
