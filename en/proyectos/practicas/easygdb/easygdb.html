@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyGDB: Sequence Explorer | Alejandro Pascual Hernández</title>
+
+  <link rel="stylesheet" href="../../../../style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+  <meta
+    name="description"
+    content="Development of the Sequence Explorer module for EasyGDB, a genomic/transcript/protein sequence viewer with exon, intron and UTR highlighting, integrated with JBrowse and BLAST. Portfolio project by Alejandro Pascual."
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="../../style-proyects.css" />
+  <link rel="stylesheet" href="../../style-product.css" />
+</head>
+<body>
+
+  <header class="product-header reveal">
+    <p class="product-kicker">Tool · Dry Lab</p>
+    <h1>EasyGDB: Sequence Explorer</h1>
+    <p class="product-subtitle">
+      EasyGDB module for viewing genomic, transcript and protein sequences, with the gene
+      structure highlighted directly from the GFF3 annotation.
+    </p>
+    <a href="../../../index.html" class="btn">Back to home</a>
+  </header>
+
+  <main class="section">
+
+    <div class="product-tech-tags reveal">
+      <span>PHP</span>
+      <span>JavaScript</span>
+      <span>blastdbcmd</span>
+      <span>GFF3/GFF</span>
+      <span>JSON</span>
+      <span>JBrowse</span>
+      <span>BLAST</span>
+    </div>
+
+    <section class="reveal">
+      <h2>Sequence Explorer</h2>
+      <p>
+        <strong>EasyGDB</strong> is a tool developed at IHSM "La Mayora" to build genomic portals
+        in a simple and maintainable way — the same tool that powers IHSM Subtropicals, MangoBase
+        and other subtropical species portals. During my internship I contributed to the
+        development of several of its modules, including <strong>Sequence Explorer</strong>: a
+        tool that lets you search for any gene by its identifier and retrieve its genomic,
+        transcript and protein sequence, with exons, introns, UTRs and flanking regions
+        highlighted directly from the genome's GFF3 annotation.
+      </p>
+    </section>
+
+    <section class="key-findings reveal">
+      <h3>Key aspects of the development</h3>
+      <ul>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Multi-organism via configuration, no code changes needed:</strong> each genome
+          is registered in a <code>seq_exp.json</code> file with its gene list, GFF3 annotation,
+          BLAST database and (optionally) its JBrowse link — allowing any EasyGDB-based portal to
+          activate the tool for a new species without modifying a single line of PHP.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Color-coded view of gene structure:</strong> exons/CDS, introns and UTRs are
+          visually distinguished both in the full genomic sequence and in the transcript view,
+          making biological interpretation easier at a glance.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Fixed a negative-strand bug:</strong> I found and fixed an error where genes on
+          the negative strand showed their exon/intron blocks in the wrong positions. The problem
+          was that, after reverse-complementing the sequence returned by samtools, the exon/CDS
+          offsets were still being calculated as if the gene were on the positive strand.
+        </li>
+        <li>
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <strong>Integration with JBrowse and BLAST:</strong> from the search results, you can
+          jump straight to the gene's position in JBrowse, or launch a BLAST search on the
+          retrieved sequence, without leaving the workflow.
+        </li>
+      </ul>
+    </section>
+
+    <section class="reveal">
+      <h3 class="section-subtitle">The tool in action</h3>
+
+      <figure class="r-plot-figure">
+        <div class="browser-frame">
+          <div class="browser-frame-bar">
+            <span></span><span></span><span></span>
+          </div>
+          <img src="seqexplorer-overview.gif" alt="Demonstration of Sequence Explorer searching for a gene and showing its color-coded sequence">
+        </div>
+        <figcaption><em>Searching for a gene and viewing its genomic sequence with exons,
+        introns and UTRs highlighted.</em></figcaption>
+      </figure>
+
+      <figure class="r-plot-figure">
+        <div class="browser-frame">
+          <div class="browser-frame-bar">
+            <span></span><span></span><span></span>
+          </div>
+          <img src="seqexplorer-jbrowse-blast.gif" alt="Demonstration of Sequence Explorer's integration with JBrowse and BLAST">
+        </div>
+        <figcaption><em>Jumping directly from the results to JBrowse and launching a
+        BLAST search on the sequence.</em></figcaption>
+      </figure>
+    </section>
+
+    <section id="contacto" class="section">
+      <h2 class="reveal">Related sites</h2>
+      <div class="contact reveal">
+        <p>More information at:</p>
+
+        <a href="https://github.com/noefp/easy_gdb" target="_blank" rel="noopener noreferrer" class="contact-item">
+          <i class="fab fa-github" aria-hidden="true"></i>
+          <span>EasyGDB Github</span>
+          <i class="fa-solid fa-arrow-up-right-from-square external-link-icon" aria-hidden="true"></i>
+        </a>
+
+        <a href="https://ihsmsubtropicals.uma.es/easy_gdb/index.php" target="_blank" rel="noopener noreferrer" class="contact-item">
+          <span>IHSM Subtropicals</span>
+          <i class="fa-solid fa-arrow-up-right-from-square external-link-icon" aria-hidden="true"></i>
+        </a>
+
+        <a href="https://mangobase.org/easy_gdb/index.php" target="_blank" rel="noopener noreferrer" class="contact-item">
+          <span>MangoBase</span>
+          <i class="fa-solid fa-arrow-up-right-from-square external-link-icon" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Alejandro Pascual Hernández. Built with HTML/CSS/JS.</p>
+  </footer>
+
+  <script src="../../../../script.js"></script>
+</body>
+</html>

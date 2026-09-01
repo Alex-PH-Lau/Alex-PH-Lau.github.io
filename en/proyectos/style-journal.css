@@ -13,6 +13,13 @@
 
 :root {
   --journal-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+  --verde-principal: #30DB8D;
+  --verde-principal-alt: #30DB8E; /* usado en el gradiente de contact-item */
+  --verde-secundario: #649E84;
+  --gris-verde: #4E6159;
+  --oscuro: #332E2D;
+  --texto: #222;
+  --fondo: #f9f9f9;
 }
 
 /* === CABECERA TIPO MASTHEAD === */
