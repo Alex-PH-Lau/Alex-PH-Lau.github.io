@@ -443,7 +443,11 @@ button:focus-visible {
 }
 
 .lab-info-panel.open {
-  max-height: 500px;
+  max-height: 2500px; /* holgado a propósito: solo necesita ser mayor
+                          que cualquier contenido real, no el alto exacto */
+  overflow-y: auto;   /* red de seguridad: si algún día el contenido
+                          fuera aún más largo, aparece scroll interno
+                          en vez de recortarse */
 }
 
 .lab-info-panel[hidden] {
