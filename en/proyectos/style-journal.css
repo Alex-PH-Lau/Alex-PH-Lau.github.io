@@ -13,13 +13,6 @@
 
 :root {
   --journal-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
-  --verde-principal: #30DB8D;
-  --verde-principal-alt: #30DB8E; /* usado en el gradiente de contact-item */
-  --verde-secundario: #649E84;
-  --gris-verde: #4E6159;
-  --oscuro: #332E2D;
-  --texto: #222;
-  --fondo: #f9f9f9;
 }
 
 /* === CABECERA TIPO MASTHEAD === */
@@ -310,5 +303,47 @@
   }
   .journal-article {
     padding: 2rem 1.2rem 3rem;
+  }
+}
+
+/* === IMPRESIÓN === */
+/* Oculta los elementos puramente decorativos/navegables al imprimir
+   (masthead, degradado de cabecera, selector de idioma, botón de
+   volver arriba), dejando solo el contenido del artículo en limpio
+   sobre fondo blanco. */
+@media print {
+  .journal-masthead,
+  .lang-switcher,
+  .floating-nav,
+  .back-to-top-btn,
+  .journal-footer-nav,
+  footer {
+    display: none !important;
+  }
+
+  .journal-header {
+    background: none !important;
+    color: #000 !important;
+    padding: 1rem 0 !important;
+  }
+
+  .journal-article {
+    max-width: 100%;
+    color: #000;
+  }
+
+  .journal-abstract,
+  .key-findings {
+    border: 1px solid #ccc;
+    background: none !important;
+  }
+
+  .journal-actions {
+    display: none !important; /* botones de descarga/enlaces no aportan en papel */
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
   }
 }
